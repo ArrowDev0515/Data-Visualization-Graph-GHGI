@@ -150,7 +150,7 @@ export default function EmissionRedcutionPotentialComponent() {
     return (
         <>
             <div className="bg-gradient-to-r from-blue-400 via-green-500 to-yellow-300 p-12">
-                <div className="bg-gray-800 bg-opacity-20 rounded-xl p-5 grid items-center" style={{ height: "500px" }}>
+                <div className="bg-gray-800 bg-opacity-20 rounded-xl p-5 grid items-center" style={{ minHeight: "500px" }}>
                     <div className="flex">
                         <div className="flex items-center mx-2.5">
                             <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Data Source : </label>
@@ -189,18 +189,59 @@ export default function EmissionRedcutionPotentialComponent() {
                         </div>
                         <FC chartConfigs={chartConfigs}></FC>
                         <div className="col-span-2 bg-white rounded-md bg-opacity-10 text-white grid text-center items-center p-3 grid-cols-2">
-                            <div className="justify-self-center">
-                                <div className="" style={{ width: "100px", height: "200px"}}>
+                            <div className="justify-self-stretch px-8">
+                                <div className="text-md mb-3 pl-3"><b>830 MtCO2e</b></div>
+                                <div className="w-full" style={{ height: "150px" }}>
                                     {
                                         dataSource.data.map((item, idx) => (
-                                            <div key={idx} className="relative" style={{width:"100px", height: `${item["percentValue"]}`, backgroundColor: `${item.color}` }}>
+                                            <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}`, backgroundColor: `${item.color}` }}>
                                                 <span>{item.value}</span>
                                             </div>
                                         ))
                                     }
                                 </div>
+                                <div className="text-xl mt-3 pl-3"><b>Emissions</b></div>
                             </div>
-                            <div>Text2</div>
+                            <div className="justify-self-stretch px-8">
+                                <div className="grid justify-items-start my-3">
+                                    {
+                                        dataSource.data.map((item, idx) => (
+                                            <div key={idx} className="flex mt-2 items-center">
+                                                <span className="grid" style={{ width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
+                                                </span>
+                                                <div className="text-sm pl-3">{item.label}</div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+
+                            <div className="justify-self-stretch px-8">
+                                <div className="text-md mb-3 pl-3"><b>-1115 MtCO2e</b></div>
+                                <div className="w-full" style={{ height: "150px" }}>
+                                    {
+                                        dataSource.data.map((item, idx) => (
+                                            <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}`, backgroundColor: `${item.color}` }}>
+                                                <span>{item.value}</span>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                                <div className="text-xl mt-3 pl-3"><b>Removals</b></div>
+                            </div>
+                            <div className="justify-self-stretch px-8">
+                                <div className="grid justify-items-start my-3">
+                                    {
+                                        dataSource.data.map((item, idx) => (
+                                            <div key={idx} className="flex mt-2 items-center">
+                                                <span className="grid" style={{ width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
+                                                </span>
+                                                <div className="text-sm pl-3">{item.label}</div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
