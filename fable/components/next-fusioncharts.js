@@ -77,5 +77,5 @@ export default function NextFC({chartConfigs}) {
   
 
 
-  return <ReactFC {...chartConfigs} fcEvent-dataPlotClick={onClick}  className="col-span-3 justify-self-stretch"/>;
+  return <ReactFC {...chartConfigs} fcEvent-dataPlotClick={onClick}  className="col-span-3 mx-3 justify-self-stretch bg-gray-900 bg-opacity-10 rounded-md"/>;
 }

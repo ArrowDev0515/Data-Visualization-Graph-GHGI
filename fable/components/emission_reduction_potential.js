@@ -153,8 +153,8 @@ export default function EmissionRedcutionPotentialComponent() {
                 <div className="bg-gray-800 bg-opacity-20 rounded-xl p-5 grid items-center" style={{ minHeight: "500px" }}>
                     <div className="flex">
                         <div className="flex items-center mx-2.5">
-                            <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Data Source : </label>
-                            <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ml-2.5">
+                            <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label>
+                            <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
                                 <option selected>Choose a country</option>
                                 <option value="US">United States</option>
                                 <option value="CA">Canada</option>
@@ -163,18 +163,18 @@ export default function EmissionRedcutionPotentialComponent() {
                             </select>
                         </div>
                         <div className="flex items-center mx-2.5">
-                            <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Country : </label>
-                            <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ml-2.5">
-                                <option selected>Choose a country</option>
-                                <option value="US">United States</option>
-                                <option value="CA">Canada</option>
-                                <option value="FR">France</option>
-                                <option value="DE">Germany</option>
+                            <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Country : </label>
+                            <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
+                                <option selected className="text-gray-900">Choose a country</option>
+                                <option className="text-gray-900" value="US">United States</option>
+                                <option className="text-gray-900" value="CA">Canada</option>
+                                <option className="text-gray-900" value="FR">France</option>
+                                <option className="text-gray-900" value="DE">Germany</option>
                             </select>
                         </div>
                         <div className="flex items-center mx-2.5">
-                            <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Year : </label>
-                            <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ml-2.5">
+                            <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Year : </label>
+                            <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
                                 <option selected>Choose a country</option>
                                 <option value="US">United States</option>
                                 <option value="CA">Canada</option>
@@ -184,11 +184,11 @@ export default function EmissionRedcutionPotentialComponent() {
                         </div>
                     </div>
                     <div className="grid grid-cols-6 pt-3" style={{ minHeight: `${400}px` }}>
-                        <div className="bg-white rounded-md bg-opacity-10 text-white grid text-center items-center p-3" style={{ minWidth: "200px" }}>
+                        <div className="bg-gray-900 bg-opacity-10 rounded-md text-gray-200 grid text-center items-center p-3">
                             <b>Some Text Here!</b>
                         </div>
                         <FC chartConfigs={chartConfigs}></FC>
-                        <div className="col-span-2 bg-white rounded-md bg-opacity-10 text-white grid text-center items-center p-3 grid-cols-2">
+                        <div className="bg-gray-900 bg-opacity-10 rounded-md text-gray-200 grid text-center items-center p-3 col-span-2 grid-cols-2">
                             <div className="justify-self-stretch px-8">
                                 <div className="text-md mb-3 pl-3"><b>830 MtCO2e</b></div>
                                 <div className="w-full" style={{ height: "150px" }}>
