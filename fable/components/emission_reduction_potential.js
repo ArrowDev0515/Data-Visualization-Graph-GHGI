@@ -10,26 +10,29 @@ const FC = dynamic(() => import("./next-fusioncharts.js"), { ssr: false });
 const dataSource = {
     chart: {
         caption: "12,301MtCO2e",
+        captionFontColor: "#ffffff",
+        // captionFontSize: "18",
+
         // subCaption: "In MMbbl = One Million barrels",
+        // subCaptionFontColor: "#ffffff",
 
         bgColor: "#000000",
         bgAlpha: "0",
 
-
-        // captionFontSize: "18",
-        // captionFontColor: "#ffffff",
+        // baseFontSize: "18",
         // baseFontColor: "#ff0000",
+        
+        // defaultcenterlabelColor: "#cccccc",
+        
         labelFontSize: "12",
         labelFontColor: "#cccccc",
-
-        // defaultcenterlabelColor: "#cccccc",
 
         smartLineColor: "#ffffff",
         legendItemFontColor: "#ffffff",
         labelDistance: 0,
         // plotBorderColor: "#ffffff",
         // centerlabel: "# Users: $value",
-        //   showpercentvalues: "0",
+        // showpercentvalues: "0",
         // useDataPlotColorForLabels: "1",
         legendCaptionFontColor: "#ff0000",
         defaultcenterlabel: "12,301MtCO2e",
