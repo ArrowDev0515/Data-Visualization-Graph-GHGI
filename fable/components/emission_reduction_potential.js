@@ -190,10 +190,10 @@ export default function EmissionRedcutionPotentialComponent() {
                         <FC chartConfigs={chartConfigs}></FC>
                         <div className="col-span-2 bg-white rounded-md bg-opacity-10 text-white grid text-center items-center p-3 grid-cols-2">
                             <div className="justify-self-center">
-                                <div className="" style={{ width: "100px", height: "200px", backgroundColor: "#fff" }}>
+                                <div className="" style={{ width: "100px", height: "200px"}}>
                                     {
                                         dataSource.data.map((item, idx) => (
-                                            <div key={idx} className="absolute" style={{ height: `${item["percentValue"]}`, backgroundColor: `${item.color}` }}>
+                                            <div key={idx} className="relative" style={{width:"100px", height: `${item["percentValue"]}`, backgroundColor: `${item.color}` }}>
                                                 <span>{item.value}</span>
                                             </div>
                                         ))
