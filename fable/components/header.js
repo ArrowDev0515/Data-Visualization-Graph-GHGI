@@ -46,7 +46,7 @@ const Header = ({ tabNo }) => {
               </Link>
             </li>
             <li className="mr-2">
-              <Link activeClass="activeStyle" smooth spy offset={-65} to="data_explorer"
+              <Link activeClass="activeStyle" smooth spy offset={-85} to="data_explorer"
                 className={`inline-block p-3 cursor-pointer rounded-t-lg border-b-2 border-transparent hover:text-white hover:border-gray-300 focus:text-gray-400 focus:border-gray-400`}>
                 Data Explorer
               </Link>

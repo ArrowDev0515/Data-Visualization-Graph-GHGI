@@ -73,48 +73,55 @@ export default function EmissionRedcutionPotentialComponent() {
         <>
             <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minHeight: "600px" }}>
                 {/* <div className="bg-gradient-to-r from-blue-400 via-green-500 to-yellow-300 p-12"> */}
-                <div className="bg-gray-800 bg-opacity-40 rounded-xl p-5 m-12 grid items-center justify-center" style={{ minHeight: "500px" }}>
-                    <div className="flex items-center mx-2.5">
-                        <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label>
-                        <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
-                            <option className="text-gray-900" selected>Geographical. Scope</option>
-                            <option className="text-gray-900" value="US">Option 1</option>
-                            <option className="text-gray-900" value="CA">Option 2</option>
-                            <option className="text-gray-900" value="FR">Option 3</option>
-                        </select>
+                <div className="grid grid-cols-6 bg-gray-800 bg-opacity-40 rounded-xl p-5 m-12 items-center justify-center">
+                    <div className="bg-gray-900 col-span-2 bg-opacity-20 rounded-md text-gray-200 grid text-center items-center p-3 my-3" style={{ minHeight: "400px" }}>
+                        <b>Some Text Here!</b>
                     </div>
-                    <div className="grid" style={{ minHeight: `${400}px`, minWidth: "600px"}}>
-                        <FC chartConfigs={chartConfigs}></FC>
+                    <div className="col-span-4">
+                        <div className="flex justify-center">
+                            <div className="flex items-center mx-2.5">
+                                <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label>
+                                <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
+                                    <option className="text-gray-900" selected>Geographical. Scope</option>
+                                    <option className="text-gray-900" value="US">Option 1</option>
+                                    <option className="text-gray-900" value="CA">Option 2</option>
+                                    <option className="text-gray-900" value="FR">Option 3</option>
+                                </select>
+                            </div>
+                            <div className="flex items-center mx-2.5">
+                                {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label> */}
+                                <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
+                                    <option className="text-gray-900" selected>AR</option>
+                                    <option className="text-gray-900" value="US">Option 1</option>
+                                    <option className="text-gray-900" value="CA">Option 2</option>
+                                    <option className="text-gray-900" value="FR">Option 3</option>
+                                </select>
+                            </div>
+                            <div className="flex items-center mx-2.5">
+                                {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Country : </label> */}
+                                <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
+                                    <option selected className="text-gray-900">Category</option>
+                                    <option className="text-gray-900" value="US">Option 1</option>
+                                    <option className="text-gray-900" value="CA">Option 2</option>
+                                    <option className="text-gray-900" value="FR">Option 3</option>
+                                </select>
+                            </div>
+                            <div className="flex items-center mx-2.5">
+                                {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Year : </label> */}
+                                <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
+                                    <option className="text-gray-900" selected>Mitigation.Option</option>
+                                    <option className="text-gray-900" value="US">Option 1</option>
+                                    <option className="text-gray-900" value="CA">Option 2</option>
+                                    <option className="text-gray-900" value="FR">Option 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="grid" style={{ minHeight: `${400}px`, minWidth: "600px" }}>
+                            <FC chartConfigs={chartConfigs}></FC>
+                        </div>
+
                     </div>
-                    <div className="flex justify-center">
-                        <div className="flex items-center mx-2.5">
-                            {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label> */}
-                            <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
-                                <option className="text-gray-900" selected>AR</option>
-                                <option className="text-gray-900" value="US">Option 1</option>
-                                <option className="text-gray-900" value="CA">Option 2</option>
-                                <option className="text-gray-900" value="FR">Option 3</option>
-                            </select>
-                        </div>
-                        <div className="flex items-center mx-2.5">
-                            {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Country : </label> */}
-                            <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
-                                <option selected className="text-gray-900">Category</option>
-                                <option className="text-gray-900" value="US">Option 1</option>
-                                <option className="text-gray-900" value="CA">Option 2</option>
-                                <option className="text-gray-900" value="FR">Option 3</option>
-                            </select>
-                        </div>
-                        <div className="flex items-center mx-2.5">
-                            {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Year : </label> */}
-                            <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
-                                <option className="text-gray-900" selected>Mitigation.Option</option>
-                                <option className="text-gray-900" value="US">Option 1</option>
-                                <option className="text-gray-900" value="CA">Option 2</option>
-                                <option className="text-gray-900" value="FR">Option 3</option>
-                            </select>
-                        </div>
-                    </div>
+
                 </div>
                 {/* </div> */}
             </div>

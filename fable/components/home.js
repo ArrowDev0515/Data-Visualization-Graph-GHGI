@@ -5,7 +5,8 @@ import ReactFusioncharts from "react-fusioncharts";
 import dynamic from "next/dynamic.js";
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
-
+const height1 = 120;
+const height2 = 150;
 
 const dataSource = {
     chart: {
@@ -29,7 +30,7 @@ const dataSource = {
 
         smartLineColor: "#ffffff",
         legendItemFontColor: "#ffffff",
-        labelDistance: 0,
+        labelDistance: 20,
         // plotBorderColor: "#ffffff",
         // centerlabel: "# Users: $value",
         // showpercentvalues: "0",
@@ -44,10 +45,16 @@ const dataSource = {
         //   valuePosition: "inside",
         //   labelPosition: "inside",
         //   minAngleForValue: "15",
-        showlabels: "0",
+        showlabels: "1",
         link: "#ff0000",
         // labelBorderColor: "#00ffaa",
-
+        showLegend: "0",
+        // usePattern: "1",
+        // radius3D: 100,
+        startingAngle: "30",
+        use3DLighting: "1",
+        showShadow: "1",
+        enableSlicing: "0",
         theme: "fusion"
     },
     data: [
@@ -62,14 +69,14 @@ const dataSource = {
         // { label: "US", value: "50", color: "#dddddd"},
         // { label: "China", value: "80", color: "#2971ff"},
 
-        { label: "Venezuela", value: "290", color: "#595da3", percentValue: "23.87%" },
-        { label: "Saudi", value: "260", color: "#17dfe7", percentValue: "21.4%" },
-        { label: "Canada", value: "180", color: "#d66967", percentValue: "14.81%" },
-        { label: "Iran", value: "140", color: "#f3c246", percentValue: "11.52%" },
-        { label: "Russia", value: "115", color: "#6fb595", percentValue: "9.47%" },
-        { label: "UAE", value: "100", color: "#af8ecd", percentValue: "8.23%" },
-        { label: "US", value: "50", color: "#5eb5d4", percentValue: "4.12%" },
-        { label: "China", value: "80", color: "#fde047", percentValue: "6.58%" }
+        { label: "AFOLU", value: "829.845", color: "#d66967", percentValue: "29.44" },
+        { label: "Waste", value: "194.768", color: "#cc8f17", percentValue: "26.4" },
+        { label: "IPPU", value: "1717.012", color: "#e5b149", percentValue: "18.27" },
+        { label: "Energy", value: "9558.58", color: "#dada70", percentValue: "14.21" },
+        // { label: "Russia", value: "115", color: "#6fb595", percentValue: "11.68" },
+        // { label: "UAE", value: "100", color: "#af8ecd", percentValue: "8.23%" },
+        // { label: "US", value: "50", color: "#5eb5d4", percentValue: "4.12%" },
+        // { label: "China", value: "80", color: "#fde047", percentValue: "6.58%" }
     ]
 };
 
@@ -152,53 +159,64 @@ export default function HomeComponent() {
 
     return (
         <>
+            {/* <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minHeight: "600px" }}> */}
             <div className="bg-gradient-to-r from-blue-400 via-green-500 to-yellow-300 p-12">
                 <div className="bg-gray-800 bg-opacity-30 rounded-xl p-5 grid items-center" style={{ minHeight: "500px" }}>
-                    <div className="flex">
-                        <div className="flex items-center mx-2.5">
-                            <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label>
-                            <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
-                                <option selected>Choose a country</option>
-                                <option value="US">United States</option>
-                                <option value="CA">Canada</option>
-                                <option value="FR">France</option>
-                                <option value="DE">Germany</option>
-                            </select>
+                    <div className="flex justify-between">
+                        <div className="flex">
+                            <div className="flex items-center mx-2.5">
+                                <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label>
+                                <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
+                                    <option selected>Choose a Data Source</option>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="FR">France</option>
+                                    <option value="DE">Germany</option>
+                                </select>
+                            </div>
+                            <div className="flex items-center mx-2.5">
+                                <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Country : </label>
+                                <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
+                                    <option selected className="text-gray-900">Choose a country</option>
+                                    <option className="text-gray-900" value="US">United States</option>
+                                    <option className="text-gray-900" value="CA">Canada</option>
+                                    <option className="text-gray-900" value="FR">France</option>
+                                    <option className="text-gray-900" value="DE">Germany</option>
+                                </select>
+                            </div>
+                            <div className="flex items-center mx-2.5">
+                                <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Year : </label>
+                                <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
+                                    <option selected>Choose a year</option>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="FR">France</option>
+                                    <option value="DE">Germany</option>
+                                </select>
+                            </div>
                         </div>
-                        <div className="flex items-center mx-2.5">
-                            <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Country : </label>
-                            <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
-                                <option selected className="text-gray-900">Choose a country</option>
-                                <option className="text-gray-900" value="US">United States</option>
-                                <option className="text-gray-900" value="CA">Canada</option>
-                                <option className="text-gray-900" value="FR">France</option>
-                                <option className="text-gray-900" value="DE">Germany</option>
-                            </select>
-                        </div>
-                        <div className="flex items-center mx-2.5">
-                            <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Year : </label>
-                            <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
-                                <option selected>Choose a country</option>
-                                <option value="US">United States</option>
-                                <option value="CA">Canada</option>
-                                <option value="FR">France</option>
-                                <option value="DE">Germany</option>
-                            </select>
+                        <div className="flex items-center mx-2.5 float-right">
+                            {/* <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-2.5 ml-2.5 text-center">Download Data</button> */}
+                            {/* <button type="button" class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300  shadow-lg shadow-pink-500/50 font-medium rounded-lg text-sm px-5 py-2.5 ml-2.5 text-center">Download Data</button> */}
+                            {/* <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5">Download Data</button> */}
+                            <button type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5">Download Data</button>
                         </div>
                     </div>
-                    <div className="grid grid-cols-6" style={{ minHeight: `${400}px` }}>
-                        <div className="bg-gray-900 bg-opacity-10 rounded-md text-gray-200 grid text-center items-center p-3 my-3">
+                    <div className="grid grid-cols-7">
+                        <div className="bg-gray-900 col-span-2 bg-opacity-10 rounded-md text-gray-200 grid text-center items-center p-3 my-3">
                             <b>Some Text Here!</b>
                         </div>
-                        <FC chartConfigs={chartConfigs}></FC>
+                        <div className="grid col-span-3 mx-3 justify-self-stretch bg-gray-900 bg-opacity-10 rounded-md my-3">
+                            <FC chartConfigs={chartConfigs}></FC>
+                        </div>
                         <div className="bg-gray-900 bg-opacity-10 rounded-md text-gray-200 grid text-center items-center p-3 col-span-2 grid-cols-2 my-3">
-                            <div className="text-lg mt-3 pl-3 col-span-2"><b>Source of AFOLU Emissions</b></div>
-                            <div className="justify-self-stretch px-8">
+                            <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b>Source of <span className="font-bold">AFOLU</span> Emissions</b></div>
+                            <div className="justify-self-stretch px-8 content-end">
                                 <div className="text-sm mb-3 pl-3"><b>830 MtCO2e</b></div>
-                                <div className="w-full" style={{ height: "150px" }}>
+                                <div className="w-full" style={{ height: `${height1}px` }}>
                                     {
                                         dataSource.data.map((item, idx) => (
-                                            <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}`, backgroundColor: `${item.color}` }}>
+                                            <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
                                                 <span>{item.value}</span>
                                             </div>
                                         ))
@@ -206,8 +224,23 @@ export default function HomeComponent() {
                                 </div>
                                 <div className="text-md mt-3 pl-3"><b>Emissions</b></div>
                             </div>
+
+
                             <div className="justify-self-stretch px-8">
-                                <div className="grid justify-items-start my-3">
+                                <div className="text-sm mb-3 pl-3"><b>-1115 MtCO2e</b></div>
+                                <div className="w-full" style={{ height: `${height2}px` }}>
+                                    {
+                                        dataSource.data.map((item, idx) => (
+                                            <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
+                                                <span>{item.value}</span>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                                <div className="text-md mt-3 pl-3"><b>Removals</b></div>
+                            </div>
+                            <div className="justify-self-stretch px-8">
+                                <div className="grid justify-items-start my-3 px-3">
                                     {
                                         dataSource.data.map((item, idx) => (
                                             <div key={idx} className="flex mt-2 items-center">
@@ -219,22 +252,8 @@ export default function HomeComponent() {
                                     }
                                 </div>
                             </div>
-
                             <div className="justify-self-stretch px-8">
-                                <div className="text-sm mb-3 pl-3"><b>-1115 MtCO2e</b></div>
-                                <div className="w-full" style={{ height: "150px" }}>
-                                    {
-                                        dataSource.data.map((item, idx) => (
-                                            <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}`, backgroundColor: `${item.color}` }}>
-                                                <span>{item.value}</span>
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-                                <div className="text-md mt-3 pl-3"><b>Removals</b></div>
-                            </div>
-                            <div className="justify-self-stretch px-8">
-                                <div className="grid justify-items-start my-3">
+                                <div className="grid justify-items-start my-3 px-3">
                                     {
                                         dataSource.data.map((item, idx) => (
                                             <div key={idx} className="flex mt-2 items-center">
