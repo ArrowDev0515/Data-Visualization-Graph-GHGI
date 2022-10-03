@@ -210,7 +210,7 @@ export default function HomeComponent() {
                             <FC chartConfigs={chartConfigs}></FC>
                         </div>
                         <div className="bg-gray-900 bg-opacity-10 rounded-md text-gray-200 grid text-center items-center p-3 col-span-2 grid-cols-2 my-3">
-                            <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b>Source of <span className="font-bold">AFOLU</span> Emissions</b></div>
+                            <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b><span className="font-bold">AFOLU</span> Sector</b></div>
                             <div className="justify-self-stretch px-8 content-end">
                                 <div className="text-sm mb-3 pl-3"><b>830 MtCO2e</b></div>
                                 <div className="w-full" style={{ height: `${height1}px` }}>
@@ -222,7 +222,7 @@ export default function HomeComponent() {
                                         ))
                                     }
                                 </div>
-                                <div className="text-md mt-3 pl-3"><b>Emissions</b></div>
+                                <div className="text-md mt-3 pl-3"><b>Source of Emissions</b></div>
                             </div>
 
 
@@ -237,7 +237,7 @@ export default function HomeComponent() {
                                         ))
                                     }
                                 </div>
-                                <div className="text-md mt-3 pl-3"><b>Removals</b></div>
+                                <div className="text-md mt-3 pl-3"><b>Sinks for removals</b></div>
                             </div>
                             <div className="justify-self-stretch px-8">
                                 <div className="grid justify-items-start my-3 px-3">
