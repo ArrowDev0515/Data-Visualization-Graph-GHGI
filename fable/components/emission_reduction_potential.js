@@ -83,38 +83,38 @@ export default function EmissionRedcutionPotentialComponent() {
 
                                 <div className="flex items-center mx-2.5">
                                     {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Country : </label> */}
-                                    <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
-                                        <option selected className="text-gray-900">Category</option>
-                                        <option className="text-gray-900" value="US">Option 1</option>
-                                        <option className="text-gray-900" value="CA">Option 2</option>
-                                        <option className="text-gray-900" value="FR">Option 3</option>
+                                    <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" defaultValue="">
+                                        <option className="text-gray-900" value={""}>Category</option>
+                                        <option className="text-gray-900" value={"US"}>Option 1</option>
+                                        <option className="text-gray-900" value={"CA"}>Option 2</option>
+                                        <option className="text-gray-900" value={"FR"}>Option 3</option>
                                     </select>
                                 </div>
                                 <div className="flex items-center mx-2.5">
                                     {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Year : </label> */}
-                                    <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
-                                        <option className="text-gray-900" selected>Mitigation.Option</option>
-                                        <option className="text-gray-900" value="US">Option 1</option>
-                                        <option className="text-gray-900" value="CA">Option 2</option>
-                                        <option className="text-gray-900" value="FR">Option 3</option>
+                                    <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" defaultValue="">
+                                        <option className="text-gray-900" value={""}>Mitigation.Option</option>
+                                        <option className="text-gray-900" value={"US"}>Option 1</option>
+                                        <option className="text-gray-900" value={"CA"}>Option 2</option>
+                                        <option className="text-gray-900" value={"FR"}>Option 3</option>
                                     </select>
                                 </div>
                                 <div className="flex items-center mx-2.5">
                                     {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label> */}
-                                    <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
-                                        <option className="text-gray-900" selected>Geographical. Scope</option>
-                                        <option className="text-gray-900" value="US">Option 1</option>
-                                        <option className="text-gray-900" value="CA">Option 2</option>
-                                        <option className="text-gray-900" value="FR">Option 3</option>
+                                    <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" defaultValue="">
+                                        <option className="text-gray-900" value={""}>Geographical. Scope</option>
+                                        <option className="text-gray-900" value={"US"}>Option 1</option>
+                                        <option className="text-gray-900" value={"CA"}>Option 2</option>
+                                        <option className="text-gray-900" value={"FR"}>Option 3</option>
                                     </select>
                                 </div>
                                 <div className="flex items-center mx-2.5">
                                     {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label> */}
-                                    <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5">
-                                        <option className="text-gray-900" selected>AR</option>
-                                        <option className="text-gray-900" value="US">Option 1</option>
-                                        <option className="text-gray-900" value="CA">Option 2</option>
-                                        <option className="text-gray-900" value="FR">Option 3</option>
+                                    <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" defaultValue="">
+                                        <option className="text-gray-900" value={""}>AR</option>
+                                        <option className="text-gray-900" value={"US"}>Option 1</option>
+                                        <option className="text-gray-900" value={"CA"}>Option 2</option>
+                                        <option className="text-gray-900" value={"FR"}>Option 3</option>
                                     </select>
                                 </div>
                             </div>

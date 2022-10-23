@@ -63,19 +63,23 @@ ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 //   dataSource: dataSource
 // };
 
-export default function NextFC({chartConfigs}) {
+export default function NextFC({ chartConfigs }) {
   // const FusionCharts = require("fusioncharts");
   // const charts = require("fusioncharts/fusioncharts.charts");
   // const FusionTheme = require("fusioncharts/themes/fusioncharts.theme.fusion.js");
   // const { default: ReactFC } = require("react-fusioncharts");
 
-  
+
   const onClick = (eventObj) => {
     var senderChart = eventObj.sender; // chart/ map on which event triggered
     console.log(chartConfigs.dataSource);
   }
-  
 
 
-  return <ReactFC {...chartConfigs} fcEvent-dataPlotClick={onClick} className="w-full"/>;
+
+  return (
+    <>
+      <ReactFC {...chartConfigs} fcEvent-dataPlotClick={onClick} className="w-full" />
+    </>
+  );
 }
