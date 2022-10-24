@@ -10,7 +10,9 @@
     "TotalEmissionsMtCO2e": 4282.999,
     "Share": 0.7171,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 713.756,
+    "TotalAFOLURemovalsMtCO2e2": -431.192
   },
   {
     "Country": "China",
@@ -23,7 +25,9 @@
     "TotalEmissionsMtCO2e": 4282.999,
     "Share": 0.0658,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 713.756,
+    "TotalAFOLURemovalsMtCO2e2": -431.192
   },
   {
     "Country": "China",
@@ -36,7 +40,9 @@
     "TotalEmissionsMtCO2e": 4282.999,
     "Share": 0.1666,
     "AFOLUEmissionsMtCO2e": 285.096,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 713.756,
+    "TotalAFOLURemovalsMtCO2e2": -431.192
   },
   {
     "Country": "China",
@@ -49,7 +55,9 @@
     "TotalEmissionsMtCO2e": 4282.999,
     "Share": 0.1666,
     "AFOLUEmissionsMtCO2e": 36.201,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 713.756,
+    "TotalAFOLURemovalsMtCO2e2": -431.192
   },
   {
     "Country": "China",
@@ -62,7 +70,9 @@
     "TotalEmissionsMtCO2e": 4282.999,
     "Share": 0.1666,
     "AFOLUEmissionsMtCO2e": 172.116,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 713.756,
+    "TotalAFOLURemovalsMtCO2e2": -431.192
   },
   {
     "Country": "China",
@@ -75,7 +85,9 @@
     "TotalEmissionsMtCO2e": 4282.999,
     "Share": 0.1666,
     "AFOLUEmissionsMtCO2e": 195.57,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 713.756,
+    "TotalAFOLURemovalsMtCO2e2": -431.192
   },
   {
     "Country": "China",
@@ -88,7 +100,9 @@
     "TotalEmissionsMtCO2e": 4282.999,
     "Share": 0.1666,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 713.756,
+    "TotalAFOLURemovalsMtCO2e2": -431.192
   },
   {
     "Country": "China",
@@ -101,7 +115,9 @@
     "TotalEmissionsMtCO2e": 4282.999,
     "Share": 0.1666,
     "AFOLUEmissionsMtCO2e": 1.06,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 713.756,
+    "TotalAFOLURemovalsMtCO2e2": -431.192
   },
   {
     "Country": "China",
@@ -114,7 +130,9 @@
     "TotalEmissionsMtCO2e": 4282.999,
     "Share": 0.1666,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": -431.192
+    "AFOLURemovalsMtCO2e": -431.192,
+    "TotalAFOLUEmissionsMtCO2e": 713.756,
+    "TotalAFOLURemovalsMtCO2e2": -431.192
   },
   {
     "Country": "China",
@@ -127,7 +145,9 @@
     "TotalEmissionsMtCO2e": 4282.999,
     "Share": 0.1666,
     "AFOLUEmissionsMtCO2e": 23.713,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 713.756,
+    "TotalAFOLURemovalsMtCO2e2": -431.192
   },
   {
     "Country": "China",
@@ -140,7 +160,9 @@
     "TotalEmissionsMtCO2e": 4282.999,
     "Share": 0.0505,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 713.756,
+    "TotalAFOLURemovalsMtCO2e2": -431.192
   },
   {
     "Country": "China",
@@ -153,7 +175,9 @@
     "TotalEmissionsMtCO2e": 7273.9086,
     "Share": 0.8794,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 0,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -166,7 +190,9 @@
     "TotalEmissionsMtCO2e": 7273.9086,
     "Share": 0.1019,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 0,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -179,7 +205,9 @@
     "TotalEmissionsMtCO2e": 7273.9086,
     "Share": 0,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 0,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -192,7 +220,9 @@
     "TotalEmissionsMtCO2e": 7273.9086,
     "Share": 0,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 0,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -205,7 +235,9 @@
     "TotalEmissionsMtCO2e": 7273.9086,
     "Share": 0,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 0,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -218,7 +250,9 @@
     "TotalEmissionsMtCO2e": 7273.9086,
     "Share": 0,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 0,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -231,7 +265,9 @@
     "TotalEmissionsMtCO2e": 7273.9086,
     "Share": 0,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 0,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -244,7 +280,9 @@
     "TotalEmissionsMtCO2e": 7273.9086,
     "Share": 0,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 0,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -257,7 +295,9 @@
     "TotalEmissionsMtCO2e": 7273.9086,
     "Share": 0,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 0,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -270,7 +310,9 @@
     "TotalEmissionsMtCO2e": 7273.9086,
     "Share": 0,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 0,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -283,7 +325,9 @@
     "TotalEmissionsMtCO2e": 7273.9086,
     "Share": 0.0187,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 0,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -296,7 +340,9 @@
     "TotalEmissionsMtCO2e": 10676.827,
     "Share": 0.7921,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 933.374,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -309,7 +355,9 @@
     "TotalEmissionsMtCO2e": 10676.827,
     "Share": 0.1057,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 933.374,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -322,7 +370,9 @@
     "TotalEmissionsMtCO2e": 10676.827,
     "Share": 0.0874,
     "AFOLUEmissionsMtCO2e": 289.212,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 933.374,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -335,7 +385,9 @@
     "TotalEmissionsMtCO2e": 10676.827,
     "Share": 0.0874,
     "AFOLUEmissionsMtCO2e": 147.884,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 933.374,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -348,7 +400,9 @@
     "TotalEmissionsMtCO2e": 10676.827,
     "Share": 0.0874,
     "AFOLUEmissionsMtCO2e": 244.412,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 933.374,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -361,7 +415,9 @@
     "TotalEmissionsMtCO2e": 10676.827,
     "Share": 0.0874,
     "AFOLUEmissionsMtCO2e": 241.415,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 933.374,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -374,7 +430,9 @@
     "TotalEmissionsMtCO2e": 10676.827,
     "Share": 0.0874,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 933.374,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -387,7 +445,9 @@
     "TotalEmissionsMtCO2e": 10676.827,
     "Share": 0.0874,
     "AFOLUEmissionsMtCO2e": 10.451,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 933.374,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -400,7 +460,9 @@
     "TotalEmissionsMtCO2e": 10676.827,
     "Share": 0.0874,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 933.374,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -413,7 +475,9 @@
     "TotalEmissionsMtCO2e": 10676.827,
     "Share": 0.0874,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 933.374,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -426,7 +490,9 @@
     "TotalEmissionsMtCO2e": 10676.827,
     "Share": 0.0148,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 933.374,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -439,7 +505,9 @@
     "TotalEmissionsMtCO2e": 12026.4618,
     "Share": 0.7916,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 1053.7878,
+    "TotalAFOLURemovalsMtCO2e2": -597.529
   },
   {
     "Country": "China",
@@ -452,7 +520,9 @@
     "TotalEmissionsMtCO2e": 12026.4618,
     "Share": 0.1048,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 1053.7878,
+    "TotalAFOLURemovalsMtCO2e2": -597.529
   },
   {
     "Country": "China",
@@ -465,7 +535,9 @@
     "TotalEmissionsMtCO2e": 12026.4618,
     "Share": 0.0876,
     "AFOLUEmissionsMtCO2e": 300.804,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 1053.7878,
+    "TotalAFOLURemovalsMtCO2e2": -597.529
   },
   {
     "Country": "China",
@@ -478,7 +550,9 @@
     "TotalEmissionsMtCO2e": 12026.4618,
     "Share": 0.0876,
     "AFOLUEmissionsMtCO2e": 159.253,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 1053.7878,
+    "TotalAFOLURemovalsMtCO2e2": -597.529
   },
   {
     "Country": "China",
@@ -491,7 +565,9 @@
     "TotalEmissionsMtCO2e": 12026.4618,
     "Share": 0.0876,
     "AFOLUEmissionsMtCO2e": 236.824,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 1053.7878,
+    "TotalAFOLURemovalsMtCO2e2": -597.529
   },
   {
     "Country": "China",
@@ -504,7 +580,9 @@
     "TotalEmissionsMtCO2e": 12026.4618,
     "Share": 0.0876,
     "AFOLUEmissionsMtCO2e": 322.77,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 1053.7878,
+    "TotalAFOLURemovalsMtCO2e2": -597.529
   },
   {
     "Country": "China",
@@ -517,7 +595,9 @@
     "TotalEmissionsMtCO2e": 12026.4618,
     "Share": 0.0876,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 1053.7878,
+    "TotalAFOLURemovalsMtCO2e2": -597.529
   },
   {
     "Country": "China",
@@ -530,7 +610,9 @@
     "TotalEmissionsMtCO2e": 12026.4618,
     "Share": 0.0876,
     "AFOLUEmissionsMtCO2e": 12.032,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 1053.7878,
+    "TotalAFOLURemovalsMtCO2e2": -597.529
   },
   {
     "Country": "China",
@@ -543,7 +625,9 @@
     "TotalEmissionsMtCO2e": 12026.4618,
     "Share": 0.0876,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": -597.529
+    "AFOLURemovalsMtCO2e": -597.529,
+    "TotalAFOLUEmissionsMtCO2e": 1053.7878,
+    "TotalAFOLURemovalsMtCO2e2": -597.529
   },
   {
     "Country": "China",
@@ -556,7 +640,9 @@
     "TotalEmissionsMtCO2e": 12026.4618,
     "Share": 0.0876,
     "AFOLUEmissionsMtCO2e": 22.1048,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 1053.7878,
+    "TotalAFOLURemovalsMtCO2e2": -597.529
   },
   {
     "Country": "China",
@@ -569,7 +655,9 @@
     "TotalEmissionsMtCO2e": 12026.4618,
     "Share": 0.0159,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 1053.7878,
+    "TotalAFOLURemovalsMtCO2e2": -597.529
   },
   {
     "Country": "China",
@@ -582,7 +670,9 @@
     "TotalEmissionsMtCO2e": 12296.066,
     "Share": 0.7901,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 932.91,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -595,7 +685,9 @@
     "TotalEmissionsMtCO2e": 12296.066,
     "Share": 0.1149,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 932.91,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -608,7 +700,9 @@
     "TotalEmissionsMtCO2e": 12296.066,
     "Share": 0.0759,
     "AFOLUEmissionsMtCO2e": 275.968,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 932.91,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -621,7 +715,9 @@
     "TotalEmissionsMtCO2e": 12296.066,
     "Share": 0.0759,
     "AFOLUEmissionsMtCO2e": 150.085,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 932.91,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -634,7 +730,9 @@
     "TotalEmissionsMtCO2e": 12296.066,
     "Share": 0.0759,
     "AFOLUEmissionsMtCO2e": 249.508,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 932.91,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -647,7 +745,9 @@
     "TotalEmissionsMtCO2e": 12296.066,
     "Share": 0.0759,
     "AFOLUEmissionsMtCO2e": 246.45,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 932.91,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -660,7 +760,9 @@
     "TotalEmissionsMtCO2e": 12296.066,
     "Share": 0.0759,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 932.91,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -673,7 +775,9 @@
     "TotalEmissionsMtCO2e": 12296.066,
     "Share": 0.0759,
     "AFOLUEmissionsMtCO2e": 10.899,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 932.91,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -686,7 +790,9 @@
     "TotalEmissionsMtCO2e": 12296.066,
     "Share": 0.0759,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 932.91,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -699,7 +805,9 @@
     "TotalEmissionsMtCO2e": 12296.066,
     "Share": 0.0759,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 932.91,
+    "TotalAFOLURemovalsMtCO2e2": 0
   },
   {
     "Country": "China",
@@ -712,6 +820,8 @@
     "TotalEmissionsMtCO2e": 12296.066,
     "Share": 0.0191,
     "AFOLUEmissionsMtCO2e": 0,
-    "AFOLURemovalsMtCO2e": 0
+    "AFOLURemovalsMtCO2e": 0,
+    "TotalAFOLUEmissionsMtCO2e": 932.91,
+    "TotalAFOLURemovalsMtCO2e2": 0
   }
 ]

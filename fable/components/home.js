@@ -327,17 +327,17 @@ export default function HomeComponent() {
                             {AFOLUData.length ?
                                 <>
                                     <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b><span className="font-bold">AFOLU</span> Sector</b></div>
-                                    <div className="justify-self-stretch px-8 content-end">
+                                    <div className="justify-self-stretch px-3 content-end">
                                         <div className="text-sm mb-3 pl-3"><b>
-                                            {AFOLUData[0]["EmissionCategoryMtCO2e"]} MtCO2e
+                                            {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]} MtCO2e
                                         </b></div>
                                         <div className="w-full" style={{ height: `${height1}px` }}>
                                             {
                                                 AFOLUData.map((item, idx) => (
                                                     <>
                                                         {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
-                                                            <div key={idx} className="grid items-center relative" style={{ height: `${parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["EmissionCategoryMtCO2e"]) * 100}%`, backgroundColor: `${colors[idx]}` }}>
-                                                                <span>{parseFloat(item["AFOLUEmissionsMtCO2e"])}</span>
+                                                            <div key={idx} className="grid items-center relative" style={{ height: `${parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"]) * 100}%`, backgroundColor: `${colors[idx]}` }}>
+                                                                {(height1 * parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"])).toFixed(2) > 20 ? <span>{parseFloat(item["AFOLUEmissionsMtCO2e"])}</span> : ""}
                                                             </div>
                                                             : ""
                                                         }
@@ -349,49 +349,47 @@ export default function HomeComponent() {
                                     </div>
 
 
-                                    <div className="justify-self-stretch px-8">
+                                    <div className="justify-self-stretch px-3">
                                         <div className="text-sm mb-3 pl-3"><b>-1115 MtCO2e</b></div>
                                         <div className="w-full" style={{ height: `${height2}px` }}>
                                             {
                                                 chartConfigs.dataSource.data.map((item, idx) => (
-                                                    <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
-                                                        <span>{item.value}</span>
-                                                    </div>
+                                                    <>
+                                                        <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
+                                                            {(height2 / 100 * parseFloat(item["percentValue"])).toFixed(2) > 20 ? <span>{(item.value).toFixed(2)}</span> : ""}
+                                                        </div>
+                                                    </>
                                                 ))
                                             }
                                         </div>
                                         <div className="text-md mt-3 pl-3"><b>Sinks for removals</b></div>
                                     </div>
-                                    <div className="justify-self-stretch px-8">
-                                        <div className="grid justify-items-start my-3">
-                                            {
-                                                AFOLUData.map((item, idx) => (
-                                                    <>
-                                                        {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
-                                                            <div key={idx} className="flex mt-2 items-center">
-                                                                <span className="grid" style={{ width: "15px", height: "15px", backgroundColor: `${colors[idx]}` }}>
-                                                                </span>
-                                                                <div className="text-xs">{item["SubCategory"]}</div>
+                                    <div className="text-left my-3 px-3">
+                                        {
+                                            AFOLUData.map((item, idx) => (
+                                                <>
+                                                    {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
+                                                        <div key={idx} className="flex mt-2 items-center">
+                                                            <div className="rounded-lg" style={{ width: "15px", height: "15px", backgroundColor: `${colors[idx]}` }}>
                                                             </div>
-                                                            : ""
-                                                        }
-                                                    </>
-                                                ))
-                                            }
-                                        </div>
+                                                            <p className="text-xs pl-2">{item["SubCategory"]}</p>
+                                                        </div>
+                                                        : ""
+                                                    }
+                                                </>
+                                            ))
+                                        }
                                     </div>
-                                    <div className="justify-self-stretch px-8">
-                                        <div className="grid justify-items-start my-3 px-3">
-                                            {
-                                                chartConfigs.dataSource.data.map((item, idx) => (
-                                                    <div key={idx} className="flex mt-2 items-center">
-                                                        <span className="grid" style={{ width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
-                                                        </span>
-                                                        <div className="text-sm pl-3">{item.label}</div>
-                                                    </div>
-                                                ))
-                                            }
-                                        </div>
+                                    <div className="text-left my-3 px-3">
+                                        {
+                                            chartConfigs.dataSource.data.map((item, idx) => (
+                                                <div key={idx} className="flex items-center">
+                                                    <span className="rounded-lg" style={{ width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
+                                                    </span>
+                                                    <div className="text-xs pl-2">{item.label}</div>
+                                                </div>
+                                            ))
+                                        }
                                     </div>
                                 </>
                                 :
