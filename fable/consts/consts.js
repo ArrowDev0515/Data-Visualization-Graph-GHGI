@@ -1,3 +1,4 @@
+export const CATEGORY_AFOLU = "AFOLU";
 export const sampleData = [
   //  Waste
   {

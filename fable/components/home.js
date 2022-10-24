@@ -6,6 +6,7 @@ import dynamic from "next/dynamic.js";
 import { data } from "autoprefixer";
 import { exportToCSV } from "../utils/exportCSV";
 const dataSrc = require("../consts/Data_Home.json");
+const consts = require("../consts/consts");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
 const height1 = 120;
@@ -105,8 +106,8 @@ const examplForm = {
 const colors = ["#dada70", "#e5b149", "#cc8f17", "#d66967", "#6fb595", "#af8ecd", "#5eb5d4", "#fde047"];
 export default function HomeComponent() {
 
-    const [height, setHeight] = useState(400);
-    const [pData, setPData] = useState([]);
+    const [AFOLUData, setAFOLUData] = useState(400);
+    const [exportData, setExportData] = useState([]);
 
     const [dataSource, setDataSource] = useState("UNFCCC");
     const [country, setCountry] = useState("China");
@@ -125,7 +126,7 @@ export default function HomeComponent() {
                 captionFontColor: "#ffffff",
 
                 dataEmptyMessage: "AAAAAAAAAAAAAAAAAAAAAA",
-                loadMessageColor:"#ff0000",
+                loadMessageColor: "#ff0000",
                 // captionFontSize: "18",
 
                 // subCaption: "In MMbbl = One Million barrels",
@@ -174,7 +175,7 @@ export default function HomeComponent() {
             data: [
                 // 31b4b0 595da3 5eb5d4 af8ecd 6fb695 f7c549 da6d6b 
                 // fde047 31f05f f06631 b871c2 17dfe7 d56866 dddddd 2971ff
-                
+
                 { label: "AFOLU", value: "829.845", color: "#d66967", percentValue: "29.44" },
                 { label: "Waste", value: "194.768", color: "#cc8f17", percentValue: "26.4" },
                 { label: "IPPU", value: "1717.012", color: "#e5b149", percentValue: "18.27" },
@@ -199,11 +200,17 @@ export default function HomeComponent() {
     }, [dataSource, country, year]);
 
     const filterData = () => {
-        console.log(dataSource, country, year,);
+        // console.log(dataSource, country, year,);
 
         let data = dataSrc.filter((ele) => {
-            return (ele["Country"] === country && ele["Year"] === parseInt(year) && ele["Data Source"] === dataSource)
+            return (ele["Country"] === country && ele["Year"] === parseInt(year) && ele["Data Source"] === dataSource);
         });
+        setExportData(data);
+        let afoluData = data.filter((ele) => {
+            return (ele["Category"] === consts.CATEGORY_AFOLU);
+        })
+        setAFOLUData(afoluData);
+
         let set = new Set();
         let arr = [];
         let i = 0;
@@ -221,48 +228,47 @@ export default function HomeComponent() {
             }
             i++;
         })
-        if(data.length > 0) {
+        if (data.length > 0) {
             captionStr = data[0]["TotalEmissionsMtCO2e"].toString() + "MtCO2e";
         }
         // console.log(captionStr);
-        // setChartConfigs(...arr)
+        // setChartConfigs(...arr);
         // setChartConfigs({...chartConfigs, dataSource: {...chartConfigs.dataSource}})
-        setChartConfigs({...chartConfigs, dataSource: {
-            ...chartConfigs.dataSource, 
-            data: arr, 
-            chart: {...chartConfigs.dataSource.chart, caption: captionStr}}
+        setChartConfigs({
+            ...chartConfigs, dataSource: {
+                ...chartConfigs.dataSource,
+                data: arr,
+                chart: { ...chartConfigs.dataSource.chart, caption: captionStr }
+            }
         });
-        console.log(arr)
+        console.log(arr);
     }
 
     const dataSourceChange = (e) => {
-        console.log(e.target.value);
         setDataSource(e.target.value);
     }
 
     const yearChange = (e) => {
-        console.log(e.target.value);
         setYear(e.target.value);
     }
 
     const countryChange = (e) => {
-        console.log(e.target.value);
         setCountry(e.target.value);
     }
 
     const downloadData = () => {
         // exportToCSV();
         let fileName = new Date();
-        fileName = fileName.getFullYear() + "-" + (fileName.getMonth()+1) + "-" + fileName.getDate() + " " + 
-        fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
-        exportToCSV(chartConfigs.dataSource.data, fileName);
+        fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
+            fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
+        exportToCSV(exportData, fileName);
     }
 
     return (
         <>
             {/* <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minHeight: "600px" }}> */}
             <div className="bg-gradient-to-r from-blue-400 via-green-500 to-yellow-300 p-12">
-                <div className="bg-gray-800 bg-opacity-30 rounded-xl p-5 grid items-center" style={{ minHeight: "500px" }}>
+                <div className="bg-gray-800 bg-opacity-30 rounded-xl p-5 grid items-center" style={{ minHeight: "600px" }}>
                     <div className="flex justify-between">
                         <div className="flex">
                             <div className="flex items-center mx-2.5">
@@ -304,69 +310,97 @@ export default function HomeComponent() {
                             <button type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button>
                         </div>
                     </div>
-                    <div className="grid grid-cols-7">
-                        <div className="bg-gray-900 col-span-2 bg-opacity-10 rounded-md text-gray-200 grid text-center items-center p-3 my-3">
+                    <div className="grid grid-cols-12" style={{ minHeight: "450px" }}>
+                        <div className="bg-gray-900 col-span-4 bg-opacity-10 rounded-md text-gray-200 grid text-center items-center p-3 my-3">
                             <b>Some Text Here!</b>
                         </div>
-                        <div className="grid col-span-3 mx-3 justify-self-stretch bg-gray-900 bg-opacity-10 rounded-md my-3">
-                            <FC chartConfigs={chartConfigs}></FC>
+                        <div className="grid col-span-5 mx-3 justify-self-stretch bg-gray-900 bg-opacity-10 rounded-md my-3">
+                            {exportData.length ? <FC chartConfigs={chartConfigs}></FC> :
+                                <>
+                                    <div className="text-gray-200 grid text-center items-center p-3 my-3">
+                                        <b>No Data to Display!</b>
+                                    </div>
+                                </>
+                            }
                         </div>
-                        <div className="bg-gray-900 bg-opacity-10 rounded-md text-gray-200 grid text-center items-center p-3 col-span-2 grid-cols-2 my-3">
-                            <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b><span className="font-bold">AFOLU</span> Sector</b></div>
-                            <div className="justify-self-stretch px-8 content-end">
-                                <div className="text-sm mb-3 pl-3"><b>830 MtCO2e</b></div>
-                                <div className="w-full" style={{ height: `${height1}px` }}>
-                                    {
-                                        chartConfigs.dataSource.data.map((item, idx) => (
-                                            <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
-                                                <span>{item.value}</span>
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-                                <div className="text-md mt-3 pl-3"><b>Source of Emissions</b></div>
-                            </div>
+                        <div className="bg-gray-900 bg-opacity-10 rounded-md text-gray-200 grid text-center items-center p-3 col-span-3 grid-cols-2 my-3">
+                            {AFOLUData.length ?
+                                <>
+                                    <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b><span className="font-bold">AFOLU</span> Sector</b></div>
+                                    <div className="justify-self-stretch px-8 content-end">
+                                        <div className="text-sm mb-3 pl-3"><b>
+                                            {AFOLUData[0]["EmissionCategoryMtCO2e"]} MtCO2e
+                                        </b></div>
+                                        <div className="w-full" style={{ height: `${height1}px` }}>
+                                            {
+                                                AFOLUData.map((item, idx) => (
+                                                    <>
+                                                        {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
+                                                            <div key={idx} className="grid items-center relative" style={{ height: `${parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["EmissionCategoryMtCO2e"]) * 100}%`, backgroundColor: `${colors[idx]}` }}>
+                                                                <span>{parseFloat(item["AFOLUEmissionsMtCO2e"])}</span>
+                                                            </div>
+                                                            : ""
+                                                        }
+                                                    </>
+                                                ))
+                                            }
+                                        </div>
+                                        <div className="text-md mt-3 pl-3"><b>Source of Emissions</b></div>
+                                    </div>
 
 
-                            <div className="justify-self-stretch px-8">
-                                <div className="text-sm mb-3 pl-3"><b>-1115 MtCO2e</b></div>
-                                <div className="w-full" style={{ height: `${height2}px` }}>
-                                    {
-                                        chartConfigs.dataSource.data.map((item, idx) => (
-                                            <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
-                                                <span>{item.value}</span>
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-                                <div className="text-md mt-3 pl-3"><b>Sinks for removals</b></div>
-                            </div>
-                            <div className="justify-self-stretch px-8">
-                                <div className="grid justify-items-start my-3 px-3">
-                                    {
-                                        chartConfigs.dataSource.data.map((item, idx) => (
-                                            <div key={idx} className="flex mt-2 items-center">
-                                                <span className="grid" style={{ width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
-                                                </span>
-                                                <div className="text-sm pl-3">{item.label}</div>
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-                            </div>
-                            <div className="justify-self-stretch px-8">
-                                <div className="grid justify-items-start my-3 px-3">
-                                    {
-                                        chartConfigs.dataSource.data.map((item, idx) => (
-                                            <div key={idx} className="flex mt-2 items-center">
-                                                <span className="grid" style={{ width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
-                                                </span>
-                                                <div className="text-sm pl-3">{item.label}</div>
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-                            </div>
+                                    <div className="justify-self-stretch px-8">
+                                        <div className="text-sm mb-3 pl-3"><b>-1115 MtCO2e</b></div>
+                                        <div className="w-full" style={{ height: `${height2}px` }}>
+                                            {
+                                                chartConfigs.dataSource.data.map((item, idx) => (
+                                                    <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
+                                                        <span>{item.value}</span>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                        <div className="text-md mt-3 pl-3"><b>Sinks for removals</b></div>
+                                    </div>
+                                    <div className="justify-self-stretch px-8">
+                                        <div className="grid justify-items-start my-3">
+                                            {
+                                                AFOLUData.map((item, idx) => (
+                                                    <>
+                                                        {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
+                                                            <div key={idx} className="flex mt-2 items-center">
+                                                                <span className="grid" style={{ width: "15px", height: "15px", backgroundColor: `${colors[idx]}` }}>
+                                                                </span>
+                                                                <div className="text-xs">{item["SubCategory"]}</div>
+                                                            </div>
+                                                            : ""
+                                                        }
+                                                    </>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+                                    <div className="justify-self-stretch px-8">
+                                        <div className="grid justify-items-start my-3 px-3">
+                                            {
+                                                chartConfigs.dataSource.data.map((item, idx) => (
+                                                    <div key={idx} className="flex mt-2 items-center">
+                                                        <span className="grid" style={{ width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
+                                                        </span>
+                                                        <div className="text-sm pl-3">{item.label}</div>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <div className="text-gray-200 grid text-center items-center col-span-2 p-3 my-3">
+                                        <b>No Data to Display!</b>
+                                    </div>
+                                </>
+                            }
                         </div>
                     </div>
                 </div>
