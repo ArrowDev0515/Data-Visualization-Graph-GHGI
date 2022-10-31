@@ -1,0 +1,133 @@
+[
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "FAO",
+    "System": "Conventional, Continuously flooded",
+    "Median": 5
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "IPCC",
+    "System": "Conventional, Continuously flooded",
+    "Median": 5.4
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "Literature Review",
+    "System": "Conventional, Continuously flooded",
+    "Min": 4.8,
+    "Max": 8,
+    "Median": 6,
+    "Average": 6.2
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "Literature Review",
+    "System": "Conventional, AWD",
+    "Min": 3,
+    "Max": 6,
+    "Median": 4.5,
+    "Average": 4.7
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "Literature Review",
+    "System": "Conventional, Thin-shallow-wet-dry",
+    "Min": 4,
+    "Max": 8,
+    "Median": 5.5,
+    "Average": 5.4
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "Literature Review",
+    "System": "Conventional, Rice-Duck",
+    "Min": 3,
+    "Max": 6.6,
+    "Median": 5,
+    "Average": 5.5
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "Literature Review",
+    "System": "integrated rice-duck farming",
+    "Min": 4.2,
+    "Max": 6.5,
+    "Median": 5.1,
+    "Average": 5.2
+  },
+  {
+    "Country": "China",
+    "Unit": "tN20/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "FAO",
+    "System": "Conventional, Continuously flooded",
+    "Median": 0.2
+  },
+  {
+    "Country": "China",
+    "Unit": "tN20/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "IPCC",
+    "System": "Conventional, Continuously flooded",
+    "Median": 0.22
+  },
+  {
+    "Country": "China",
+    "Unit": "tN20/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "Literature Review",
+    "System": "Conventional, Continuously flooded",
+    "Min": 0.02,
+    "Max": 0.5,
+    "Median": 0.35,
+    "Average": 0.36
+  },
+  {
+    "Country": "China",
+    "Unit": "tN20/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "Literature Review",
+    "System": "Conventional, AWD",
+    "Min": 0.03,
+    "Max": 0.6,
+    "Median": 0.45,
+    "Average": 0.37
+  },
+  {
+    "Country": "China",
+    "Unit": "tN20/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "Literature Review",
+    "System": "Conventional, Thin-shallow-wet-dry",
+    "Min": 0.05,
+    "Max": 0.8,
+    "Median": 0.55,
+    "Average": 0.56
+  },
+  {
+    "Country": "China",
+    "Unit": "tN20/ha",
+    "Mitigation Option": "Rice Cultivation",
+    "DataSource": "Literature Review",
+    "System": "Conventional, Rice-Duck",
+    "Min": 0.03,
+    "Max": 0.3,
+    "Median": 0.25,
+    "Average": 0.24
+  }
+]

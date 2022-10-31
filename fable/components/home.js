@@ -9,8 +9,8 @@ const dataSrc = require("../consts/Data_Home.json");
 const consts = require("../consts/consts");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
-const height1 = 120;
-const height2 = 150;
+let height1 = 120;
+let height2 = 150;
 
 
 const chartDataSource = {
@@ -299,6 +299,7 @@ export default function HomeComponent() {
                                     <option value={1994}>1994</option>
                                     <option value={1998}>1998</option>
                                     <option value={2010}>2010</option>
+                                    <option value={2012}>2012</option>
                                     <option value={2022}>2022</option>
                                 </select>
                             </div>
@@ -327,8 +328,8 @@ export default function HomeComponent() {
                             {AFOLUData.length ?
                                 <>
                                     <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b><span className="font-bold">AFOLU</span> Sector</b></div>
-                                    <div className="justify-self-stretch px-3 content-end">
-                                        <div className="text-sm mb-3 pl-3"><b>
+                                    <div className="justify-self-stretch px-3 content-end" style={{height: "200px"}}>
+                                        <div className="text-sm mb-3 text-stone-700"><b>
                                             {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]} MtCO2e
                                         </b></div>
                                         <div className="w-full" style={{ height: `${height1}px` }}>
@@ -337,7 +338,7 @@ export default function HomeComponent() {
                                                     <>
                                                         {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
                                                             <div key={idx} className="grid items-center relative" style={{ height: `${parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"]) * 100}%`, backgroundColor: `${colors[idx]}` }}>
-                                                                {(height1 * parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"])).toFixed(2) > 20 ? <span>{parseFloat(item["AFOLUEmissionsMtCO2e"])}</span> : ""}
+                                                                {(height1 * parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"])).toFixed(2) > 20 ? <span className="text-stone-600">{parseFloat(item["AFOLUEmissionsMtCO2e"])}</span> : ""}
                                                             </div>
                                                             : ""
                                                         }
@@ -345,24 +346,38 @@ export default function HomeComponent() {
                                                 ))
                                             }
                                         </div>
-                                        <div className="text-md mt-3 pl-3"><b>Source of Emissions</b></div>
+                                        <div className="text-md mt-3"><b>Source of Emissions</b></div>
                                     </div>
 
 
-                                    <div className="justify-self-stretch px-3">
-                                        <div className="text-sm mb-3 pl-3"><b>-1115 MtCO2e</b></div>
+                                    <div className="justify-self-stretch px-3" style={{height: "200px"}}>
+                                        <div className="text-sm mb-3 text-stone-700"><b>
+                                            {AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"]} MtCO2e
+                                        </b></div>
+                                        {console.log(height2 = height1 / parseFloat(AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]) *
+                                            Math.abs(parseFloat(AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"])))}
                                         <div className="w-full" style={{ height: `${height2}px` }}>
                                             {
-                                                chartConfigs.dataSource.data.map((item, idx) => (
+                                                AFOLUData.map((item, idx) => (
                                                     <>
-                                                        <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
-                                                            {(height2 / 100 * parseFloat(item["percentValue"])).toFixed(2) > 20 ? <span>{(item.value).toFixed(2)}</span> : ""}
-                                                        </div>
+                                                        {(parseFloat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
+                                                            <div key={idx} className="grid items-center relative" style={{ height: `${Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) * 100)}%`, backgroundColor: `${colors[idx]}` }}>
+                                                                {Math.abs((height1 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"])).toFixed(2)) > 20 ? <span className="text-stone-600">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : ""}
+                                                            </div>
+                                                            : ""
+                                                        }
                                                     </>
                                                 ))
+                                                // chartConfigs.dataSource.data.map((item, idx) => (
+                                                //     <>
+                                                //         <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
+                                                //             {(height2 / 100 * parseFloat(item["percentValue"])).toFixed(2) > 20 ? <span>{(item.value).toFixed(2)}</span> : ""}
+                                                //         </div>
+                                                //     </>
+                                                // ))
                                             }
                                         </div>
-                                        <div className="text-md mt-3 pl-3"><b>Sinks for removals</b></div>
+                                        <div className="text-md mt-3"><b>Sinks for removals</b></div>
                                     </div>
                                     <div className="text-left my-3 px-3">
                                         {
@@ -370,7 +385,7 @@ export default function HomeComponent() {
                                                 <>
                                                     {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
                                                         <div key={idx} className="flex mt-2 items-center">
-                                                            <div className="rounded-lg" style={{ width: "15px", height: "15px", backgroundColor: `${colors[idx]}` }}>
+                                                            <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${colors[idx]}` }}>
                                                             </div>
                                                             <p className="text-xs pl-2">{item["SubCategory"]}</p>
                                                         </div>
@@ -382,13 +397,26 @@ export default function HomeComponent() {
                                     </div>
                                     <div className="text-left my-3 px-3">
                                         {
-                                            chartConfigs.dataSource.data.map((item, idx) => (
-                                                <div key={idx} className="flex items-center">
-                                                    <span className="rounded-lg" style={{ width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
-                                                    </span>
-                                                    <div className="text-xs pl-2">{item.label}</div>
-                                                </div>
+                                            AFOLUData.map((item, idx) => (
+                                                <>
+                                                    {(parseFloat(item["AFOLURemovalsMtCO2e"]) != 0) ?
+                                                        <div key={idx} className="flex mt-2 items-center">
+                                                            <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${colors[idx]}` }}>
+                                                            </div>
+                                                            <p className="text-xs pl-2">{item["SubCategory"]}</p>
+                                                        </div>
+                                                        : ""
+                                                    }
+                                                </>
                                             ))
+
+                                            // chartConfigs.dataSource.data.map((item, idx) => (
+                                            //     <div key={idx} className="flex mt-2 items-center">
+                                            //         <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
+                                            //         </div>
+                                            //         <div className="text-xs pl-2">{item.label}</div>
+                                            //     </div>
+                                            // ))
                                         }
                                     </div>
                                 </>

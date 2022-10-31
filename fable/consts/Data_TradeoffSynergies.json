@@ -1,0 +1,146 @@
+[
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "MitigationOption": "Rice-Fallow rotation system",
+    "Explanation": "text1",
+    "Input_OutputName": "IrrigationWater",
+    "Input_Output": "Input",
+    "Gradient": 1
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "MitigationOption": "Rice-Fallow rotation system",
+    "Explanation": "text1",
+    "Input_OutputName": "NitrogenUseEfficiency",
+    "Input_Output": "Input",
+    "Gradient": 4
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "MitigationOption": "Rice-Fallow rotation system",
+    "Explanation": "text1",
+    "Input_OutputName": "Yield",
+    "Input_Output": "Output",
+    "Gradient": 3
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "MitigationOption": "Rice-Fallow rotation system",
+    "Explanation": "text1",
+    "Input_OutputName": "AbovegroundBiomass",
+    "Input_Output": "Output",
+    "Gradient": 5
+  },
+  {
+    "Country": "China",
+    "Unit": "tN2O/ha",
+    "MitigationOption": "Rice-Fallow rotation system",
+    "Explanation": "text1",
+    "Input_OutputName": "IrrigationWater",
+    "Input_Output": "Input",
+    "Gradient": 1
+  },
+  {
+    "Country": "China",
+    "Unit": "tN2O/ha",
+    "MitigationOption": "Rice-Fallow rotation system",
+    "Explanation": "text1",
+    "Input_OutputName": "NitrogenUseEfficiency",
+    "Input_Output": "Input",
+    "Gradient": 1
+  },
+  {
+    "Country": "China",
+    "Unit": "tN2O/ha",
+    "MitigationOption": "Rice-Fallow rotation system",
+    "Explanation": "text1",
+    "Input_OutputName": "Yield",
+    "Input_Output": "Output",
+    "Gradient": 3
+  },
+  {
+    "Country": "China",
+    "Unit": "tN2O/ha",
+    "MitigationOption": "Rice-Fallow rotation system",
+    "Explanation": "text1",
+    "Input_OutputName": "AbovegroundBiomass",
+    "Input_Output": "Output",
+    "Gradient": 5
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "MitigationOption": "Annual straw incorporating in rice�wheat rotation system",
+    "Explanation": "text2",
+    "Input_OutputName": "IrrigationWater",
+    "Input_Output": "Input",
+    "Gradient": 2
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "MitigationOption": "Annual straw incorporating in rice�wheat rotation system",
+    "Explanation": "text2",
+    "Input_OutputName": "NitrogenUseEfficiency",
+    "Input_Output": "Input",
+    "Gradient": 2
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "MitigationOption": "Annual straw incorporating in rice�wheat rotation system",
+    "Explanation": "text2",
+    "Input_OutputName": "Yield",
+    "Input_Output": "Output",
+    "Gradient": 2
+  },
+  {
+    "Country": "China",
+    "Unit": "tCH4/ha",
+    "MitigationOption": "Annual straw incorporating in rice�wheat rotation system",
+    "Explanation": "text2",
+    "Input_OutputName": "AbovegroundBiomass",
+    "Input_Output": "Output",
+    "Gradient": 3
+  },
+  {
+    "Country": "China",
+    "Unit": "tN2O/ha",
+    "MitigationOption": "Annual straw incorporating in rice�wheat rotation system",
+    "Explanation": "text2",
+    "Input_OutputName": "IrrigationWater",
+    "Input_Output": "Input",
+    "Gradient": 2
+  },
+  {
+    "Country": "China",
+    "Unit": "tN2O/ha",
+    "MitigationOption": "Annual straw incorporating in rice�wheat rotation system",
+    "Explanation": "text2",
+    "Input_OutputName": "NitrogenUseEfficiency",
+    "Input_Output": "Input",
+    "Gradient": 2
+  },
+  {
+    "Country": "China",
+    "Unit": "tN2O/ha",
+    "MitigationOption": "Annual straw incorporating in rice�wheat rotation system",
+    "Explanation": "text2",
+    "Input_OutputName": "Yield",
+    "Input_Output": "Output",
+    "Gradient": 2
+  },
+  {
+    "Country": "China",
+    "Unit": "tN2O/ha",
+    "MitigationOption": "Annual straw incorporating in rice�wheat rotation system",
+    "Explanation": "text2",
+    "Input_OutputName": "AbovegroundBiomass",
+    "Input_Output": "Output",
+    "Gradient": 3
+  }
+]
