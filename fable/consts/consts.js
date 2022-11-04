@@ -4,8 +4,8 @@ export const colors = ["#dada70", "#e5b149", "#cc8f17", "#d66967", "#6fb595", "#
 export const DATA_SOURCE_FAO = "FAO";
 export const DATA_SOURCE_IPCC = "IPCC";
 
-export const COUNTY_CHINA = "China";
-export const COUNTY_LIST = [COUNTY_CHINA];
+export const COUNTRY_CHINA = "China";
+export const COUNTRY_LIST = [COUNTRY_CHINA];
 
 export const MITIGATION_OPTION_RICE_CULTIVATION = "Rice Cultivation";
 export const MITIGATION_OPTION_LIST = [MITIGATION_OPTION_RICE_CULTIVATION];

@@ -130,7 +130,6 @@ const chartConfigs = {
 export default function ImpactsAndSynergiesComponent() {
 
     useEffect(() => {
-        // console.log(node);
     });
 
     return (

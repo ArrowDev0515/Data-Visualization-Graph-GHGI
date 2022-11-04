@@ -8,7 +8,7 @@ const defaultHeight = 400;
 
 export default function EmissionRedcutionPotentialComponent() {
 
-    const [country, setCountry] = useState(consts.COUNTY_CHINA);
+    const [country, setCountry] = useState(consts.COUNTRY_CHINA);
     const [mitigationOption, setMitigationOption] = useState(consts.MITIGATION_OPTION_RICE_CULTIVATION);
     const [unit, setUnit] = useState(consts.UNIT_TCH4_HA);
     const [exportData, setExportData] = useState([]);
@@ -48,10 +48,10 @@ export default function EmissionRedcutionPotentialComponent() {
                 // subcaption: "Los Angeles Topanga",
                 // xaxisname: "Avg Day Temperature",
                 yaxisname: consts.UNIT_TCH4_HA,
-                xaxisminvalue: "23",
-                xaxismaxvalue: "95",
+                // xaxisminvalue: "23",
+                // xaxismaxvalue: "95",
                 ynumberprefix: "",
-                yaxisminvalue: "1200",
+                // yaxisminvalue: "1200",
                 xnumbersuffix: "",
                 theme: "fusion",
                 plottooltext:
@@ -77,21 +77,16 @@ export default function EmissionRedcutionPotentialComponent() {
         }
     });
 
-    useEffect(() => {
-        generateChartData();
-    }, []);
-
     const generateChartData = () => {
         let data = dataSrc.filter((ele) => {
             return (ele["Country"] === country && ele["Unit"] === unit && ele["MitigationOption"] === mitigationOption);
         });
         setExportData(data);
-        // let data = dataSrc;
         let xLabels = new Map();
         let categoryData = [];
         let key = 1;
         data.map((item) => {
-            if(item["DataSource"] === consts.DATA_SOURCE_FAO || item["DataSource"] === consts.DATA_SOURCE_IPCC) {
+            if (item["DataSource"] === consts.DATA_SOURCE_FAO || item["DataSource"] === consts.DATA_SOURCE_IPCC) {
                 if (!xLabels.has(item["DataSource"])) {
                     xLabels.set(item["DataSource"], key);
                     categoryData.push({ x: (key * 20).toString(), label: item["DataSource"] });
@@ -104,7 +99,6 @@ export default function EmissionRedcutionPotentialComponent() {
             }
             key++;
         });
-        console.log(categoryData);
 
         let dataArrForMax = [];
         let dataArrForMin = [];
@@ -112,7 +106,7 @@ export default function EmissionRedcutionPotentialComponent() {
         let dataArrForAverage = [];
 
         data.map((ele) => {
-            if(ele["DataSource"] === consts.DATA_SOURCE_FAO || ele["DataSource"] === consts.DATA_SOURCE_IPCC) {
+            if (ele["DataSource"] === consts.DATA_SOURCE_FAO || ele["DataSource"] === consts.DATA_SOURCE_IPCC) {
                 let xValue = categoryData.find((e) => {
                     return e["label"] == ele["DataSource"];
                 })["x"];
@@ -148,23 +142,64 @@ export default function EmissionRedcutionPotentialComponent() {
                 ]
             }
         });
+
+        // setChartConfigs(prev => {
+        //     return {
+        //         ...prev,
+        //         dataSource:
+        //         {
+        //             ...prev.dataSource,
+        //             categories: [{ category: categoryData }],
+        //             dataset: [
+        //                 { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax },
+        //                 { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin },
+        //                 { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian },
+        //                 { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage }
+        //             ]
+        //         }
+        //     };
+        // }
+        // )
     }
 
     useEffect(() => {
         generateChartData();
+    }, []);
+
+    useEffect(() => {
+        generateChartData();
+    }, [country, mitigationOption, unit]);
+
+    useEffect(() => {
+        // generateChartData();
     }, [chartConfigs]);
 
     useEffect(() => {
-        setChartConfigs({
-            ...chartConfigs, dataSource: {
-                ...chartConfigs.dataSource,
-                chart: {
-                    ...chartConfigs.dataSource.chart,
-                    yaxisname: unit
+        // setChartConfigs(
+        //     {
+        //         ...chartConfigs, dataSource: {
+        //             ...chartConfigs.dataSource,
+        //             chart: {
+        //                 ...chartConfigs.dataSource.chart,
+        //                 yaxisname: unit
+        //             }
+        //         }
+        //     }
+        // )
+        setChartConfigs(prev => {
+            return {
+                ...prev,
+                dataSource:
+                {
+                    ...prev.dataSource,
+                    chart: {
+                        ...prev.dataSource.chart,
+                        yaxisname: unit
+                    }
                 }
-
-            }
-        })
+            };
+        }
+        )
     }, [unit]);
 
     const unitChange = (e) => {
@@ -178,8 +213,6 @@ export default function EmissionRedcutionPotentialComponent() {
     const countryChange = (e) => {
         setCountry(e.target.value);
     }
-
-    
 
     const downloadData = () => {
         // exportToCSV();
@@ -206,8 +239,8 @@ export default function EmissionRedcutionPotentialComponent() {
                                     <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={countryChange} value={country}>
                                         <option className="text-gray-900" value={""}>Country</option>
                                         {
-                                            consts.COUNTY_LIST.map((countryItem) => (
-                                                <option className="text-gray-900" value={countryItem}>{countryItem}</option>
+                                            consts.COUNTRY_LIST.map((countryItem, idx) => (
+                                                <option className="text-gray-900" key={"country_list" + idx} value={countryItem}>{countryItem}</option>
                                             ))
                                         }
                                     </select>
@@ -217,8 +250,8 @@ export default function EmissionRedcutionPotentialComponent() {
                                     <select id="mitigationOptions" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={mitigationOptionChange} value={mitigationOption}>
                                         <option className="text-gray-900" value={""}>Mitigation.Option</option>
                                         {
-                                            consts.MITIGATION_OPTION_LIST.map((optionItem) => (
-                                                <option className="text-gray-900" value={optionItem}>{optionItem}</option>
+                                            consts.MITIGATION_OPTION_LIST.map((optionItem, idx) => (
+                                                <option className="text-gray-900" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
                                             ))
                                         }
                                     </select>
@@ -228,8 +261,8 @@ export default function EmissionRedcutionPotentialComponent() {
                                     <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={unitChange} value={unit}>
                                         <option className="text-gray-900" value={""}>Unit</option>
                                         {
-                                            consts.UNIT_LIST.map((unitItem) => (
-                                                <option className="text-gray-900" value={unitItem}>{unitItem}</option>
+                                            consts.UNIT_LIST.map((unitItem, idx) => (
+                                                <option className="text-gray-900" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>
                                             ))
                                         }
                                     </select>
@@ -249,7 +282,7 @@ export default function EmissionRedcutionPotentialComponent() {
                                 {/* <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-2.5 ml-2.5 text-center">Download Data</button> */}
                                 {/* <button type="button" class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300  shadow-lg shadow-pink-500/50 font-medium rounded-lg text-sm px-5 py-2.5 ml-2.5 text-center">Download Data</button> */}
                                 {/* <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5">Download Data</button> */}
-                                <button type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5">Download Data</button>
+                                <button type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button>
                             </div>
                         </div>
                         <div className="grid" style={{ minHeight: `${400}px`, minWidth: "600px" }}>
