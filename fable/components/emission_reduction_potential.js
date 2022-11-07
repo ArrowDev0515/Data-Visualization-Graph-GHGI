@@ -21,6 +21,7 @@ export default function EmissionRedcutionPotentialComponent() {
         containerBackgroundOpacity: "0",
         dataSource: {
             chart: {
+                caption: consts.CAPTION_TEXT_EMISSION_REDUCTION_POTENTIAL,
                 captionFontColor: "#ffffff",
                 xAxisNameFontColor: "#ddd",
                 xAxisValueFontColor: "#ddd",
@@ -28,6 +29,7 @@ export default function EmissionRedcutionPotentialComponent() {
                 yAxisNameFontColor: "#ddd",
                 yAxisValueFontColor: "#ddd",
                 legendItemFontColor: "#ffffff",
+                // regressionLineThickness: 30,
                 // captionFontSize: "18",
 
                 // subCaption: "In MMbbl = One Million barrels",
@@ -43,7 +45,6 @@ export default function EmissionRedcutionPotentialComponent() {
 
                 labelFontSize: "12",
                 labelFontColor: "#cccccc",
-
                 // caption: "???",
                 // subcaption: "Los Angeles Topanga",
                 // xaxisname: "Avg Day Temperature",
@@ -54,6 +55,8 @@ export default function EmissionRedcutionPotentialComponent() {
                 // yaxisminvalue: "1200",
                 xnumbersuffix: "",
                 theme: "fusion",
+                legendIconSides: 5,
+                legendIconStartAngle: 30,
                 plottooltext:
                     "<b>$yDataValue</b> worth <b>$seriesNames</b> were sold,<br>when temperature was <b>$xdataValue</b>"
             },
@@ -83,7 +86,7 @@ export default function EmissionRedcutionPotentialComponent() {
         });
         setExportData(data);
         let xLabels = new Map();
-        let categoryData = [];
+        let categoryData = [];      // x Axis Label Array
         let key = 1;
         data.map((item) => {
             if (item["DataSource"] === consts.DATA_SOURCE_FAO || item["DataSource"] === consts.DATA_SOURCE_IPCC) {
@@ -135,10 +138,10 @@ export default function EmissionRedcutionPotentialComponent() {
                 ...chartConfigs.dataSource,
                 categories: [{ category: categoryData }],
                 dataset: [
-                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax },
-                    { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin },
-                    { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian },
-                    { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage }
+                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, legendIconstartangle: 270, anchorstartangle: 270, anchorsides: 3, anchorradius: 8 },
+                    { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8 },
+                    { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6 },
+                    { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian, anchorsides: 4, anchorradius: 5 }
                 ]
             }
         });
@@ -297,3 +300,126 @@ export default function EmissionRedcutionPotentialComponent() {
         </>
     )
 }
+
+
+const dataSource2 = {
+    "chart": {
+        "caption": "Inventory status - Bakersfield Central",
+        "subCaption": "Top 5 Food items",
+        "xAxisName": "Food Item",
+        "yAxisName": "No. of Units",
+        "theme": "fusion",
+        "legendiconsides": "3",
+        "legendIconstartangle": 40,
+    },
+    "categories": [
+        {
+            "category": [
+                {
+                    "label": "Poultry"
+                }
+            ]
+        }
+    ],
+    "dataset": [
+        {
+            "seriesname": "Available Stock",
+            "allowDrag": "0",
+            "data": [
+                {
+                    "value": "6000"
+                },
+            ]
+        },
+        {
+            "seriesname": "Estimated Demand",
+            "dashed": "1",
+            "data": [
+                {
+                    "value": "19000"
+                },
+            ]
+        }
+    ]
+};
+
+const dataSource1 = {
+    chart: {
+      caption: "Sales of Beer & Ice cream vs Temperature",
+      subcaption: "Los Angeles Topanga",
+      xaxisname: "Avg Day Temperature",
+      yaxisname: "Sales (In USD)",
+      theme: "fusion",
+      "legendiconsides": "3",
+      "legendIconstartangle": "60",
+    //   "legendIconBgColor": "#ff0000",
+    //   "legendIconAlpha": "50",
+    //   "legendIconBgAlpha": "30",
+    //   "legendIconBorderColor": "#123456",
+    //   "legendIconBorderThickness": "3",
+      plottooltext:
+        "<b>$yDataValue</b> worth <b>$seriesNames</b> were sold,<br>when temperature was <b>$xdataValue</b>"
+    },
+    categories: [
+      {
+        category: [
+          {
+            x: "23",
+            label: "23°F"
+          }
+        ]
+      }
+    ],
+    dataset: [
+      {
+        seriesname: "Ice Cream",
+        anchorbgcolor: "333333",
+        legendiconsides: 4,
+        legendIconstartangle: 45,
+        data: [
+          {
+            x: "23",
+            y: "1560",
+          },
+          {
+            x: "24",
+            y: "1500"
+          }
+        ]
+      },
+      {
+        seriesname: "Beer",
+        anchorbgcolor: "#29C3BE",
+        legendiconsides: 4,
+        legendIconstartangle: 45,
+        data: [
+          {
+            x: "23",
+            y: "3160"
+          },
+          {
+            x: "24",
+            y: "3000"
+          }
+        ]
+      }
+    ]
+  };
+
+const chartConfigs1 = {
+    type: "scatter",
+    width: "100%",
+    height: "100%",
+    dataFormat: "JSON",
+    containerBackgroundOpacity: "0",
+    dataSource: dataSource1
+};
+
+const chartConfigs2 = {
+    type: "mscolumn2d",
+    width: "100%",
+    height: "100%",
+    dataFormat: "JSON",
+    containerBackgroundOpacity: "0",
+    dataSource: dataSource2
+};

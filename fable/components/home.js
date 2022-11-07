@@ -9,13 +9,14 @@ const dataSrc = require("../consts/Data_Home.json");
 const consts = require("../consts/consts");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
-let height1 = 120;
-let height2 = 150;
+
 
 export default function HomeComponent() {
 
     const [AFOLUData, setAFOLUData] = useState([]);
     const [exportData, setExportData] = useState([]);
+    const [height1, setHeight1] = useState(120);
+    const [height2, setHeight2] = useState(150);
 
     const [dataSource, setDataSource] = useState("UNFCCC");
     const [country, setCountry] = useState("China");
@@ -150,8 +151,8 @@ export default function HomeComponent() {
 
     useEffect(() => {
         if (AFOLUData.length) {
-            height2 = height1 / parseFloat(AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]) *
-                Math.abs(parseFloat(AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"]));
+            setHeight2(height1 / parseFloat(AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]) *
+                Math.abs(parseFloat(AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"])));
         }
     }, [AFOLUData]);
 
@@ -246,7 +247,7 @@ export default function HomeComponent() {
                                         <div className="w-full" style={{ height: `${height1}px` }}>
                                             {
                                                 AFOLUData.map((item, idx) => (
-                                                    <span key={"SourceOfEmissions"+idx}>
+                                                    <span key={"SourceOfEmissions" + idx}>
                                                         {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
                                                             <div className="grid items-center relative" style={{ height: `${parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"]) * 100}%`, backgroundColor: `${consts.colors[idx]}` }}>
                                                                 {(height1 * parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"])).toFixed(2) > 20 ? <span className="text-stone-600">{parseFloat(item["AFOLUEmissionsMtCO2e"])}</span> : ""}
@@ -265,13 +266,12 @@ export default function HomeComponent() {
                                         <div className="text-sm mb-3 text-stone-700"><b>
                                             {AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"]} MtCO2e
                                         </b></div>
-                                        {console.log(height1, height2)}
                                         <div className="w-full" style={{ height: `${height2}px` }}>
                                             {
                                                 AFOLUData.map((item, idx) => (
-                                                    <span key={"SinksForRemovals"+idx}>
+                                                    <span key={"SinksForRemovals" + idx}>
                                                         {(parseFloat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
-                                                            <div className="grid items-center relative" style={{ height: `${ parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) * 100) : 0}%`, backgroundColor: `${consts.colors[idx]}` }}>
+                                                            <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) * 100) : 0}%`, backgroundColor: `${consts.colors[idx]}` }}>
                                                                 {Math.abs((height1 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"])).toFixed(2)) > 20 ? <span className="text-stone-600">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : "No Data"}
                                                             </div>
                                                             : ""
@@ -292,7 +292,7 @@ export default function HomeComponent() {
                                     <div className="text-left my-3 px-3">
                                         {
                                             AFOLUData.map((item, idx) => (
-                                                <div key={"right_"+idx}>
+                                                <div key={"right_" + idx}>
                                                     {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
                                                         <div key={"right1" + idx} className="flex mt-2 items-center">
                                                             <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${consts.colors[idx]}` }}>
@@ -308,7 +308,7 @@ export default function HomeComponent() {
                                     <div className="text-left my-3 px-3">
                                         {
                                             AFOLUData.map((item, idx) => (
-                                                <div key={"left"+idx}>
+                                                <div key={"left" + idx}>
                                                     {(parseFloat(item["AFOLURemovalsMtCO2e"]) != 0) ?
                                                         <div className="flex mt-2 items-center">
                                                             <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${consts.colors[idx]}` }}>
