@@ -72,7 +72,7 @@
   },
   {
     "Country": "China",
-    "Unit": "tN20/ha",
+    "Unit": "tN2O/ha",
     "MitigationOption": "Rice Cultivation",
     "DataSource": "FAO",
     "System": "Conventional, Continuously flooded",
@@ -80,7 +80,7 @@
   },
   {
     "Country": "China",
-    "Unit": "tN20/ha",
+    "Unit": "tN2O/ha",
     "MitigationOption": "Rice Cultivation",
     "DataSource": "IPCC",
     "System": "Conventional, Continuously flooded",
@@ -88,7 +88,7 @@
   },
   {
     "Country": "China",
-    "Unit": "tN20/ha",
+    "Unit": "tN2O/ha",
     "MitigationOption": "Rice Cultivation",
     "DataSource": "Literature Review",
     "System": "Conventional, Continuously flooded",
@@ -99,7 +99,7 @@
   },
   {
     "Country": "China",
-    "Unit": "tN20/ha",
+    "Unit": "tN2O/ha",
     "MitigationOption": "Rice Cultivation",
     "DataSource": "Literature Review",
     "System": "Conventional, AWD",
@@ -110,7 +110,7 @@
   },
   {
     "Country": "China",
-    "Unit": "tN20/ha",
+    "Unit": "tN2O/ha",
     "MitigationOption": "Rice Cultivation",
     "DataSource": "Literature Review",
     "System": "Conventional, Thin-shallow-wet-dry",
@@ -121,7 +121,7 @@
   },
   {
     "Country": "China",
-    "Unit": "tN20/ha",
+    "Unit": "tN2O/ha",
     "MitigationOption": "Rice Cultivation",
     "DataSource": "Literature Review",
     "System": "Conventional, Rice-Duck",

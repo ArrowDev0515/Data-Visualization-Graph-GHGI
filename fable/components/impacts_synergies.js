@@ -20,7 +20,8 @@ export default function ImpactsAndSynergiesComponent() {
         containerBackgroundOpacity: "0",
         dataSource: {
             chart: {
-                caption: consts.CAPTION_TEXT_EMISSION_REDUCTION_POTENTIAL,
+                caption: inout == consts.IN_OUT_OPTION_OUTPUT ? consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_OUTPUT :
+                    consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_INPUT,
                 captionFontColor: "#ffffff",
                 xAxisNameFontColor: "#ddd",
                 // xAxisPosition : "top",
@@ -28,8 +29,8 @@ export default function ImpactsAndSynergiesComponent() {
 
                 yAxisNameFontColor: "#ddd",
                 yAxisValueFontColor: "#ddd",
-                yAxisName : "Gradient",
-                xAxisPosition : "right",
+                yAxisName: "Gradient",
+                xAxisPosition: "right",
                 legendItemFontColor: "#ffffff",
                 // regressionLineThickness: 30,
                 // captionFontSize: "18",
@@ -56,7 +57,7 @@ export default function ImpactsAndSynergiesComponent() {
                 xnumbersuffix: "",
                 theme: "fusion",
                 legendIconSides: 5,
-                
+
                 plottooltext:
                     "Gradient Value : <b>$yDataValue</b>"
             },
@@ -97,15 +98,16 @@ export default function ImpactsAndSynergiesComponent() {
         let xLabels = new Map();
         let categoryData = [];      // x Axis Label Array
         let key = 1;
-        
+        categoryData.push({ x: key.toString(), label: "" });
         data.map((item) => {
+            key++;
             if (!xLabels.has(item["Input_OutputName"])) {
                 xLabels.set(item["Input_OutputName"], key);
                 categoryData.push({ x: key.toString(), label: item["Input_OutputName"] });
             }
-            key++;
         });
-
+        key++;
+        categoryData.push({ x: key.toString(), label: "" });
         let dataArr = [];
 
         data.map((ele) => {
@@ -119,6 +121,11 @@ export default function ImpactsAndSynergiesComponent() {
             ...chartConfigs, dataSource: {
                 ...chartConfigs.dataSource,
                 categories: [{ category: categoryData }],
+                chart: {
+                    ...chartConfigs.dataSource.chart,
+                    caption: inout == consts.IN_OUT_OPTION_OUTPUT ? consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_OUTPUT :
+                        consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_INPUT,
+                },
                 dataset: [
                     { seriesname: "", anchorbgcolor: consts.colors[0], data: dataArr, anchorsides: 2, anchorradius: 5 },
                 ]
@@ -163,10 +170,10 @@ export default function ImpactsAndSynergiesComponent() {
                                 <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={countryChange} value={country}>
                                     {/* <option className="text-gray-900" value={""}>Country</option> */}
                                     {
-                                            consts.COUNTRY_LIST.map((countryItem, idx) => (
-                                                <option className="text-gray-900" key={"country_list" + idx} value={countryItem}>{countryItem}</option>
-                                            ))
-                                        }
+                                        consts.COUNTRY_LIST.map((countryItem, idx) => (
+                                            <option className="text-gray-900" key={"country_list" + idx} value={countryItem}>{countryItem}</option>
+                                        ))
+                                    }
                                 </select>
                             </div>
                             <div className="flex items-center mx-2.5">
@@ -174,10 +181,10 @@ export default function ImpactsAndSynergiesComponent() {
                                 <select id="units" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={unitChange} value={unit}>
                                     {/* <option className="text-gray-900" value={""}>Unit</option> */}
                                     {
-                                            consts.UNIT_LIST.map((unitItem, idx) => (
-                                                <option className="text-gray-900" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>
-                                            ))
-                                        }
+                                        consts.UNIT_LIST.map((unitItem, idx) => (
+                                            <option className="text-gray-900" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>
+                                        ))
+                                    }
                                 </select>
                             </div>
                             <div className="flex items-center mx-2.5">
@@ -185,10 +192,10 @@ export default function ImpactsAndSynergiesComponent() {
                                 <select id="inouts" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={inoutChange} value={inout}>
                                     {/* <option className="text-gray-900" value={""}>Input_Output</option> */}
                                     {
-                                            consts.IN_OUT_OPTION_LIST.map((item, idx) => (
-                                                <option className="text-gray-900" key={"unit_list" + idx} value={item}>{item}</option>
-                                            ))
-                                        }
+                                        consts.IN_OUT_OPTION_LIST.map((item, idx) => (
+                                            <option className="text-gray-900" key={"unit_list" + idx} value={item}>{item}</option>
+                                        ))
+                                    }
                                 </select>
                             </div>
                             <div className="flex items-center mx-2.5">
@@ -196,10 +203,10 @@ export default function ImpactsAndSynergiesComponent() {
                                 <select id="mitigationOptions" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={mitigationOptionChange} value={mitigationOption}>
                                     {/* <option className="text-gray-900" value={""}>Mitigation.Option</option> */}
                                     {
-                                            consts.MITIGATION_OPTION_LIST2.map((optionItem, idx) => (
-                                                <option className="text-gray-900" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
-                                            ))
-                                        }
+                                        consts.MITIGATION_OPTION_LIST2.map((optionItem, idx) => (
+                                            <option className="text-gray-900" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
+                                        ))
+                                    }
                                 </select>
                             </div>
 

@@ -49,6 +49,10 @@ export default function EmissionRedcutionPotentialComponent() {
                 // subcaption: "Los Angeles Topanga",
                 // xaxisname: "Avg Day Temperature",
                 yaxisname: consts.UNIT_TCH4_HA,
+
+                plotHighlightEffect: "fadeout|borderColor=ff0000, borderAlpha=50",
+
+                
                 // xaxisminvalue: "23",
                 // xaxismaxvalue: "95",
                 ynumberprefix: "",
@@ -84,7 +88,6 @@ export default function EmissionRedcutionPotentialComponent() {
         let data = dataSrc.filter((ele) => {
             return (ele["Country"] === country && ele["Unit"] === unit && ele["MitigationOption"] === mitigationOption);
         });
-        setExportData(data);
         let xLabels = new Map();
         let categoryData = [];      // x Axis Label Array
         let key = 1;
@@ -138,7 +141,7 @@ export default function EmissionRedcutionPotentialComponent() {
                 ...chartConfigs.dataSource,
                 categories: [{ category: categoryData }],
                 dataset: [
-                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, legendIconstartangle: 270, anchorstartangle: 270, anchorsides: 3, anchorradius: 8 },
+                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270,  anchorsides: 3, legendIconstartangle: 150, anchorradius: 8 },
                     { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8 },
                     { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6 },
                     { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian, anchorsides: 4, anchorradius: 5 }
@@ -310,7 +313,7 @@ const dataSource2 = {
         "yAxisName": "No. of Units",
         "theme": "fusion",
         "legendiconsides": "3",
-        "legendIconstartangle": 40,
+        "legendIconstartangle": 150,
     },
     "categories": [
         {
@@ -345,13 +348,13 @@ const dataSource2 = {
 
 const dataSource1 = {
     chart: {
-      caption: "Sales of Beer & Ice cream vs Temperature",
-      subcaption: "Los Angeles Topanga",
-      xaxisname: "Avg Day Temperature",
-      yaxisname: "Sales (In USD)",
-      theme: "fusion",
-      "legendiconsides": "3",
-      "legendIconstartangle": "60",
+        "caption": "Inventory status - Bakersfield Central",
+        "subCaption": "Top 5 Food items",
+        "xAxisName": "Food Item",
+        "yAxisName": "No. of Units",
+        "theme": "fusion",
+        "legendiconsides": "3",
+        "legendIconstartangle": 150,
     //   "legendIconBgColor": "#ff0000",
     //   "legendIconAlpha": "50",
     //   "legendIconBgAlpha": "30",
@@ -374,8 +377,6 @@ const dataSource1 = {
       {
         seriesname: "Ice Cream",
         anchorbgcolor: "333333",
-        legendiconsides: 4,
-        legendIconstartangle: 45,
         data: [
           {
             x: "23",
@@ -390,8 +391,6 @@ const dataSource1 = {
       {
         seriesname: "Beer",
         anchorbgcolor: "#29C3BE",
-        legendiconsides: 4,
-        legendIconstartangle: 45,
         data: [
           {
             x: "23",
@@ -408,10 +407,10 @@ const dataSource1 = {
 
 const chartConfigs1 = {
     type: "scatter",
-    width: "100%",
-    height: "100%",
+    width: "90%",
+    height: "90%",
     dataFormat: "JSON",
-    containerBackgroundOpacity: "0",
+    containerBackgroundOpacity: "80",
     dataSource: dataSource1
 };
 

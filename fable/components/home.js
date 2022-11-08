@@ -18,8 +18,8 @@ export default function HomeComponent() {
     const [height1, setHeight1] = useState(120);
     const [height2, setHeight2] = useState(150);
 
-    const [dataSource, setDataSource] = useState("UNFCCC");
-    const [country, setCountry] = useState("China");
+    const [dataSource, setDataSource] = useState(consts.DATA_SOURCE_UNFCCC);
+    const [country, setCountry] = useState(consts.COUNTRY_CHINA);
     const [year, setYear] = useState(1994);
 
     // const [chartConfigs, setChartConfigs] = useState([]);
@@ -31,7 +31,7 @@ export default function HomeComponent() {
         containerBackgroundOpacity: "0",
         dataSource: {
             chart: {
-                caption: "12,301MtCO2e",
+                caption: "",
                 captionFontColor: "#ffffff",
 
                 dataEmptyMessage: "AAAAAAAAAAAAAAAAAAAAAA",
