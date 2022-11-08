@@ -52,18 +52,6 @@ const Header = ({ tabNo }) => {
               </Link>
             </li>
           </ul>
-          {/* </nav> */}
-          {/* <ul>
-            <li>
-              <a href="/homePage" ></a>
-            </li>
-            <li className="mr-2">
-              <a href="/impactsPage" aria-current="page"></a>
-            </li>
-            <li className="mr-2">
-              <a href="/dataExplorerPage" ></a>
-            </li>
-          </ul> */}
         </div>
       </div>
     </>

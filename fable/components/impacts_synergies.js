@@ -58,7 +58,7 @@ export default function ImpactsAndSynergiesComponent() {
                 legendIconSides: 5,
                 
                 plottooltext:
-                    "<b>$yDataValue</b> worth <b>$seriesNames</b> were sold,<br>when temperature was <b>$xdataValue</b>"
+                    "Gradient Value : <b>$yDataValue</b>"
             },
             categories: [
                 {
@@ -97,6 +97,7 @@ export default function ImpactsAndSynergiesComponent() {
         let xLabels = new Map();
         let categoryData = [];      // x Axis Label Array
         let key = 1;
+        
         data.map((item) => {
             if (!xLabels.has(item["Input_OutputName"])) {
                 xLabels.set(item["Input_OutputName"], key);

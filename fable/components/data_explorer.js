@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 export default function DataExplorerComponent() {
 
     useEffect(() => {
-        // console.log(node);
     });
 
     return (

@@ -56,9 +56,9 @@ export default function EmissionRedcutionPotentialComponent() {
                 xnumbersuffix: "",
                 theme: "fusion",
                 legendIconSides: 5,
-                legendIconStartAngle: 30,
+                legendIconStartAngle: 270,
                 plottooltext:
-                    "<b>$yDataValue</b> worth <b>$seriesNames</b> were sold,<br>when temperature was <b>$xdataValue</b>"
+                    "Value : <b>$yDataValue</b>"
             },
             categories: [
                 {
