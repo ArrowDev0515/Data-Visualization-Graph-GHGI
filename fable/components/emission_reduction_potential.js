@@ -240,7 +240,7 @@ export default function EmissionRedcutionPotentialComponent() {
                                 <div className="flex items-center mx-2.5">
                                     {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Country : </label> */}
                                     <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={countryChange} value={country}>
-                                        <option className="text-gray-900" value={""}>Country</option>
+                                        {/* <option className="text-gray-900" value={""}>Country</option> */}
                                         {
                                             consts.COUNTRY_LIST.map((countryItem, idx) => (
                                                 <option className="text-gray-900" key={"country_list" + idx} value={countryItem}>{countryItem}</option>
@@ -251,7 +251,7 @@ export default function EmissionRedcutionPotentialComponent() {
                                 <div className="flex items-center mx-2.5">
                                     {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Year : </label> */}
                                     <select id="mitigationOptions" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={mitigationOptionChange} value={mitigationOption}>
-                                        <option className="text-gray-900" value={""}>Mitigation.Option</option>
+                                        {/* <option className="text-gray-900" value={""}>Mitigation.Option</option> */}
                                         {
                                             consts.MITIGATION_OPTION_LIST.map((optionItem, idx) => (
                                                 <option className="text-gray-900" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
@@ -262,7 +262,7 @@ export default function EmissionRedcutionPotentialComponent() {
                                 <div className="flex items-center mx-2.5">
                                     {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label> */}
                                     <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={unitChange} value={unit}>
-                                        <option className="text-gray-900" value={""}>Unit</option>
+                                        {/* <option className="text-gray-900" value={""}>Unit</option> */}
                                         {
                                             consts.UNIT_LIST.map((unitItem, idx) => (
                                                 <option className="text-gray-900" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>

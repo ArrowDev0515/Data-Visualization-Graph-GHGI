@@ -89,12 +89,9 @@ export default function ImpactsAndSynergiesComponent() {
 
     const generateChartData = () => {
         //Filter Data with Select
-        // let data = dataSrc;
-
         let data = dataSrc.filter((ele) => {
             return (ele["Country"] === country && ele["Unit"] === unit && ele["Input_Output"] === inout && ele["MitigationOption"] === mitigationOption);
         });
-        console.log(country, unit, inout, mitigationOption, data, dataSrc);
         setExportData(data);
 
         let xLabels = new Map();
@@ -108,7 +105,6 @@ export default function ImpactsAndSynergiesComponent() {
             key++;
         });
 
-        console.log(categoryData);
         let dataArr = [];
 
         data.map((ele) => {
@@ -164,7 +160,7 @@ export default function ImpactsAndSynergiesComponent() {
                             <div className="flex items-center mx-2.5">
                                 {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Country : </label> */}
                                 <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={countryChange} value={country}>
-                                    <option className="text-gray-900" value={""}>Country</option>
+                                    {/* <option className="text-gray-900" value={""}>Country</option> */}
                                     {
                                             consts.COUNTRY_LIST.map((countryItem, idx) => (
                                                 <option className="text-gray-900" key={"country_list" + idx} value={countryItem}>{countryItem}</option>
@@ -174,8 +170,8 @@ export default function ImpactsAndSynergiesComponent() {
                             </div>
                             <div className="flex items-center mx-2.5">
                                 {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label> */}
-                                <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={unitChange} value={unit}>
-                                    <option className="text-gray-900" value={""}>Unit</option>
+                                <select id="units" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={unitChange} value={unit}>
+                                    {/* <option className="text-gray-900" value={""}>Unit</option> */}
                                     {
                                             consts.UNIT_LIST.map((unitItem, idx) => (
                                                 <option className="text-gray-900" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>
@@ -185,8 +181,8 @@ export default function ImpactsAndSynergiesComponent() {
                             </div>
                             <div className="flex items-center mx-2.5">
                                 {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label> */}
-                                <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={inoutChange} value={inout}>
-                                    <option className="text-gray-900" value={""}>Input_Output</option>
+                                <select id="inouts" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={inoutChange} value={inout}>
+                                    {/* <option className="text-gray-900" value={""}>Input_Output</option> */}
                                     {
                                             consts.IN_OUT_OPTION_LIST.map((item, idx) => (
                                                 <option className="text-gray-900" key={"unit_list" + idx} value={item}>{item}</option>
@@ -197,7 +193,7 @@ export default function ImpactsAndSynergiesComponent() {
                             <div className="flex items-center mx-2.5">
                                 {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Year : </label> */}
                                 <select id="mitigationOptions" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={mitigationOptionChange} value={mitigationOption}>
-                                    <option className="text-gray-900" value={""}>Mitigation.Option</option>
+                                    {/* <option className="text-gray-900" value={""}>Mitigation.Option</option> */}
                                     {
                                             consts.MITIGATION_OPTION_LIST2.map((optionItem, idx) => (
                                                 <option className="text-gray-900" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>

@@ -186,33 +186,34 @@ export default function HomeComponent() {
                             <div className="flex items-center mx-2.5">
                                 <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label>
                                 <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" value={dataSource} onChange={dataSourceChange}>
-                                    <option value={""}>Choose a Data Source</option>
-                                    <option value={"US"}>United States</option>
-                                    <option value={"CA"}>Canada</option>
-                                    <option value={"FR"}>France</option>
-                                    <option value={"DE"}>Germany</option>
+                                    {/* <option value={""}>Choose a Data Source</option> */}
+                                    {
+                                        consts.DATA_SOURCE_LIST.map((dataSrcItem, idx) => (
+                                            <option className="text-gray-900" key={"dataSrc_option" + idx} value={dataSrcItem}>{dataSrcItem}</option>
+                                        ))
+                                    }
                                 </select>
                             </div>
                             <div className="flex items-center mx-2.5">
                                 <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Country : </label>
                                 <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" value={country} onChange={countryChange}>
-                                    <option className="text-gray-900" value={""}>Choose a country</option>
-                                    <option className="text-gray-900" value={"China"}>China</option>
-                                    <option className="text-gray-900" value={"United States"}>United States</option>
-                                    <option className="text-gray-900" value={"Canada"}>Canada</option>
-                                    <option className="text-gray-900" value={"France"}>France</option>
-                                    <option className="text-gray-900" value={"Germany"}>Germany</option>
+                                    {/* <option className="text-gray-900" value={""}>Choose a country</option> */}
+                                    {
+                                        consts.COUNTRY_LIST.map((countryItem, idx) => (
+                                            <option className="text-gray-900" key={"country_option" + idx} value={countryItem}>{countryItem}</option>
+                                        ))
+                                    }
                                 </select>
                             </div>
                             <div className="flex items-center mx-2.5">
                                 <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Year : </label>
                                 <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" value={year} onChange={yearChange}>
-                                    <option value={0}>Choose a year</option>
-                                    <option value={1994}>1994</option>
-                                    <option value={1998}>1998</option>
-                                    <option value={2010}>2010</option>
-                                    <option value={2012}>2012</option>
-                                    <option value={2022}>2022</option>
+                                    {/* <option value={0}>Choose a year</option> */}
+                                    {
+                                        consts.YEAR_LIST.map((item, idx) => (
+                                            <option className="text-gray-900" key={"year_option" + idx} value={item}>{item}</option>
+                                        ))
+                                    }
                                 </select>
                             </div>
                         </div>
@@ -239,96 +240,104 @@ export default function HomeComponent() {
                         <div className="bg-gray-900 bg-opacity-10 rounded-md text-gray-200 grid text-center items-center p-3 col-span-3 grid-cols-2 my-3">
                             {AFOLUData.length ?
                                 <>
-                                    <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b><span className="font-bold">AFOLU</span> Sector</b></div>
-                                    <div className="justify-self-stretch px-3 content-end" style={{ height: "200px" }}>
-                                        <div className="text-sm mb-3 text-stone-700"><b>
-                                            {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]} MtCO2e
-                                        </b></div>
-                                        <div className="w-full" style={{ height: `${height1}px` }}>
-                                            {
-                                                AFOLUData.map((item, idx) => (
-                                                    <span key={"SourceOfEmissions" + idx}>
-                                                        {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
-                                                            <div className="grid items-center relative" style={{ height: `${parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"]) * 100}%`, backgroundColor: `${consts.colors[idx]}` }}>
-                                                                {(height1 * parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"])).toFixed(2) > 20 ? <span className="text-stone-600">{parseFloat(item["AFOLUEmissionsMtCO2e"])}</span> : ""}
-                                                            </div>
-                                                            : ""
-                                                        }
-                                                    </span>
-                                                ))
-                                            }
-                                        </div>
-                                        <div className="text-md mt-3"><b>Source of Emissions</b></div>
-                                    </div>
-
-
-                                    <div className="justify-self-stretch px-3" style={{ height: "200px" }}>
-                                        <div className="text-sm mb-3 text-stone-700"><b>
-                                            {AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"]} MtCO2e
-                                        </b></div>
-                                        <div className="w-full" style={{ height: `${height2}px` }}>
-                                            {
-                                                AFOLUData.map((item, idx) => (
-                                                    <span key={"SinksForRemovals" + idx}>
-                                                        {(parseFloat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
-                                                            <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) * 100) : 0}%`, backgroundColor: `${consts.colors[idx]}` }}>
-                                                                {Math.abs((height1 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"])).toFixed(2)) > 20 ? <span className="text-stone-600">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : "No Data"}
-                                                            </div>
-                                                            : ""
-                                                        }
-                                                    </span>
-                                                ))
-                                                // chartConfigs.dataSource.data.map((item, idx) => (
-                                                //     <>
-                                                //         <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
-                                                //             {(height2 / 100 * parseFloat(item["percentValue"])).toFixed(2) > 20 ? <span>{(item.value).toFixed(2)}</span> : ""}
-                                                //         </div>
-                                                //     </>
-                                                // ))
-                                            }
-                                        </div>
-                                        <div className="text-md mt-3"><b>Sinks for removals</b></div>
-                                    </div>
-                                    <div className="text-left my-3 px-3">
-                                        {
-                                            AFOLUData.map((item, idx) => (
-                                                <div key={"right_" + idx}>
-                                                    {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
-                                                        <div key={"right1" + idx} className="flex mt-2 items-center">
-                                                            <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${consts.colors[idx]}` }}>
-                                                            </div>
-                                                            <p className="text-xs pl-2">{item["SubCategory"]}</p>
-                                                        </div>
-                                                        : ""
+                                    {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"] > 0 ?
+                                        <>
+                                            <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b><span className="font-bold">AFOLU</span> Sector</b></div>
+                                            <div className="justify-self-stretch px-3 content-end" style={{ height: "200px" }}>
+                                                <div className="text-xs mb-3 text-stone-700"><b>
+                                                    {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]} MtCO2e
+                                                </b></div>
+                                                <div className="w-full" style={{ height: `${height1}px` }}>
+                                                    {
+                                                        AFOLUData.map((item, idx) => (
+                                                            <span key={"SourceOfEmissions" + idx}>
+                                                                {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
+                                                                    <div className="grid items-center relative" style={{ height: `${parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"]) * 100}%`, backgroundColor: `${consts.colors[idx]}` }}>
+                                                                        {(height1 * parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"])).toFixed(2) > 20 ? <span className="text-stone-600">{parseFloat(item["AFOLUEmissionsMtCO2e"])}</span> : ""}
+                                                                    </div>
+                                                                    : ""
+                                                                }
+                                                            </span>
+                                                        ))
                                                     }
                                                 </div>
-                                            ))
-                                        }
-                                    </div>
-                                    <div className="text-left my-3 px-3">
-                                        {
-                                            AFOLUData.map((item, idx) => (
-                                                <div key={"left" + idx}>
-                                                    {(parseFloat(item["AFOLURemovalsMtCO2e"]) != 0) ?
-                                                        <div className="flex mt-2 items-center">
-                                                            <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${consts.colors[idx]}` }}>
-                                                            </div>
-                                                            <p className="text-xs pl-2">{item["SubCategory"]}</p>
-                                                        </div>
-                                                        : ""
+                                                <div className="text-md mt-3"><b>Source of Emissions</b></div>
+                                            </div>
+
+
+                                            <div className="justify-self-stretch px-3" style={{ height: "200px" }}>
+                                                <div className="text-xs mb-3 text-stone-700"><b>
+                                                    {AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"]} MtCO2e
+                                                </b></div>
+                                                <div className="w-full" style={{ height: `${height2}px` }}>
+                                                    {
+                                                        AFOLUData.map((item, idx) => (
+                                                            <span key={"SinksForRemovals" + idx}>
+                                                                {(parseFloat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
+                                                                    <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) * 100) : 0}%`, backgroundColor: `${consts.colors[idx]}` }}>
+                                                                        {Math.abs((height1 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"])).toFixed(2)) > 20 ? <span className="text-stone-600">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : "No Data"}
+                                                                    </div>
+                                                                    : ""
+                                                                }
+                                                            </span>
+                                                        ))
+                                                        // chartConfigs.dataSource.data.map((item, idx) => (
+                                                        //     <>
+                                                        //         <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
+                                                        //             {(height2 / 100 * parseFloat(item["percentValue"])).toFixed(2) > 20 ? <span>{(item.value).toFixed(2)}</span> : ""}
+                                                        //         </div>
+                                                        //     </>
+                                                        // ))
                                                     }
                                                 </div>
-                                            ))
+                                                <div className="w-full bg-opacity-10" style={{ backgroundImage: "url(../dot.png)", height: `${height1 - height2}px` }}></div>
+                                                <div className="text-md mt-3"><b>Sinks for removals</b></div>
+                                            </div>
+                                            <div className="text-left my-3 px-3">
+                                                {
+                                                    AFOLUData.map((item, idx) => (
+                                                        <div key={"right_" + idx}>
+                                                            {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
+                                                                <div key={"right1" + idx} className="flex mt-2 items-center">
+                                                                    <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${consts.colors[idx]}` }}>
+                                                                    </div>
+                                                                    <p className="text-xs pl-2">{item["SubCategory"]}</p>
+                                                                </div>
+                                                                : ""
+                                                            }
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                            <div className="text-left my-3 px-3">
+                                                {
+                                                    AFOLUData.map((item, idx) => (
+                                                        <div key={"left" + idx}>
+                                                            {(parseFloat(item["AFOLURemovalsMtCO2e"]) != 0) ?
+                                                                <div className="flex mt-2 items-center">
+                                                                    <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${consts.colors[idx]}` }}>
+                                                                    </div>
+                                                                    <p className="text-xs pl-2">{item["SubCategory"]}</p>
+                                                                </div>
+                                                                : ""
+                                                            }
+                                                        </div>
+                                                    ))
 
-                                            // chartConfigs.dataSource.data.map((item, idx) => (
-                                            //     <div key={idx} className="flex mt-2 items-center">
-                                            //         <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
-                                            //         </div>
-                                            //         <div className="text-xs pl-2">{item.label}</div>
-                                            //     </div>
-                                            // ))
-                                        }
-                                    </div>
+                                                    // chartConfigs.dataSource.data.map((item, idx) => (
+                                                    //     <div key={idx} className="flex mt-2 items-center">
+                                                    //         <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
+                                                    //         </div>
+                                                    //         <div className="text-xs pl-2">{item.label}</div>
+                                                    //     </div>
+                                                    // ))
+                                                }
+                                            </div>
+                                        </> :
+                                        <>
+                                            <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b>No AFOLU Data</b></div>
+                                        </>
+                                    }
                                 </>
                                 :
                                 <>
