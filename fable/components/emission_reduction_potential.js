@@ -22,13 +22,14 @@ export default function EmissionRedcutionPotentialComponent() {
         dataSource: {
             chart: {
                 caption: consts.CAPTION_TEXT_EMISSION_REDUCTION_POTENTIAL,
-                captionFontColor: "#ffffff",
-                xAxisNameFontColor: "#ddd",
-                xAxisValueFontColor: "#ddd",
+                captionFontColor: "#113458",
+                divLineColor: "#113458",
+                xAxisNameFontColor: "#113458",
+                xAxisValueFontColor: "#113458",
 
-                yAxisNameFontColor: "#ddd",
-                yAxisValueFontColor: "#ddd",
-                legendItemFontColor: "#ffffff",
+                yAxisNameFontColor: "#113458",
+                yAxisValueFontColor: "#113458",
+                legendItemFontColor: "#113458",
                 // regressionLineThickness: 30,
                 // captionFontSize: "18",
 
@@ -44,7 +45,7 @@ export default function EmissionRedcutionPotentialComponent() {
                 // defaultcenterlabelColor: "#cccccc",
 
                 labelFontSize: "12",
-                labelFontColor: "#cccccc",
+                labelFontColor: "#113458",
                 // caption: "???",
                 // subcaption: "Los Angeles Topanga",
                 // xaxisname: "Avg Day Temperature",
@@ -52,7 +53,7 @@ export default function EmissionRedcutionPotentialComponent() {
 
                 plotHighlightEffect: "fadeout|borderColor=ff0000, borderAlpha=50",
 
-                
+
                 // xaxisminvalue: "23",
                 // xaxismaxvalue: "95",
                 ynumberprefix: "",
@@ -141,7 +142,7 @@ export default function EmissionRedcutionPotentialComponent() {
                 ...chartConfigs.dataSource,
                 categories: [{ category: categoryData }],
                 dataset: [
-                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270,  anchorsides: 3, legendIconstartangle: 150, anchorradius: 8 },
+                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 3, legendIconstartangle: 150, anchorradius: 8 },
                     { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8 },
                     { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6 },
                     { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian, anchorsides: 4, anchorradius: 5 }
@@ -230,67 +231,64 @@ export default function EmissionRedcutionPotentialComponent() {
 
     return (
         <>
-            <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minHeight: "600px" }}>
+            {/* <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minHeight: "600px" }}> */}
+            <div className="py-2 px-8">
                 {/* <div className="bg-gradient-to-r from-blue-400 via-green-500 to-yellow-300 p-12"> */}
-                <div className="grid grid-cols-6 bg-gray-800 bg-opacity-40 rounded-xl p-5 m-12 items-center justify-center">
-                    <div className="bg-gray-900 col-span-2 bg-opacity-20 rounded-md text-gray-200 grid text-center items-center p-3 my-3" style={{ minHeight: "400px" }}>
+                <div className="grid grid-cols-6 bg-gray-800 bg-opacity-10 rounded-xl py-3 px-5 mt-12 items-center justify-center">
+                    <div className="flex justify-between col-span-4 col-start-3">
+                        <div className="flex">
+                            <div className="flex items-center mx-2.5">
+                                {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Country : </label> */}
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5 ml-2.5" onChange={countryChange} value={country}>
+                                    {/* <option className="text-[#113458]" value={""}>Country</option> */}
+                                    {
+                                        consts.COUNTRY_LIST.map((countryItem, idx) => (
+                                            <option className="text-[#113458]" key={"country_list" + idx} value={countryItem}>{countryItem}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                            <div className="flex items-center mx-2.5">
+                                {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Year : </label> */}
+                                <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5 ml-2.5" onChange={mitigationOptionChange} value={mitigationOption}>
+                                    {/* <option className="text-[#113458]" value={""}>Mitigation.Option</option> */}
+                                    {
+                                        consts.MITIGATION_OPTION_LIST.map((optionItem, idx) => (
+                                            <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                            <div className="flex items-center mx-2.5">
+                                {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Data Source : </label> */}
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5 ml-2.5" onChange={unitChange} value={unit}>
+                                    {/* <option className="text-[#113458]" value={""}>Unit</option> */}
+                                    {
+                                        consts.UNIT_LIST.map((unitItem, idx) => (
+                                            <option className="text-[#113458]" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                            {/* <div className="flex items-center mx-2.5">
+                                    <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Data Source : </label>
+                                    <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5 ml-2.5" defaultValue="">
+                                        <option className="text-[#113458]" value={""}>AR</option>
+                                        <option className="text-[#113458]" value={"US"}>Option 1</option>
+                                        <option className="text-[#113458]" value={"CA"}>Option 2</option>
+                                        <option className="text-[#113458]" value={"FR"}>Option 3</option>
+                                    </select>
+                                </div> */}
+                        </div>
+
+                        <div className="flex items-center mx-2.5 float-right">
+                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:bg-[#FFD712] focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button>
+                        </div>
+                    </div>
+                    <div className="bg-[#113458] col-span-2 bg-opacity-10 rounded-md text-[#113458] grid text-center items-center p-3 my-3" style={{ minHeight: "400px" }}>
                         <b>Some Text Here!</b>
                     </div>
                     <div className="col-span-4">
-                        <div className="flex justify-between">
-                            <div className="flex">
-
-                                <div className="flex items-center mx-2.5">
-                                    {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Country : </label> */}
-                                    <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={countryChange} value={country}>
-                                        {/* <option className="text-gray-900" value={""}>Country</option> */}
-                                        {
-                                            consts.COUNTRY_LIST.map((countryItem, idx) => (
-                                                <option className="text-gray-900" key={"country_list" + idx} value={countryItem}>{countryItem}</option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
-                                <div className="flex items-center mx-2.5">
-                                    {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Year : </label> */}
-                                    <select id="mitigationOptions" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={mitigationOptionChange} value={mitigationOption}>
-                                        {/* <option className="text-gray-900" value={""}>Mitigation.Option</option> */}
-                                        {
-                                            consts.MITIGATION_OPTION_LIST.map((optionItem, idx) => (
-                                                <option className="text-gray-900" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
-                                <div className="flex items-center mx-2.5">
-                                    {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label> */}
-                                    <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" onChange={unitChange} value={unit}>
-                                        {/* <option className="text-gray-900" value={""}>Unit</option> */}
-                                        {
-                                            consts.UNIT_LIST.map((unitItem, idx) => (
-                                                <option className="text-gray-900" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
-                                {/* <div className="flex items-center mx-2.5">
-                                    <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-200">Data Source : </label>
-                                    <select id="countries" className="bg-gray-900 bg-opacity-20 border border-gray-200 text-gray-200 text-sm rounded-lg focus:text-gray-900 focus:border-gray-900 focus-visible:outline-none block p-2.5 ml-2.5" defaultValue="">
-                                        <option className="text-gray-900" value={""}>AR</option>
-                                        <option className="text-gray-900" value={"US"}>Option 1</option>
-                                        <option className="text-gray-900" value={"CA"}>Option 2</option>
-                                        <option className="text-gray-900" value={"FR"}>Option 3</option>
-                                    </select>
-                                </div> */}
-                            </div>
-
-                            <div className="flex items-center mx-2.5 float-right">
-                                {/* <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-2.5 ml-2.5 text-center">Download Data</button> */}
-                                {/* <button type="button" class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300  shadow-lg shadow-pink-500/50 font-medium rounded-lg text-sm px-5 py-2.5 ml-2.5 text-center">Download Data</button> */}
-                                {/* <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5">Download Data</button> */}
-                                <button type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button>
-                            </div>
-                        </div>
                         <div className="grid" style={{ minHeight: `${400}px`, minWidth: "600px" }}>
                             <FC chartConfigs={chartConfigs}></FC>
                         </div>
@@ -355,55 +353,59 @@ const dataSource1 = {
         "theme": "fusion",
         "legendiconsides": "3",
         "legendIconstartangle": 150,
-    //   "legendIconBgColor": "#ff0000",
-    //   "legendIconAlpha": "50",
-    //   "legendIconBgAlpha": "30",
-    //   "legendIconBorderColor": "#123456",
-    //   "legendIconBorderThickness": "3",
-      plottooltext:
-        "<b>$yDataValue</b> worth <b>$seriesNames</b> were sold,<br>when temperature was <b>$xdataValue</b>"
+        //   "legendIconBgColor": "#ff0000",
+        //   "legendIconAlpha": "50",
+        //   "legendIconBgAlpha": "30",
+        //   "legendIconBorderColor": "#123456",
+        //   "legendIconBorderThickness": "3",
+        plottooltext:
+            "<b>$yDataValue</b> worth <b>$seriesNames</b> were sold,<br>when temperature was <b>$xdataValue</b>"
     },
     categories: [
-      {
-        category: [
-          {
-            x: "23",
-            label: "23°F"
-          }
-        ]
-      }
+        {
+            category: [
+                {
+                    x: "10",
+                    label: "Label1"
+                },
+                {
+                    x: "23",
+                    label: "Label2"
+                }
+            ]
+        }
     ],
     dataset: [
-      {
-        seriesname: "Ice Cream",
-        anchorbgcolor: "333333",
-        data: [
-          {
-            x: "23",
-            y: "1560",
-          },
-          {
-            x: "24",
-            y: "1500"
-          }
-        ]
-      },
-      {
-        seriesname: "Beer",
-        anchorbgcolor: "#29C3BE",
-        data: [
-          {
-            x: "23",
-            y: "3160"
-          },
-          {
-            x: "24",
-            y: "3000"
-          }
-        ]
-      }
+        {
+            seriesname: "Ice Cream",
+            anchorbgcolor: "#333333",
+            data: [
+                {
+                    x: "23",
+                    y: "1560",
+                },
+                {
+                    x: "24",
+                    y: "1500"
+                }
+            ]
+        },
+        {
+            seriesname: "Beer",
+            anchorbgcolor: "#29C3BE",
+            data: [
+                {
+                    x: "23",
+                    y: "3160"
+                },
+                {
+                    x: "24",
+                    y: "3000"
+                }
+            ]
+        }
     ]
-  };
+};
 
 const chartConfigs1 = {
     type: "scatter",
