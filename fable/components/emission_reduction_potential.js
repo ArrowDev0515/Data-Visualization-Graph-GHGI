@@ -52,7 +52,7 @@ export default function EmissionRedcutionPotentialComponent() {
                 yaxisname: consts.UNIT_TCH4_HA,
 
                 plotHighlightEffect: "fadeout|borderColor=ff0000, borderAlpha=50",
-
+                interactiveLegend: 0,
 
                 // xaxisminvalue: "23",
                 // xaxismaxvalue: "95",
@@ -63,7 +63,7 @@ export default function EmissionRedcutionPotentialComponent() {
                 legendIconSides: 5,
                 legendIconStartAngle: 270,
                 plottooltext:
-                    "Value : <b>$yDataValue</b>"
+                    "$seriesname : <b>$yDataValue</b>"
             },
             categories: [
                 {
@@ -235,7 +235,7 @@ export default function EmissionRedcutionPotentialComponent() {
             <div className="py-2 px-8">
                 {/* <div className="bg-gradient-to-r from-blue-400 via-green-500 to-yellow-300 p-12"> */}
                 <div className="grid grid-cols-6 bg-gray-800 bg-opacity-10 rounded-xl py-3 px-5 mt-12 items-center justify-center">
-                    <div className="flex justify-between col-span-4 col-start-3">
+                    <div className="flex justify-between col-span-6 lg:col-span-4 lg:col-start-3">
                         <div className="flex">
                             <div className="flex items-center mx-2.5">
                                 {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Country : </label> */}
@@ -270,26 +270,17 @@ export default function EmissionRedcutionPotentialComponent() {
                                     }
                                 </select>
                             </div>
-                            {/* <div className="flex items-center mx-2.5">
-                                    <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Data Source : </label>
-                                    <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5 ml-2.5" defaultValue="">
-                                        <option className="text-[#113458]" value={""}>AR</option>
-                                        <option className="text-[#113458]" value={"US"}>Option 1</option>
-                                        <option className="text-[#113458]" value={"CA"}>Option 2</option>
-                                        <option className="text-[#113458]" value={"FR"}>Option 3</option>
-                                    </select>
-                                </div> */}
                         </div>
 
                         <div className="flex items-center mx-2.5 float-right">
-                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:bg-[#FFD712] focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button>
+                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:bg-[#FFD712] focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-1 sm:px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button>
                         </div>
                     </div>
-                    <div className="bg-[#113458] col-span-2 bg-opacity-10 rounded-md text-[#113458] grid text-center items-center p-3 my-3" style={{ minHeight: "400px" }}>
+                    <div className="grid col-span-6 lg:col-span-2 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3" style={{ minHeight: `${400}px` }}>
                         <b>Some Text Here!</b>
                     </div>
-                    <div className="col-span-4">
-                        <div className="grid" style={{ minHeight: `${400}px`, minWidth: "600px" }}>
+                    <div className="col-span-6 lg:col-span-4">
+                        <div className="grid" style={{ minHeight: `${400}px` }}>
                             <FC chartConfigs={chartConfigs}></FC>
                         </div>
 

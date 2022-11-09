@@ -24,8 +24,10 @@ export default function ImpactsAndSynergiesComponent() {
                     consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_INPUT,
                 captionFontColor: "#113458",
                 xAxisNameFontColor: "#113458",
+                yAxisMaxValue : 5,
                 // xAxisPosition : "top",
                 divLineColor: "#113458",
+               
                 xAxisValueFontColor: "#113458",
 
                 yAxisNameFontColor: "#113458",
@@ -161,10 +163,10 @@ export default function ImpactsAndSynergiesComponent() {
     return (
         <>
             <div className="py-2 px-8">
-            {/* <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minheight: "600px" }}> */}
+                {/* <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minheight: "600px" }}> */}
                 <div className="grid grid-cols-6 bg-[#113458] bg-opacity-10 rounded-xl py-3 px-5 mt-12 items-center justify-center">
-                    <div className="col-span-6 flex justify-between">
-                        <label htmlFor="countries" className="flex px-5 text-lg font-medium text-[#113458]">Mitigation Name </label>
+                    <div className="col-span-6 flex items-center justify-between">
+                        <label htmlFor="countries" className="flex px-5 text-sm font-medium text-[#113458]">{mitigationOption}</label>
                         <div className="flex">
 
                             <div className="flex items-center mx-2.5">
@@ -231,7 +233,7 @@ export default function ImpactsAndSynergiesComponent() {
                         <img src="avatar2.png" className="h-40 bg-white bg-opacity-10 rounded-md m-3" />
                         <div className="my-3 text-3xl">Some Text Here!</div>
                     </div>
-                    <div className="grid col-span-3" style={{ minHeight: `${400}px`, minWidth: "600px" }}>
+                    <div className="grid col-span-3" style={{ minHeight: `${400}px`}}>
                         <FC chartConfigs={chartConfigs}></FC>
                     </div>
                 </div>

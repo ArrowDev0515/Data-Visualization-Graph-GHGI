@@ -166,11 +166,11 @@ export default function HomeComponent() {
             {/* <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minHeight: "600px" }}> */}
             {/* <div className="bg-gradient-to-r from-blue-400 via-green-500 to-yellow-300 p-12"> */}
             <div className="py-2 px-8">
-                <div className="bg-[#113458] bg-opacity-10 rounded-xl py-3 px-5 grid items-center" style={{ minHeight: "600px" }}>
+                <div className="bg-[#113458] bg-opacity-10 rounded-xl py-3 px-5 grid items-center" >
                     <div className="flex justify-between">
                         <div className="flex">
                             <div className="flex items-center mx-2.5">
-                                <label htmlFor="countries" className="block text-sm font-medium text-[#113458]">Data Source : </label>
+                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458]">Data Source : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5 ml-2.5" value={dataSource} onChange={dataSourceChange}>
                                     {/* <option value={""}>Choose a Data Source</option> */}
                                     {
@@ -181,7 +181,7 @@ export default function HomeComponent() {
                                 </select>
                             </div>
                             <div className="flex items-center mx-2.5">
-                                <label htmlFor="countries" className="block text-sm font-medium text-[#113458]">Country : </label>
+                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458]">Country : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5 ml-2.5" value={country} onChange={countryChange}>
                                     {/* <option className="text-[#113458]" value={""}>Choose a country</option> */}
                                     {
@@ -192,7 +192,7 @@ export default function HomeComponent() {
                                 </select>
                             </div>
                             <div className="flex items-center mx-2.5">
-                                <label htmlFor="countries" className="block text-sm font-medium text-[#113458]">Year : </label>
+                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458]">Year : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5 ml-2.5" value={year} onChange={yearChange}>
                                     {/* <option value={0}>Choose a year</option> */}
                                     {
@@ -204,15 +204,15 @@ export default function HomeComponent() {
                             </div>
                         </div>
                         <div className="flex items-center mx-2.5 float-right">
-                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:bg-[#FFD712] focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button>
+                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:bg-[#FFD712] focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-1 sm:px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button>
                             {/* <button type="button" className="text-[#113458] bg-gradient-to-r from-[#fffe25] to-[#f4cc13] hover:bg-gradient-to-l shadow-lg shadow-yellow-500/50 focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button> */}
                         </div>
                     </div>
                     <div className="grid grid-cols-12" style={{ minHeight: "450px" }}>
-                        <div className="bg-[#113458] col-span-4 bg-opacity-10 rounded-md text-[#113458] grid text-center items-center p-3 my-3">
+                        <div className="grid col-span-12 lg:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3">
                             <b>Some Text Here!</b>
                         </div>
-                        <div className="grid col-span-5 mx-3 justify-self-stretch bg-[#113458] bg-opacity-10 rounded-md my-3">
+                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 lg:mx-3 justify-self-stretch bg-[#113458] bg-opacity-10 rounded-md my-3">
                             {exportData.length ? <FC chartConfigs={chartConfigs}></FC> :
                                 <>
                                     <div className="text-[#113458] grid text-center items-center p-3 my-3">
@@ -221,7 +221,7 @@ export default function HomeComponent() {
                                 </>
                             }
                         </div>
-                        <div className="bg-[#113458] bg-opacity-10 rounded-md text-[#113458] grid text-center p-3 col-span-3 grid-cols-2 my-3">
+                        <div className="grid col-span-12 md:col-span-6 lg:col-span-3 grid-cols-2 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center p-3 my-3">
                             {AFOLUData.length ?
                                 <>
                                     {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"] > 0 ?
@@ -251,7 +251,7 @@ export default function HomeComponent() {
 
                                             <div className="justify-self-stretch px-3" style={{ height: "200px" }}>
                                                 <div className="text-xs mb-3 text-[#113458]"><b>
-                                                    {AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"]} MtCO<sub>2</sub>e
+                                                    {AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"]} Mt CO<sub>2</sub>e
                                                 </b></div>
                                                 <div className="w-full" style={{ height: `${height2}px` }}>
                                                     {
