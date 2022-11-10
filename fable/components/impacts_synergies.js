@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic.js";
+import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
 const consts = require("../consts/consts");
@@ -14,7 +15,7 @@ export default function ImpactsAndSynergiesComponent() {
 
     const [chartConfigs, setChartConfigs] = useState({
         type: "scatter",
-        width: "100%",
+        width: "90%",
         height: "100%",
         dataFormat: "JSON",
         containerBackgroundOpacity: "0",
@@ -171,7 +172,7 @@ export default function ImpactsAndSynergiesComponent() {
 
                             <div className="flex items-center mx-2.5">
                                 {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Country : </label> */}
-                                <select id="countries" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5 ml-2.5" onChange={countryChange} value={country}>
+                                <select id="countries" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={countryChange} value={country}>
                                     {/* <option className="text-[#113458]" value={""}>Country</option> */}
                                     {
                                         consts.COUNTRY_LIST.map((countryItem, idx) => (
@@ -182,7 +183,7 @@ export default function ImpactsAndSynergiesComponent() {
                             </div>
                             <div className="flex items-center mx-2.5">
                                 {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Data Source : </label> */}
-                                <select id="units" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5 ml-2.5" onChange={unitChange} value={unit}>
+                                <select id="units" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={unitChange} value={unit}>
                                     {/* <option className="text-[#113458]" value={""}>Unit</option> */}
                                     {
                                         consts.UNIT_LIST.map((unitItem, idx) => (
@@ -193,7 +194,7 @@ export default function ImpactsAndSynergiesComponent() {
                             </div>
                             <div className="flex items-center mx-2.5">
                                 {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Data Source : </label> */}
-                                <select id="inouts" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5 ml-2.5" onChange={inoutChange} value={inout}>
+                                <select id="inouts" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={inoutChange} value={inout}>
                                     {/* <option className="text-[#113458]" value={""}>Input_Output</option> */}
                                     {
                                         consts.IN_OUT_OPTION_LIST.map((item, idx) => (
@@ -204,7 +205,7 @@ export default function ImpactsAndSynergiesComponent() {
                             </div>
                             <div className="flex items-center mx-2.5">
                                 {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Year : </label> */}
-                                <select id="mitigationOptions" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5 ml-2.5" onChange={mitigationOptionChange} value={mitigationOption}>
+                                <select id="mitigationOptions" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
                                     {/* <option className="text-[#113458]" value={""}>Mitigation.Option</option> */}
                                     {
                                         consts.MITIGATION_OPTION_LIST2.map((optionItem, idx) => (
@@ -224,8 +225,16 @@ export default function ImpactsAndSynergiesComponent() {
                                     </select>
                                 </div> */}
                         </div>
-                        <div className="flex items-center mx-2.5 float-right">
-                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:bg-[#FFD712] focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button>
+                        <div className="flex items-center mx-2.5">
+                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center" onClick={downloadData}>
+                                <span className="hidden sm:block">Download Data</span>
+                                <span className="sm:hidden">
+                                    <ArrowDownTrayIcon
+                                        className="h-5 w-5 text-[#113458] hover:text-white"
+                                        aria-hidden="true"
+                                    />
+                                </span>
+                            </button>
                         </div>
                     </div>
                     {/* <p className="text-xl font-bold">Impacts & Synergies</p> */}

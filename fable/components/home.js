@@ -5,6 +5,7 @@ import ReactFusioncharts from "react-fusioncharts";
 import dynamic from "next/dynamic.js";
 import { data } from "autoprefixer";
 import { exportToCSV } from "../utils/exportCSV";
+import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 const dataSrc = require("../consts/Data_Home.json");
 const consts = require("../consts/consts");
 
@@ -79,6 +80,17 @@ export default function HomeComponent() {
                 // use3DLighting: "1",
                 // showShadow: "1",
                 enableSlicing: "0",
+                "styleDefinition": {
+                    "txt-red": {
+                        "fill": "red"
+                    }
+                },
+                "caption": {
+                    "text": "Online Sales",
+                    "style": {
+                        "text": "txt-red"
+                    }
+                },
                 theme: "fusion"
             },
             data: []
@@ -123,7 +135,7 @@ export default function HomeComponent() {
         })
         let captionStr = `${country}'s Total GHG emissions in ${year}`
         if (data.length > 0) {
-            subCaptionStr = data[0]["TotalEmissionsMtCO2e"].toString() + `MtCO2e`;
+            subCaptionStr = data[0]["TotalEmissionsMtCO2e"].toString() + `Mt CO<sub>2</sub>e`;
         }
         setChartConfigs({
             ...chartConfigs, dataSource: {
@@ -170,8 +182,8 @@ export default function HomeComponent() {
                     <div className="flex justify-between">
                         <div className="flex">
                             <div className="flex items-center mx-2.5">
-                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458]">Data Source : </label>
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5 ml-2.5" value={dataSource} onChange={dataSourceChange}>
+                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">Data Source : </label>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
                                     {/* <option value={""}>Choose a Data Source</option> */}
                                     {
                                         consts.DATA_SOURCE_LIST.map((dataSrcItem, idx) => (
@@ -181,8 +193,8 @@ export default function HomeComponent() {
                                 </select>
                             </div>
                             <div className="flex items-center mx-2.5">
-                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458]">Country : </label>
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5 ml-2.5" value={country} onChange={countryChange}>
+                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">Country : </label>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={country} onChange={countryChange}>
                                     {/* <option className="text-[#113458]" value={""}>Choose a country</option> */}
                                     {
                                         consts.COUNTRY_LIST.map((countryItem, idx) => (
@@ -192,8 +204,8 @@ export default function HomeComponent() {
                                 </select>
                             </div>
                             <div className="flex items-center mx-2.5">
-                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458]">Year : </label>
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5 ml-2.5" value={year} onChange={yearChange}>
+                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">Year : </label>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={year} onChange={yearChange}>
                                     {/* <option value={0}>Choose a year</option> */}
                                     {
                                         consts.YEAR_LIST.map((item, idx) => (
@@ -203,16 +215,24 @@ export default function HomeComponent() {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex items-center mx-2.5 float-right">
-                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:bg-[#FFD712] focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-1 sm:px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button>
+                        <div className="flex items-center mx-2.5">
+                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center" onClick={downloadData}>
+                                <span className="hidden sm:block">Download Data</span>
+                                <span className="sm:hidden">
+                                    <ArrowDownTrayIcon
+                                        className="h-5 w-5 text-[#113458] hover:text-white"
+                                        aria-hidden="true"
+                                    />
+                                </span>
+                            </button>
                             {/* <button type="button" className="text-[#113458] bg-gradient-to-r from-[#fffe25] to-[#f4cc13] hover:bg-gradient-to-l shadow-lg shadow-yellow-500/50 focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button> */}
                         </div>
                     </div>
-                    <div className="grid grid-cols-12" style={{ minHeight: "450px" }}>
+                    <div className="grid grid-cols-12" style={{ minHeight: "400px" }}>
                         <div className="grid col-span-12 lg:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3">
                             <b>Some Text Here!</b>
                         </div>
-                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 lg:mx-3 justify-self-stretch bg-[#113458] bg-opacity-10 rounded-md my-3">
+                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 lg:mx-3 justify-self-stretch bg-[#113458] bg-opacity-10 rounded-md my-3" style={{ minHeight: "400px" }}>
                             {exportData.length ? <FC chartConfigs={chartConfigs}></FC> :
                                 <>
                                     <div className="text-[#113458] grid text-center items-center p-3 my-3">
@@ -274,7 +294,7 @@ export default function HomeComponent() {
                                                         // ))
                                                     }
                                                 </div>
-                                                <div className="w-full bg-opacity-10" style={{ backgroundImage: "url(../1.png)", height: `${height1 - height2}px` }}></div>
+                                                <div className="w-full bg-opacity-10" style={{ backgroundImage: "url(../)", height: `${height1 - height2}px` }}></div>
                                                 <div className="text-md mt-3"><b>Sinks for removals</b></div>
                                             </div>
                                             <div className="text-left my-3 px-3">
