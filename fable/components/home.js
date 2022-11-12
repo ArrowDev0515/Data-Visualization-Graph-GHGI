@@ -26,7 +26,7 @@ export default function HomeComponent() {
     // const [chartConfigs, setChartConfigs] = useState([]);
     const [chartConfigs, setChartConfigs] = useState({
         type: "doughnut2d",
-        width: "100%",
+        width: "99%",
         height: "100%",
         dataFormat: "JSON",
         containerBackgroundOpacity: "0",
@@ -232,7 +232,7 @@ export default function HomeComponent() {
                         <div className="grid col-span-12 lg:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3">
                             <b>Some Text Here!</b>
                         </div>
-                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 lg:mx-3 justify-self-stretch bg-[#113458] bg-opacity-10 rounded-md my-3" style={{ minHeight: "400px" }}>
+                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 lg:mx-3 bg-[#113458] bg-opacity-10 rounded-md my-3" style={{ minHeight: "400px" }}>
                             {exportData.length ? <FC chartConfigs={chartConfigs}></FC> :
                                 <>
                                     <div className="text-[#113458] grid text-center items-center p-3 my-3">
@@ -241,17 +241,17 @@ export default function HomeComponent() {
                                 </>
                             }
                         </div>
-                        <div className="grid col-span-12 md:col-span-6 lg:col-span-3 grid-cols-2 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center p-3 my-3">
+                        <div className="col-span-12 md:col-span-6 lg:col-span-3 grid grid-cols-2 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center p-3 my-3">
                             {AFOLUData.length ?
                                 <>
                                     {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"] > 0 ?
                                         <>
                                             <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b><span className="font-bold">AFOLU</span> Sector</b></div>
-                                            <div className="justify-self-stretch px-3 content-end" style={{ height: "200px" }}>
+                                            <div className="px-3 col-span-2 xs:col-span-1" style={{ minHeight: "200px" }}>
                                                 <div className="text-xs mb-3 text-[#113458]"><b>
                                                     {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]} Mt CO<sub>2</sub>e
                                                 </b></div>
-                                                <div className="w-full" style={{ height: `${height1}px` }}>
+                                                <div className="w-auto" style={{ height: `${height1}px` }}>
                                                     {
                                                         AFOLUData.map((item, idx) => (
                                                             <span key={"SourceOfEmissions" + idx}>
@@ -268,8 +268,7 @@ export default function HomeComponent() {
                                                 <div className="text-md mt-3"><b>Source of Emissions</b></div>
                                             </div>
 
-
-                                            <div className="justify-self-stretch px-3" style={{ height: "200px" }}>
+                                            <div className="px-3 col-span-2 xs:col-span-1" style={{ minHeight: "200px" }}>
                                                 <div className="text-xs mb-3 text-[#113458]"><b>
                                                     {AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"]} Mt CO<sub>2</sub>e
                                                 </b></div>

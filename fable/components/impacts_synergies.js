@@ -15,7 +15,7 @@ export default function ImpactsAndSynergiesComponent() {
 
     const [chartConfigs, setChartConfigs] = useState({
         type: "scatter",
-        width: "90%",
+        width: "99%",
         height: "100%",
         dataFormat: "JSON",
         containerBackgroundOpacity: "0",
@@ -167,9 +167,8 @@ export default function ImpactsAndSynergiesComponent() {
                 {/* <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minheight: "600px" }}> */}
                 <div className="grid grid-cols-6 bg-[#113458] bg-opacity-10 rounded-xl py-3 px-5 mt-12 items-center justify-center">
                     <div className="col-span-6 flex items-center justify-between">
-                        <label htmlFor="countries" className="flex px-5 text-sm font-medium text-[#113458]">{mitigationOption}</label>
+                        <label htmlFor="countries" className="flex hidden sm:block px-5 text-sm font-medium text-[#113458]">{mitigationOption}</label>
                         <div className="flex">
-
                             <div className="flex items-center mx-2.5">
                                 {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Country : </label> */}
                                 <select id="countries" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={countryChange} value={country}>
@@ -214,16 +213,6 @@ export default function ImpactsAndSynergiesComponent() {
                                     }
                                 </select>
                             </div>
-
-                            {/* <div className="flex items-center mx-2.5">
-                                    <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Data Source : </label>
-                                    <select id="countries" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5 ml-2.5" defaultValue="">
-                                        <option className="text-[#113458]" value={""}>AR</option>
-                                        <option className="text-[#113458]" value={"US"}>Option 1</option>
-                                        <option className="text-[#113458]" value={"CA"}>Option 2</option>
-                                        <option className="text-[#113458]" value={"FR"}>Option 3</option>
-                                    </select>
-                                </div> */}
                         </div>
                         <div className="flex items-center mx-2.5">
                             <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center" onClick={downloadData}>
@@ -238,11 +227,11 @@ export default function ImpactsAndSynergiesComponent() {
                         </div>
                     </div>
                     {/* <p className="text-xl font-bold">Impacts & Synergies</p> */}
-                    <div className="col-span-3 m-3 bg-gray-900 bg-opacity-10 rounded-md text-[#113458] flex text-center p-3 " style={{ minHeight: "500px" }}>
-                        <img src="avatar2.png" className="h-40 bg-white bg-opacity-10 rounded-md m-3" />
+                    <div className="col-span-6 sm:col-span-3 m-3 bg-gray-900 bg-opacity-10 rounded-md text-[#113458] justify-items-center grid p-3 " style={{ minHeight: "500px" }}>
+                        <img src="avatar2.png" className="h-40 bg-gray-900 bg-opacity-10 rounded-md m-3" />
                         <div className="my-3 text-3xl">Some Text Here!</div>
                     </div>
-                    <div className="grid col-span-3" style={{ minHeight: `${400}px`}}>
+                    <div className="grid col-span-6 sm:col-span-3" style={{ minHeight: `${400}px`}}>
                         <FC chartConfigs={chartConfigs}></FC>
                     </div>
                 </div>

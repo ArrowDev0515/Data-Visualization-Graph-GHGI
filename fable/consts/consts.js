@@ -27,3 +27,9 @@ export const MITIGATION_OPTION_ANNUAL_STRAW = "Annual straw incorporating in ric
 export const MITIGATION_OPTION_RICE_FALLOW = "Rice-Fallow rotation system";
 export const MITIGATION_OPTION_LIST = [MITIGATION_OPTION_RICE_CULTIVATION];
 export const MITIGATION_OPTION_LIST2 = [MITIGATION_OPTION_ANNUAL_STRAW, MITIGATION_OPTION_RICE_FALLOW];
+
+export const COLOR_DARK_BLUE = "#03203D";
+export const COLOR_BLUE = "#113458";
+export const COLOR_DARK_GREEN = "#04A675";
+export const COLOR_YELLOW = "#FFD712";
+export const COLOR_DARK_YELLOW = "#F4CC13";

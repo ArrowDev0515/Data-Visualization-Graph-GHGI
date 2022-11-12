@@ -16,11 +16,11 @@ export default function EmissionRedcutionPotentialComponent() {
 
     const [chartConfigs, setChartConfigs] = useState({
         type: "scatter",
-        width: "100%",
+        width: "99%",
         height: "100%",
         dataFormat: "JSON",
         containerBackgroundOpacity: "0",
-        
+
         dataSource: {
             chart: {
                 caption: consts.CAPTION_TEXT_EMISSION_REDUCTION_POTENTIAL,
@@ -236,54 +236,58 @@ export default function EmissionRedcutionPotentialComponent() {
             {/* <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minHeight: "600px" }}> */}
             <div className="py-2 px-8">
                 {/* <div className="bg-gradient-to-r from-blue-400 via-green-500 to-yellow-300 p-12"> */}
-                <div className="grid grid-cols-6 bg-gray-800 bg-opacity-10 rounded-xl py-3 px-5 mt-12 items-center justify-center">
-                    <div className="flex justify-between col-span-6 lg:col-span-4 lg:col-start-3">
-                        <div className="flex">
-                            <div className="flex items-center mx-2.5">
-                                {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Country : </label> */}
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={countryChange} value={country}>
-                                    {/* <option className="text-[#113458]" value={""}>Country</option> */}
-                                    {
-                                        consts.COUNTRY_LIST.map((countryItem, idx) => (
-                                            <option className="text-[#113458]" key={"country_list" + idx} value={countryItem}>{countryItem}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                            <div className="flex items-center mx-2.5">
-                                {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Year : </label> */}
-                                <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
-                                    {/* <option className="text-[#113458]" value={""}>Mitigation.Option</option> */}
-                                    {
-                                        consts.MITIGATION_OPTION_LIST.map((optionItem, idx) => (
-                                            <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                            <div className="flex items-center mx-2.5">
-                                {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Data Source : </label> */}
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={unitChange} value={unit}>
-                                    {/* <option className="text-[#113458]" value={""}>Unit</option> */}
-                                    {
-                                        consts.UNIT_LIST.map((unitItem, idx) => (
-                                            <option className="text-[#113458]" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                        </div>
+                <div className="grid grid-cols-6 bg-gray-800 bg-opacity-10 rounded-xl py-3 px-3 sm:px-5 mt-12 items-center justify-center">
+                    <div className="hidden xs:block col-span-6 lg:col-span-4 lg:col-start-3">
 
-                        <div className="flex items-center mx-2.5">
-                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center" onClick={downloadData}>
-                                <span className="hidden sm:block">Download Data</span>
-                                <span className="sm:hidden">
-                                    <ArrowDownTrayIcon
-                                        className="h-5 w-5 text-[#113458] hover:text-white"
-                                        aria-hidden="true"
-                                    />
-                                </span>
-                            </button>
+                        <div className="flex justify-between">
+                            <div className="flex">
+                                <div className="flex items-center ml-2.5 sm:mx-2.5">
+                                    {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Country : </label> */}
+                                    <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={countryChange} value={country}>
+                                        {/* <option className="text-[#113458]" value={""}>Country</option> */}
+                                        {
+                                            consts.COUNTRY_LIST.map((countryItem, idx) => (
+                                                <option className="text-[#113458]" key={"country_list" + idx} value={countryItem}>{countryItem}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+                                <div className="flex items-center ml-2.5 sm:mx-2.5">
+                                    {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Year : </label> */}
+                                    <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
+                                        {/* <option className="text-[#113458]" value={""}>Mitigation.Option</option> */}
+                                        {
+                                            consts.MITIGATION_OPTION_LIST.map((optionItem, idx) => (
+                                                <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+
+                                <div className="flex items-center ml-2.5 sm:mx-2.5">
+                                    {/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-[#113458]">Data Source : </label> */}
+                                    <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={unitChange} value={unit}>
+                                        {/* <option className="text-[#113458]" value={""}>Unit</option> */}
+                                        {
+                                            consts.UNIT_LIST.map((unitItem, idx) => (
+                                                <option className="text-[#113458]" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center ml-2.5 sm:mx-2.5">
+                                <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center" onClick={downloadData}>
+                                    <span className="hidden sm:block">Download Data</span>
+                                    <span className="sm:hidden">
+                                        <ArrowDownTrayIcon
+                                            className="h-5 w-5 text-[#113458] hover:text-white"
+                                            aria-hidden="true"
+                                        />
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div className="grid col-span-6 lg:col-span-2 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3" style={{ minHeight: `${400}px` }}>
