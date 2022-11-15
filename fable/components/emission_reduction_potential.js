@@ -55,15 +55,14 @@ export default function EmissionRedcutionPotentialComponent() {
 
                 plotHighlightEffect: "fadeout|borderColor=ff0000, borderAlpha=50",
                 interactiveLegend: 0,
-
+                drawCustomLegendIcon: 1,
+                legendIconSides: 3, legendIconStartAngle: 150,
                 // xaxisminvalue: "23",
                 // xaxismaxvalue: "95",
                 ynumberprefix: "",
                 // yaxisminvalue: "1200",
                 xnumbersuffix: "",
                 theme: "fusion",
-                legendIconSides: 5,
-                legendIconStartAngle: 270,
                 plottooltext:
                     "$seriesname : <b>$yDataValue</b>"
             },
@@ -144,10 +143,10 @@ export default function EmissionRedcutionPotentialComponent() {
                 ...chartConfigs.dataSource,
                 categories: [{ category: categoryData }],
                 dataset: [
-                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 3, legendIconstartangle: 150, anchorradius: 8 },
-                    { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8 },
-                    { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6 },
-                    { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian, anchorsides: 4, anchorradius: 5 }
+                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 3, anchorradius: 8, drawcustomlegendicon: 1, legendiconsides: 3, legendiconstartangle: 15},
+                    { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8},
+                    { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6},
+                    { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian, anchorsides: 4, anchorradius: 5}
                 ]
             }
         });
@@ -290,10 +289,10 @@ export default function EmissionRedcutionPotentialComponent() {
                             </div>
                         </div>
                     </div>
-                    <div className="grid col-span-6 lg:col-span-2 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3" style={{ minHeight: `${400}px` }}>
+                    <div className="grid col-span-6 md:col-span-2 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3" style={{ minHeight: `${400}px` }}>
                         <b>Some Text Here!</b>
                     </div>
-                    <div className="col-span-6 lg:col-span-4">
+                    <div className="col-span-6 md:col-span-4">
                         <div className="grid" style={{ minHeight: `${400}px` }}>
                             <FC chartConfigs={chartConfigs}></FC>
                         </div>

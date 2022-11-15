@@ -178,7 +178,7 @@ export default function HomeComponent() {
             {/* <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minHeight: "600px" }}> */}
             {/* <div className="bg-gradient-to-r from-blue-400 via-green-500 to-yellow-300 p-12"> */}
             <div className="py-2 px-8">
-                <div className="bg-[#113458] bg-opacity-10 rounded-xl py-3 px-5 grid items-center" >
+                <div className="bg-[#113458] bg-opacity-10 rounded-xl py-3 px-3 sm:px-5 grid items-center" >
                     <div className="flex justify-between">
                         <div className="flex">
                             <div className="flex items-center mx-2.5">
