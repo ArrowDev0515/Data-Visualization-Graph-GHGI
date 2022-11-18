@@ -6,6 +6,9 @@ export const colors = ["#dada70", "#e5b149", "#cc8f17", "#d66967", "#6fb595", "#
 
 export const YEAR_LIST = [1994, 2005, 2010, 2012, 2014];
 
+export const AR_5 = "AR5";
+export const AR_LIST = [AR_5];
+
 export const DATA_SOURCE_FAO = "FAO";
 export const DATA_SOURCE_IPCC = "IPCC";
 export const DATA_SOURCE_UNFCCC = "UNFCCC";

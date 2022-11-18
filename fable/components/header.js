@@ -1,23 +1,15 @@
-import Image from "next/image";
 import { useEffect } from "react";
 import { Link } from 'react-scroll'
 import { Menu, Transition, Fragment } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid"
-// const activeStyle = {
-//   fontWeight: "bold",
-//   color: "rgb(56 189 248)",
-//   borderColor: "rgb(96 165 250)"
-// }
-const Header = ({ tabNo }) => {
+
+const Header = ({}) => {
   useEffect(() => {
 
   })
-
   return (
     <>
-      <header className="nav">
-
-      </header>
+      <header className="nav"></header>
       <div className="grid grid-cols-4 flex-wrap bg-[#113458] p-2 sticky w-full top-0" style={{ minHeight: "45px", zIndex: "1" }}>
         <div className="text-xs sm:text-md md:text-lg col-span-1 pl-2 flex items-center">
           <a href="/">

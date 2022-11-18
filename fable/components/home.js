@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
-import { sampleData } from "../consts/consts";
-import { renderToStaticMarkup, renderToString } from "react-dom/server";
-import ReactFusioncharts from "react-fusioncharts";
 import dynamic from "next/dynamic.js";
-import { data } from "autoprefixer";
 import { exportToCSV } from "../utils/exportCSV";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 const dataSrc = require("../consts/Data_Home.json");
 const consts = require("../consts/consts");
-
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
-
 
 export default function HomeComponent() {
 
@@ -18,12 +12,12 @@ export default function HomeComponent() {
     const [exportData, setExportData] = useState([]);
     const [height1, setHeight1] = useState(120);
     const [height2, setHeight2] = useState(150);
+    const [gwp, setGWP] = useState(consts.AR_5);
 
     const [dataSource, setDataSource] = useState(consts.DATA_SOURCE_UNFCCC);
     const [country, setCountry] = useState(consts.COUNTRY_CHINA);
     const [year, setYear] = useState(1994);
 
-    // const [chartConfigs, setChartConfigs] = useState([]);
     const [chartConfigs, setChartConfigs] = useState({
         type: "doughnut2d",
         width: "99%",
@@ -34,63 +28,29 @@ export default function HomeComponent() {
             chart: {
                 caption: "",
                 captionFontColor: "#113458",
+                captionFontSize: "20",
+                captionFontBold: "0",
+                subCaptionFontColor: "#113458",
+                subCaptionFontSize: "16",
                 loadMessageColor: "#ff0000",
                 divLineColor: "#113458",
                 chartTopMargin: "30",
-                // captionFontSize: "18",
-
-                // subCaption: "In MMbbl = One Million barrels",
-                subCaptionFontColor: "113458",
-                subCaptionFontSize: "20",
-
                 bgColor: "#000000",
                 bgAlpha: "0",
-
-                // baseFontSize: "18",
-                // baseFontColor: "#ff0000",
-
-                // defaultcenterlabelColor: "113458",
-
                 labelFontSize: "12",
-                labelFontColor: "113458",
-
+                labelFontColor: "#113458",
                 smartLineColor: "#113458",
                 legendItemFontColor: "#113458",
                 labelDistance: 10,
-                // plotBorderColor: "#113458",
-                // centerlabel: "# Users: $value",
-                // showpercentvalues: "0",
-                // useDataPlotColorForLabels: "1",
                 legendCaptionFontColor: "#ff0000",
                 defaultcenterlabel: "",
                 defaultcenterlabelColor: "#113458",
                 tooltipBorderRadius: "10",
-                plottooltext: `<b>$percentValue</b> is for <b>$label</b>`,
-                // toolTipColor: "#ffff00",
-                // plotFillHoverColor:"ff0000",
-                //   valuePosition: "inside",
-                //   labelPosition: "inside",
-                //   minAngleForValue: "15",
+                plottooltext: `<b>$value</b> Mt CO<sub>2</sub>e from the <b>$label</b> sector`,
                 link: "#ff0000",
-                // labelBorderColor: "#00ffaa",
                 showLegend: "0",
-                // usePattern: "1",
-                // radius3D: 100,
                 startingAngle: "30",
-                // use3DLighting: "1",
-                // showShadow: "1",
                 enableSlicing: "0",
-                "styleDefinition": {
-                    "txt-red": {
-                        "fill": "red"
-                    }
-                },
-                "caption": {
-                    "text": "Online Sales",
-                    "style": {
-                        "text": "txt-red"
-                    }
-                },
                 theme: "fusion"
             },
             data: []
@@ -98,7 +58,6 @@ export default function HomeComponent() {
     });
 
     useEffect(() => {
-        // filterData();
     });
 
     useEffect(() => {
@@ -126,16 +85,16 @@ export default function HomeComponent() {
             tmpItem["label"] = item["Category"];
             tmpItem["value"] = parseFloat(item["EmissionCategoryMtCO2e"]);
             tmpItem["percentValue"] = (parseFloat(item["EmissionCategoryMtCO2e"]) / parseFloat(item["TotalEmissionsMtCO2e"]) * 100).toFixed(2);
-            // tmpItem["color"] = consts.colors[i];
             if (!set.has(item["Category"])) {
                 set.add(item["Category"]);
                 arr.push(tmpItem);
             }
             i++;
         })
-        let captionStr = `${country}'s Total GHG emissions in ${year}`
+        let captionStr = `<b>${country}'s Total GHG emissions in ${year}</b>{br}`;
         if (data.length > 0) {
-            subCaptionStr = data[0]["TotalEmissionsMtCO2e"].toString() + `Mt CO<sub>2</sub>e`;
+            captionStr += data[0]["TotalEmissionsMtCO2e"].toString() + `Mt CO<sub>2</sub>e`;
+            subCaptionStr = "X t CO<sub>2</sub>e/cap";
         }
         setChartConfigs({
             ...chartConfigs, dataSource: {
@@ -165,8 +124,11 @@ export default function HomeComponent() {
         setCountry(e.target.value);
     }
 
+    const gwpChange = (e) => {
+        setGWP(e.target.value);
+    }
+
     const downloadData = () => {
-        // exportToCSV();
         let fileName = new Date();
         fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
             fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
@@ -175,38 +137,18 @@ export default function HomeComponent() {
 
     return (
         <>
-            {/* <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minHeight: "600px" }}> */}
-            {/* <div className="bg-gradient-to-r from-blue-400 via-green-500 to-yellow-300 p-12"> */}
             <div className="py-2 px-8">
                 <div className="bg-[#113458] bg-opacity-10 rounded-xl py-3 px-3 sm:px-5 grid items-center" >
+                    <div className="mb-5">
+                        <label htmlFor="countries" className="hidden md:block text-lg font-medium text-[#113458]">
+                            Overview of total greenhouse gas emissions and role of AFOLU
+                        </label>
+                    </div>
                     <div className="flex justify-between">
                         <div className="flex">
                             <div className="flex items-center mx-2.5">
-                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">Data Source : </label>
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
-                                    {/* <option value={""}>Choose a Data Source</option> */}
-                                    {
-                                        consts.DATA_SOURCE_LIST.map((dataSrcItem, idx) => (
-                                            <option className="text-[#113458]" key={"dataSrc_option" + idx} value={dataSrcItem}>{dataSrcItem}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                            <div className="flex items-center mx-2.5">
-                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">Country : </label>
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={country} onChange={countryChange}>
-                                    {/* <option className="text-[#113458]" value={""}>Choose a country</option> */}
-                                    {
-                                        consts.COUNTRY_LIST.map((countryItem, idx) => (
-                                            <option className="text-[#113458]" key={"country_option" + idx} value={countryItem}>{countryItem}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                            <div className="flex items-center mx-2.5">
                                 <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">Year : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={year} onChange={yearChange}>
-                                    {/* <option value={0}>Choose a year</option> */}
                                     {
                                         consts.YEAR_LIST.map((item, idx) => (
                                             <option className="text-[#113458]" key={"year_option" + idx} value={item}>{item}</option>
@@ -214,23 +156,57 @@ export default function HomeComponent() {
                                     }
                                 </select>
                             </div>
+
+                            <div className="flex items-center mx-2.5">
+                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">GWP : </label>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={gwp} onChange={gwpChange}>
+                                    {
+                                        consts.AR_LIST.map((arItem, idx) => (
+                                            <option className="text-[#113458]" key={"ar_option" + idx} value={arItem}>{arItem}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
                         </div>
-                        <div className="flex items-center mx-2.5">
-                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center" onClick={downloadData}>
-                                <span className="hidden sm:block">Download Data</span>
-                                <span className="sm:hidden">
-                                    <ArrowDownTrayIcon
-                                        className="h-5 w-5 text-[#113458] hover:text-white"
-                                        aria-hidden="true"
-                                    />
-                                </span>
-                            </button>
-                            {/* <button type="button" className="text-[#113458] bg-gradient-to-r from-[#fffe25] to-[#f4cc13] hover:bg-gradient-to-l shadow-lg shadow-yellow-500/50 focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2.5" onClick={downloadData}>Download Data</button> */}
+                        <div className="flex">
+                            <div className="items-center mx-2.5 hidden lg:flex">
+                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">Data Source : </label>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
+                                    {
+                                        consts.DATA_SOURCE_LIST.map((dataSrcItem, idx) => (
+                                            <option className="text-[#113458]" key={"dataSrc_option" + idx} value={dataSrcItem}>{dataSrcItem}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                            <div className="flex items-center">
+                                <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-4 py-2.5 text-center" onClick={downloadData}>
+                                    <span className="hidden xl:block">Download Data</span>
+                                    <span className="xl:hidden">
+                                        <ArrowDownTrayIcon
+                                            className="h-5 w-5 text-[#113458] hover:text-white"
+                                            aria-hidden="true"
+                                        />
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div className="grid grid-cols-12" style={{ minHeight: "400px" }}>
                         <div className="grid col-span-12 lg:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3">
                             <b>Some Text Here!</b>
+                        </div>
+                        <div className="hidden md:block lg:hidden col-span-12 justify-self-end">
+                            <div className="items-center flex">
+                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">Data Source : </label>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
+                                    {
+                                        consts.DATA_SOURCE_LIST.map((dataSrcItem, idx) => (
+                                            <option className="text-[#113458]" key={"dataSrc_option" + idx} value={dataSrcItem}>{dataSrcItem}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
                         </div>
                         <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 lg:mx-3 bg-[#113458] bg-opacity-10 rounded-md my-3" style={{ minHeight: "400px" }}>
                             {exportData.length ? <FC chartConfigs={chartConfigs}></FC> :
@@ -241,13 +217,31 @@ export default function HomeComponent() {
                                 </>
                             }
                         </div>
+                        <div className="md:hidden col-span-12 justify-self-end">
+                            <div className="items-center flex">
+                                <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">Data Source : </label>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
+                                    {
+                                        consts.DATA_SOURCE_LIST.map((dataSrcItem, idx) => (
+                                            <option className="text-[#113458]" key={"dataSrc_option" + idx} value={dataSrcItem}>{dataSrcItem}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                        </div>
                         <div className="col-span-12 md:col-span-6 lg:col-span-3 grid grid-cols-2 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center p-3 my-3">
                             {AFOLUData.length ?
                                 <>
                                     {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"] > 0 ?
                                         <>
-                                            <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b><span className="font-bold">AFOLU</span> Sector</b></div>
+                                            <div className="text-xl mt-3 col-span-2 font-normal">
+                                                <b><span className="font-bold">AFOLU</span> Sector</b>
+                                            </div>
+                                            <div className="text-md col-span-2 font-normal">
+                                                <span>Total Net: {"XX"} Mt CO<sub>2</sub>e</span>
+                                            </div>
                                             <div className="px-3 col-span-2 xs:col-span-1" style={{ minHeight: "200px" }}>
+                                                <div className="text-sm my-3"><b>AFOLU Emissions</b></div>
                                                 <div className="text-xs mb-3 text-[#113458]"><b>
                                                     {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]} Mt CO<sub>2</sub>e
                                                 </b></div>
@@ -265,10 +259,10 @@ export default function HomeComponent() {
                                                         ))
                                                     }
                                                 </div>
-                                                <div className="text-md mt-3"><b>Source of Emissions</b></div>
                                             </div>
 
                                             <div className="px-3 col-span-2 xs:col-span-1" style={{ minHeight: "200px" }}>
+                                                <div className="text-sm my-3"><b>AFOLU Removals</b></div>
                                                 <div className="text-xs mb-3 text-[#113458]"><b>
                                                     {AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"]} Mt CO<sub>2</sub>e
                                                 </b></div>
@@ -284,17 +278,9 @@ export default function HomeComponent() {
                                                                 }
                                                             </span>
                                                         ))
-                                                        // chartConfigs.dataSource.data.map((item, idx) => (
-                                                        //     <>
-                                                        //         <div key={idx} className="grid items-center relative" style={{ height: `${item["percentValue"]}%`, backgroundColor: `${item.color}` }}>
-                                                        //             {(height2 / 100 * parseFloat(item["percentValue"])).toFixed(2) > 20 ? <span>{(item.value).toFixed(2)}</span> : ""}
-                                                        //         </div>
-                                                        //     </>
-                                                        // ))
                                                     }
                                                 </div>
                                                 <div className="w-full bg-opacity-10" style={{ backgroundImage: "url(../)", height: `${height1 - height2}px` }}></div>
-                                                <div className="text-md mt-3"><b>Sinks for removals</b></div>
                                             </div>
                                             <div className="text-left my-3 px-3">
                                                 {
@@ -326,14 +312,6 @@ export default function HomeComponent() {
                                                             }
                                                         </div>
                                                     ))
-
-                                                    // chartConfigs.dataSource.data.map((item, idx) => (
-                                                    //     <div key={idx} className="flex mt-2 items-center">
-                                                    //         <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${item.color}` }}>
-                                                    //         </div>
-                                                    //         <div className="text-xs pl-2">{item.label}</div>
-                                                    //     </div>
-                                                    // ))
                                                 }
                                             </div>
                                         </> :
