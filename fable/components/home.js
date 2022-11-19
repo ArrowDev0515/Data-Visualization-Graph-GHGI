@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic.js";
 import { exportToCSV } from "../utils/exportCSV";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
-const dataSrc = require("../consts/Data_Home.json");
+
+const utils = require("../utils/utils");
+const dataSrc1 = require("../consts/Data_Home.json");
+const dataSrc = require("../consts/221118_HomePage.json");
 const consts = require("../consts/consts");
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
 
-export default function HomeComponent() {
-
+const HomeComponent = ({ country }) => {
     const [AFOLUData, setAFOLUData] = useState([]);
     const [exportData, setExportData] = useState([]);
     const [height1, setHeight1] = useState(120);
@@ -15,7 +17,6 @@ export default function HomeComponent() {
     const [gwp, setGWP] = useState(consts.AR_5);
 
     const [dataSource, setDataSource] = useState(consts.DATA_SOURCE_UNFCCC);
-    const [country, setCountry] = useState(consts.COUNTRY_CHINA);
     const [year, setYear] = useState(1994);
 
     const [chartConfigs, setChartConfigs] = useState({
@@ -62,14 +63,21 @@ export default function HomeComponent() {
 
     useEffect(() => {
         filterData();
-    }, [dataSource, country, year]);
-
+    }, [dataSource, year, gwp, country]);
     const filterData = () => {
-        // console.log(dataSource, country, year,);
-
+        let str = [];
         let data = dataSrc.filter((ele) => {
-            return (ele["Country"] === country && ele["Year"] === parseInt(year) && ele["Data Source"] === dataSource);
+            if (!str.includes(ele["Party"])) {
+                str.push(ele["Party"]);
+            }
+            return (ele["Party"].toString() === country && parseInt(ele["Year"]) === parseInt(year) && ele["DataSource"] === dataSource && ele["AR"] === gwp);
         });
+        str = str.sort((a, b) => {
+            if(a > b)
+                return 1;
+            else return -1;
+        })
+
         setExportData(data);
         let afoluData = data.filter((ele) => {
             return (ele["Category"] === consts.CATEGORY_AFOLU);
@@ -120,9 +128,9 @@ export default function HomeComponent() {
         setYear(e.target.value);
     }
 
-    const countryChange = (e) => {
-        setCountry(e.target.value);
-    }
+    // const countryChange = (e) => {
+    //     setCountry(e.target.value);
+    // }
 
     const gwpChange = (e) => {
         setGWP(e.target.value);
@@ -250,7 +258,7 @@ export default function HomeComponent() {
                                                         AFOLUData.map((item, idx) => (
                                                             <span key={"SourceOfEmissions" + idx}>
                                                                 {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
-                                                                    <div className="grid items-center relative" style={{ height: `${parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"]) * 100}%`, backgroundColor: `${consts.colors[idx]}` }}>
+                                                                    <div className="grid items-center relative" style={{ height: `${parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"]) * 100}%`, backgroundColor: `${item["HEX"]}` }}>
                                                                         {(height1 * parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"])).toFixed(2) > 20 ? <span className="text-[#113458]">{parseFloat(item["AFOLUEmissionsMtCO2e"])}</span> : ""}
                                                                     </div>
                                                                     : ""
@@ -270,9 +278,10 @@ export default function HomeComponent() {
                                                     {
                                                         AFOLUData.map((item, idx) => (
                                                             <span key={"SinksForRemovals" + idx}>
+                                                                {/* {console.log(item["TotalAFOLURemovalsMtCO2e2"], parseFloat(item["TotalAFOLURemovalsMtCO2e2"]), parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) * 100) : 0)} */}
                                                                 {(parseFloat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
-                                                                    <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) * 100) : 0}%`, backgroundColor: `${consts.colors[idx]}` }}>
-                                                                        {Math.abs((height1 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"])).toFixed(2)) > 20 ? <span className="text-[#113458]">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : "No Data"}
+                                                                    <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) * 100) : 0}%`, backgroundColor: `${item["HEX"]}` }}>
+                                                                        {Math.abs((height1 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"])).toFixed(2)) > 20 ? <span className="text-[#113458]">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : ""}
                                                                     </div>
                                                                     : ""
                                                                 }
@@ -288,7 +297,7 @@ export default function HomeComponent() {
                                                         <div key={"right_" + idx}>
                                                             {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
                                                                 <div key={"right1" + idx} className="flex mt-2 items-center">
-                                                                    <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${consts.colors[idx]}` }}>
+                                                                    <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${item["HEX"]}` }}>
                                                                     </div>
                                                                     <p className="text-xs pl-2">{item["SubCategory"]}</p>
                                                                 </div>
@@ -304,7 +313,7 @@ export default function HomeComponent() {
                                                         <div key={"left" + idx}>
                                                             {(parseFloat(item["AFOLURemovalsMtCO2e"]) != 0) ?
                                                                 <div className="flex mt-2 items-center">
-                                                                    <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${consts.colors[idx]}` }}>
+                                                                    <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${item["HEX"]}` }}>
                                                                     </div>
                                                                     <p className="text-xs pl-2">{item["SubCategory"]}</p>
                                                                 </div>
@@ -334,3 +343,5 @@ export default function HomeComponent() {
         </>
     )
 }
+
+export default HomeComponent;
