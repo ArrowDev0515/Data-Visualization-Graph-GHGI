@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic.js";
-import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
+import { ArrowDownTrayIcon, ArrowDownIcon, ArrowUpIcon, MinusIcon } from "@heroicons/react/20/solid";
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
 const consts = require("../consts/consts");
 const dataSrc = require("../consts/Data_TradeoffSynergies.json");
 
-export default function ImpactsAndSynergiesComponent() {
-    const [country, setCountry] = useState(consts.COUNTRY_CHINA);
+
+const ImpactsAndSynergiesComponent = ({ country }) => {
     const [mitigationOption, setMitigationOption] = useState(consts.MITIGATION_OPTION_RICE_FALLOW);
     const [unit, setUnit] = useState(consts.UNIT_TCH4_HA);
     const [inout, setInOut] = useState(consts.IN_OUT_OPTION_INPUT);
     const [exportData, setExportData] = useState([]);
+    const [data, setData] = useState([]);
 
     const [chartConfigs, setChartConfigs] = useState({
         type: "scatter",
@@ -65,16 +66,14 @@ export default function ImpactsAndSynergiesComponent() {
     });
 
     useEffect(() => {
-    });
-
-    useEffect(() => {
         generateChartData();
     }, [country, unit, inout, mitigationOption]);
 
-    const generateChartData = () => {
+    const generateChartData = async () => {
         //Filter Data with Select
         let data = dataSrc.filter((ele) => {
-            return (ele["Country"] === country && ele["Unit"] === unit && ele["Input_Output"] === inout && ele["MitigationOption"] === mitigationOption);
+            return (ele["Country"] === country && ele["Unit"] === unit && ele["MitigationOption"] === mitigationOption);
+            // return (ele["Country"] === country && ele["Unit"] === unit && ele["Input_Output"] === inout && ele["MitigationOption"] === mitigationOption);
         });
         setExportData(data);
 
@@ -116,21 +115,17 @@ export default function ImpactsAndSynergiesComponent() {
         });
     }
 
-    const unitChange = (e) => {
-        setUnit(e.target.value);
-    }
+    // const unitChange = (e) => {
+    //     setUnit(e.target.value);
+    // }
 
     const mitigationOptionChange = (e) => {
         setMitigationOption(e.target.value);
     }
 
-    const inoutChange = (e) => {
-        setInOut(e.target.value);
-    }
-
-    const countryChange = (e) => {
-        setCountry(e.target.value);
-    }
+    // const inoutChange = (e) => {
+    //     setInOut(e.target.value);
+    // }
 
     const downloadData = () => {
         // exportToCSV();
@@ -140,6 +135,41 @@ export default function ImpactsAndSynergiesComponent() {
         exportToCSV(exportData, fileName);
     }
 
+    const getIcon = (value) => {
+        switch (value) {
+            case 1:
+                return (
+                    <div className="flex justify-center">
+                        <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                        <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                    </div>
+                );
+            case 2:
+                return (
+                    <div className="flex justify-center">
+                        <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                    </div>
+                );
+            case 3:
+                return (
+                    <div className="flex justify-center">
+                        <MinusIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                    </div>);
+            case 4:
+                return (
+                    <div className="flex justify-center">
+                        <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                    </div>
+                );
+            case 5:
+                return (
+                    <div className="flex justify-center">
+                        <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                        <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                    </div>
+                );
+        }
+    }
     return (
         <>
             <div className="mt-10 px-5 py-3">
@@ -148,11 +178,11 @@ export default function ImpactsAndSynergiesComponent() {
                 </label>
             </div>
             {/* <div className="grid grid-cols-6 bg-[#113458] bg-opacity-10 rounded-xl py-3 px-3 sm:px-5 mt-12 items-center justify-center"> */}
-            <div className="grid grid-cols-6 rounded-xl px-3 sm:px-5 items-center justify-center">
+            <div className="grid grid-cols-6 rounded-xl px-3 sm:px-5 justify-center">
                 <div className="col-span-6 flex justify-between">
                     <div className="flex items-center">
                         <label htmlFor="countries" className="flex hidden md:block mx-2.5 text-sm font-medium text-[#113458]">Mitigation Option: </label>
-                        <select id="mitigationOptions" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
+                        <select id="mitigationOptions" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
                             {
                                 consts.MITIGATION_OPTION_LIST2.map((optionItem, idx) => (
                                     <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
@@ -199,14 +229,78 @@ export default function ImpactsAndSynergiesComponent() {
                         </button>
                     </div>
                 </div>
-                <div className="col-span-6 sm:col-span-3 bg-gray-900 bg-opacity-10 rounded-md text-[#113458] justify-items-center grid p-3 my-3" style={{ minHeight: "500px" }}>
+                <div className="col-span-6 md:col-span-3 bg-gradient-to-t from-[#11345844] rounded-md text-[#113458] justify-items-center grid p-3 my-3" style={{ minHeight: "400px" }}>
                     <img src="avatar2.png" className="h-40 bg-gray-900 bg-opacity-10 rounded-md m-3" />
                     <div className="my-3 text-3xl">Some Text Here!</div>
                 </div>
-                <div className="grid col-span-6 sm:col-span-3" style={{ minHeight: `${400}px` }}>
-                    <FC chartConfigs={chartConfigs}></FC>
+                <div className="grid col-span-6 md:col-span-3 md:ml-5 my-3" style={{ minHeight: `${400}px` }}>
+                    {/* <FC chartConfigs={chartConfigs}></FC> */}
+                    {(exportData && exportData.length) ?
+                        <>
+                            <div className="overflow-x-auto relative rounded-t-xl">
+                                <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
+                                    <thead className="text-xs text-white uppercase bg-[#11345877] ">
+                                        <tr>
+                                            <th scope="col" className="py-3 px-6">
+                                                Field of Interactive effect
+                                            </th>
+                                            <th scope="col" className="py-3 px-6">
+                                                Type of link
+                                            </th>
+                                            <th scope="col" className="py-3 px-6">
+                                                Magnitude
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-gradient-to-b from-[#11345844]">
+                                        {exportData.map((element, idx) => (
+                                            <tr key={idx}>
+                                                <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap">
+                                                    {element["Input_OutputName"]}
+                                                </th>
+                                                <td className="py-4 px-6">
+                                                    {element["Input_Output"]}
+                                                </td>
+                                                <td className="py-4 px-6">
+                                                    {getIcon(element["Gradient"])}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="text-center text-gray-600 mt-2">
+                                <i>
+                                    <div><b>Note</b></div>
+                                    <div className="flex text-center items-center justify-center mt-2">
+                                        <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                                        <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                                        : strongly decrease,
+                                        <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                                        : decrease
+                                    </div>
+                                    <div className="flex text-center items-center justify-center mt-2">
+                                        <MinusIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                                        : neutral
+                                    </div>
+                                    <div className="flex text-center items-center justify-center mt-2">
+                                        <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                                        <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                                        : strongly increase,
+                                        <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                                        : increase
+                                    </div>
+                                </i>
+                            </div>
+                        </> :
+                        <div className="grid text-center content-center text-[#11345844]">
+                            <i>No Impacts & Synergies for <b>{country}</b></i>
+                        </div>
+                    }
                 </div>
             </div>
         </>
     )
 }
+
+export default ImpactsAndSynergiesComponent;

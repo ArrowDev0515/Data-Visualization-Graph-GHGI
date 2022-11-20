@@ -73,13 +73,14 @@ const HomeComponent = ({ country }) => {
             }
             return (ele["Party"].toString() === country && parseInt(ele["Year"]) === parseInt(year) && ele["DataSource"] === dataSource && ele["AR"] === gwp);
         });
+        setExportData(data);
+        
         str = str.sort((a, b) => {
             if(a > b)
                 return 1;
             else return -1;
         })
 
-        setExportData(data);
         let afoluData = data.filter((ele) => {
             return (ele["Category"] === consts.CATEGORY_AFOLU);
         })
@@ -153,7 +154,7 @@ const HomeComponent = ({ country }) => {
                         <div className="flex">
                             <div className="flex items-center mx-2.5">
                                 <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">Year : </label>
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={year} onChange={yearChange}>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={year} onChange={yearChange}>
                                     {
                                         consts.YEAR_LIST.map((item, idx) => (
                                             <option className="text-[#113458]" key={"year_option" + idx} value={item}>{item}</option>
@@ -164,7 +165,7 @@ const HomeComponent = ({ country }) => {
 
                             <div className="flex items-center mx-2.5">
                                 <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">GWP : </label>
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={gwp} onChange={gwpChange}>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={gwp} onChange={gwpChange}>
                                     {
                                         consts.AR_LIST.map((arItem, idx) => (
                                             <option className="text-[#113458]" key={"ar_option" + idx} value={arItem}>{arItem}</option>
@@ -176,7 +177,7 @@ const HomeComponent = ({ country }) => {
                         <div className="flex">
                             <div className="items-center mx-2.5 hidden lg:flex">
                                 <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">Data Source : </label>
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
                                     {
                                         consts.DATA_SOURCE_LIST.map((dataSrcItem, idx) => (
                                             <option className="text-[#113458]" key={"dataSrc_option" + idx} value={dataSrcItem}>{dataSrcItem}</option>
@@ -204,7 +205,7 @@ const HomeComponent = ({ country }) => {
                         <div className="hidden md:block lg:hidden col-span-12 justify-self-end">
                             <div className="items-center flex">
                                 <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">Data Source : </label>
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
                                     {
                                         consts.DATA_SOURCE_LIST.map((dataSrcItem, idx) => (
                                             <option className="text-[#113458]" key={"dataSrc_option" + idx} value={dataSrcItem}>{dataSrcItem}</option>
@@ -225,7 +226,7 @@ const HomeComponent = ({ country }) => {
                         <div className="md:hidden col-span-12 justify-self-end">
                             <div className="items-center flex">
                                 <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">Data Source : </label>
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
                                     {
                                         consts.DATA_SOURCE_LIST.map((dataSrcItem, idx) => (
                                             <option className="text-[#113458]" key={"dataSrc_option" + idx} value={dataSrcItem}>{dataSrcItem}</option>

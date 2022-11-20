@@ -124,6 +124,8 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         let data = dataSrc.filter((ele) => {
             return (ele["Country"] === country && ele["Unit"] === unit && ele["MitigationOption"] === mitigationOption);
         });
+        setExportData(data);
+
         let xLabels1 = new Map();
         let xLabels2 = new Map();
         let categoryData1 = [];      // x Axis Label Array
@@ -244,7 +246,6 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     ...prev.dataSource,
                     chart: {
                         ...prev.dataSource.chart,
-                        yAxisMinValue: 10,
                         yaxisname: unit
                     }
                 }
@@ -259,7 +260,6 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     ...prev.dataSource,
                     chart: {
                         ...prev.dataSource.chart,
-                        yAxisMinValue: 10,
                         yaxisname: unit
                     }
                 }
@@ -293,7 +293,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
             <div className="grid grid-cols-12 rounded-xl px-3 sm:px-5 items-center justify-center">
                 <div className="flex items-center col-span-12 ml-2.5 mb-2.5">
                     <label htmlFor="countries" className="text-xs sm:text-sm font-medium text-[#113458] mr-2.5">AFOLU Sector: </label>
-                    <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
+                    <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
                         {
                             consts.MITIGATION_OPTION_LIST.map((optionItem, idx) => (
                                 <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
@@ -315,7 +315,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                             </div> */}
                             <div className="flex items-center ml-2.5">
                                 <label htmlFor="countries" className="text-xs sm:text-sm font-medium text-[#113458] mr-2.5">Farming System: </label>
-                                <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
+                                <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
                                     {
                                         consts.MITIGATION_OPTION_LIST.map((optionItem, idx) => (
                                             <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
@@ -325,7 +325,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                             </div>
                             <div className="flex items-center ml-2.5">
                                 <label htmlFor="countries" className="text-xs sm:text-sm font-medium text-[#113458] mr-2.5">Unit : </label>
-                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={unitChange} value={unit}>
+                                <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={unitChange} value={unit}>
                                     {
                                         consts.UNIT_LIST.map((unitItem, idx) => (
                                             <option className="text-[#113458]" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>
@@ -352,16 +352,22 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     <b>Some Text Here!</b>
                 </div>
 
-                <div className="col-span-12 md:col-span-4 xl:col-span-2">
-                    <div className="grid" style={{ minHeight: `${400}px` }}>
-                        <FC chartConfigs={chartConfigs1}></FC>
+                {(exportData && exportData.length) ? <>
+                    <div className="col-span-12 md:col-span-4 xl:col-span-2">
+                        <div className="grid" style={{ minHeight: `${400}px` }}>
+                            <FC chartConfigs={chartConfigs1}></FC>
+                        </div>
                     </div>
-                </div>
-                <div className="col-span-12 md:col-span-8 xl:col-span-6">
-                    <div className="grid" style={{ minHeight: `${400}px` }}>
-                        <FC chartConfigs={chartConfigs2}></FC>
+                    <div className="col-span-12 md:col-span-8 xl:col-span-6">
+                        <div className="grid" style={{ minHeight: `${400}px` }}>
+                            <FC chartConfigs={chartConfigs2}></FC>
+                        </div>
                     </div>
-                </div>
+                </> :
+                    <div className="col-span-12 xl:col-span-8 grid text-center content-center text-[#11345844]" style={{ minHeight: `${200}px` }}>
+                        <i>No Reduction Potential for <b>{country}</b></i>
+                    </div>
+                }
             </div>
         </>
     )
