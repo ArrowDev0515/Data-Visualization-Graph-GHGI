@@ -7,6 +7,7 @@ const utils = require("../utils/utils");
 const dataSrc1 = require("../consts/Data_Home.json");
 const dataSrc = require("../consts/221118_HomePage.json");
 const consts = require("../consts/consts");
+
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
 
 const HomeComponent = ({ country }) => {
@@ -128,10 +129,6 @@ const HomeComponent = ({ country }) => {
         setYear(e.target.value);
     }
 
-    // const countryChange = (e) => {
-    //     setCountry(e.target.value);
-    // }
-
     const gwpChange = (e) => {
         setGWP(e.target.value);
     }
@@ -155,7 +152,7 @@ const HomeComponent = ({ country }) => {
                     <div className="flex justify-between">
                         <div className="flex">
                             <div className="flex items-center mx-2.5">
-                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">Year : </label>
+                                <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">Year : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={year} onChange={yearChange}>
                                     {
                                         consts.YEAR_LIST.map((item, idx) => (
@@ -166,7 +163,7 @@ const HomeComponent = ({ country }) => {
                             </div>
 
                             <div className="flex items-center mx-2.5">
-                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">GWP : </label>
+                                <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">GWP : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={gwp} onChange={gwpChange}>
                                     {
                                         consts.AR_LIST.map((arItem, idx) => (
@@ -178,7 +175,7 @@ const HomeComponent = ({ country }) => {
                         </div>
                         <div className="flex">
                             <div className="items-center mx-2.5 hidden lg:flex">
-                                <label htmlFor="countries" className="hidden md:block text-sm font-medium text-[#113458] mr-2.5">Data Source : </label>
+                                <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">Data Source : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
                                     {
                                         consts.DATA_SOURCE_LIST.map((dataSrcItem, idx) => (
@@ -188,7 +185,7 @@ const HomeComponent = ({ country }) => {
                                 </select>
                             </div>
                             <div className="flex items-center">
-                                <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-4 py-2.5 text-center" onClick={downloadData}>
+                                <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-4 py-1.5 text-center" onClick={downloadData}>
                                     <span className="hidden xl:block">Download Data</span>
                                     <span className="xl:hidden">
                                         <ArrowDownTrayIcon

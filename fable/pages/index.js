@@ -18,7 +18,7 @@ export default function Index() {
     <>
       <Header />
       <div className="flex m-4 place-content-center items-center">
-        <label htmlFor="countries" className="hidden md:block text-xl font-medium text-[#113458] mr-2.5">Country : </label>
+        <label htmlFor="countries" className="text-xl font-medium text-[#113458] mr-2.5">Country : </label>
         <select id="countries" className="bg-[#113458] bg-opacity-10 border-2 border-[#113458] text-[#113458] text-xl rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-2 w-48" value={country} onChange={countryChange}>
           {/* <option className="text-[#113458]" key={"111"} value={"11"}>222</option> */}
           {

@@ -143,25 +143,24 @@ export default function ImpactsAndSynergiesComponent() {
     return (
         <>
             <div className="mt-10 px-5 py-3">
-                <label htmlFor="countries" className="hidden md:block text-lg font-medium text-[#113458]">
+                <label htmlFor="countries" className="text-lg font-medium text-[#113458]">
                     Trade - offs and synergies for specific mitigation option
                 </label>
             </div>
             {/* <div className="grid grid-cols-6 bg-[#113458] bg-opacity-10 rounded-xl py-3 px-3 sm:px-5 mt-12 items-center justify-center"> */}
             <div className="grid grid-cols-6 rounded-xl px-3 sm:px-5 items-center justify-center">
-                <div className="col-span-6 flex items-center justify-between">
-                    <label htmlFor="countries" className="flex hidden md:block px-5 text-sm font-medium text-[#113458]">{mitigationOption}</label>
-                    <div className="flex">
-                        <div className="flex items-center mx-2.5">
-                            <select id="mitigationOptions" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
-                                {
-                                    consts.MITIGATION_OPTION_LIST2.map((optionItem, idx) => (
-                                        <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
-                                    ))
-                                }
-                            </select>
-                        </div>
-                        <div className="flex items-center mx-2.5">
+                <div className="col-span-6 flex justify-between">
+                    <div className="flex items-center">
+                        <label htmlFor="countries" className="flex hidden md:block mx-2.5 text-sm font-medium text-[#113458]">Mitigation Option: </label>
+                        <select id="mitigationOptions" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
+                            {
+                                consts.MITIGATION_OPTION_LIST2.map((optionItem, idx) => (
+                                    <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    {/* <div className="flex items-center mx-2.5">
                             <select id="countries" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={countryChange} value={country}>
                                 {
                                     consts.COUNTRY_LIST.map((countryItem, idx) => (
@@ -187,12 +186,11 @@ export default function ImpactsAndSynergiesComponent() {
                                     ))
                                 }
                             </select>
-                        </div>
-                    </div>
-                    <div className="flex items-center mx-2.5">
-                        <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center" onClick={downloadData}>
-                            <span className="hidden sm:block">Download Data</span>
-                            <span className="sm:hidden">
+                        </div> */}
+                    <div className="flex items-center ml-2.5">
+                        <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-4 py-1.5 text-center" onClick={downloadData}>
+                            <span className="hidden xl:block">Download Data</span>
+                            <span className="xl:hidden">
                                 <ArrowDownTrayIcon
                                     className="h-5 w-5 text-[#113458] hover:text-white"
                                     aria-hidden="true"
