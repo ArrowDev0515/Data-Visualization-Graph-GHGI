@@ -290,7 +290,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 </label>
             </div>
             {/* <div className="grid grid-cols-6 bg-gray-800 bg-opacity-10 rounded-xl py-3 px-3 sm:px-5 mt-12 items-center justify-center"> */}
-            <div className="grid grid-cols-12 rounded-xl px-3 sm:px-5 items-center justify-center">
+            <div className="grid grid-cols-12 rounded-xl px-3 sm:px-5 justify-center">
                 <div className="flex items-center col-span-12 ml-2.5 mb-2.5">
                     <label htmlFor="countries" className="text-xs sm:text-sm font-medium text-[#113458] mr-2.5">AFOLU Sector: </label>
                     <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
@@ -301,7 +301,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                         }
                     </select>
                 </div>
-                <div className="hidden xs:block col-span-12">
+                <div className="hidden xs:block col-span-12 mb-3">
                     <div className="flex justify-between">
                         <div className="flex">
                             {/* <div className="flex items-center ml-2.5 sm:mx-2.5">
@@ -348,23 +348,24 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                         </div>
                     </div>
                 </div>
-                <div className="grid col-span-12 xl:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3" style={{ minHeight: `${400}px` }}>
+                <div className="grid col-span-12 xl:col-span-4 bg-gradient-to-t from-[#11345822] rounded-md text-[#113458] text-center items-center p-3 my-3" style={{ minHeight: `${400}px` }}>
+                {/* <div className="grid col-span-12 xl:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3" style={{ minHeight: `${400}px` }}> */}
                     <b>Some Text Here!</b>
                 </div>
 
-                {(exportData && exportData.length) ? <>
-                    <div className="col-span-12 md:col-span-4 xl:col-span-2">
+                {(exportData && exportData.length) ? <div className="col-span-12 xl:col-span-8 bg-gradient-to-b from-[#11345822] grid grid-cols-12 rounded-md xl:ml-3">
+                    <div className="col-span-12 md:col-span-4">
                         <div className="grid" style={{ minHeight: `${400}px` }}>
                             <FC chartConfigs={chartConfigs1}></FC>
                         </div>
                     </div>
-                    <div className="col-span-12 md:col-span-8 xl:col-span-6">
+                    <div className="col-span-12 md:col-span-8">
                         <div className="grid" style={{ minHeight: `${400}px` }}>
                             <FC chartConfigs={chartConfigs2}></FC>
                         </div>
                     </div>
-                </> :
-                    <div className="col-span-12 xl:col-span-8 grid text-center content-center text-[#11345844]" style={{ minHeight: `${200}px` }}>
+                </div> :
+                    <div className="col-span-12 xl:col-span-8 grid bg-gradient-to-b from-[#11345822] rounded-md text-center content-center text-[#11345822] xl:ml-3 my-3" style={{ minHeight: `${200}px` }}>
                         <i>No Reduction Potential for <b>{country}</b></i>
                     </div>
                 }

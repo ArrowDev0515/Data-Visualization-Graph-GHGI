@@ -229,7 +229,7 @@ const ImpactsAndSynergiesComponent = ({ country }) => {
                         </button>
                     </div>
                 </div>
-                <div className="col-span-6 md:col-span-3 bg-gradient-to-t from-[#11345844] rounded-md text-[#113458] justify-items-center grid p-3 my-3" style={{ minHeight: "400px" }}>
+                <div className="col-span-6 md:col-span-3 bg-gradient-to-t from-[#11345822] rounded-md text-[#113458] justify-items-center grid p-3 my-3" style={{ minHeight: "400px" }}>
                     <img src="avatar2.png" className="h-40 bg-gray-900 bg-opacity-10 rounded-md m-3" />
                     <div className="my-3 text-3xl">Some Text Here!</div>
                 </div>
@@ -252,7 +252,7 @@ const ImpactsAndSynergiesComponent = ({ country }) => {
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-gradient-to-b from-[#11345844]">
+                                    <tbody className="bg-gradient-to-b from-[#11345822]">
                                         {exportData.map((element, idx) => (
                                             <tr key={idx}>
                                                 <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap">
@@ -293,7 +293,7 @@ const ImpactsAndSynergiesComponent = ({ country }) => {
                                 </i>
                             </div>
                         </> :
-                        <div className="grid text-center content-center text-[#11345844]">
+                        <div className="grid text-center content-center text-[#11345822] bg-gradient-to-b from-[#11345822] rounded-md">
                             <i>No Impacts & Synergies for <b>{country}</b></i>
                         </div>
                     }

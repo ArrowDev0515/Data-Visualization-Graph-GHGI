@@ -199,7 +199,8 @@ const HomeComponent = ({ country }) => {
                         </div>
                     </div>
                     <div className="grid grid-cols-12" style={{ minHeight: "400px" }}>
-                        <div className="grid col-span-12 lg:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3">
+                        <div className="grid col-span-12 lg:col-span-4 bg-gradient-to-b lg:bg-gradient-to-r from-[#11345822] rounded-md text-[#113458] text-center items-center p-3 my-3">
+                        {/* <div className="grid col-span-12 lg:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3"> */}
                             <b>Some Text Here!</b>
                         </div>
                         <div className="hidden md:block lg:hidden col-span-12 justify-self-end">
@@ -214,7 +215,7 @@ const HomeComponent = ({ country }) => {
                                 </select>
                             </div>
                         </div>
-                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 lg:mx-3 bg-[#113458] bg-opacity-10 rounded-md my-3" style={{ minHeight: "400px" }}>
+                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 bg-gradient-to-t md:bg-gradient-to-r lg:bg-gradient-to-b lg:mx-3 from-[#11345822] rounded-md my-3" style={{ minHeight: "400px" }}>
                             {exportData.length ? <FC chartConfigs={chartConfigs}></FC> :
                                 <>
                                     <div className="text-[#113458] grid text-center items-center p-3 my-3">
@@ -235,7 +236,7 @@ const HomeComponent = ({ country }) => {
                                 </select>
                             </div>
                         </div>
-                        <div className="col-span-12 md:col-span-6 lg:col-span-3 grid grid-cols-2 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center p-3 my-3">
+                        <div className="col-span-12 md:col-span-6 lg:col-span-3 grid grid-cols-2 bg-gradient-to-b md:bg-gradient-to-l from-[#11345822] rounded-md text-[#113458] text-center p-3 my-3">
                             {AFOLUData.length ?
                                 <>
                                     {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"] > 0 ?
