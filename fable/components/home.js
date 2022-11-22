@@ -129,6 +129,7 @@ const HomeComponent = ({ country }) => {
             tmpItem["label"] = item["Category"];
             tmpItem["value"] = parseFloat(item["EmissionCategoryMtCO2e"]);
             tmpItem["percentValue"] = (parseFloat(item["EmissionCategoryMtCO2e"]) / parseFloat(item["TotalEmissionsMtCO2e"]) * 100).toFixed(2);
+            tmpItem["color"] = item["HEX"];
             if (!set.has(item["Category"])) {
                 set.add(item["Category"]);
                 arr.push(tmpItem);
@@ -137,8 +138,9 @@ const HomeComponent = ({ country }) => {
         })
         let captionStr = `<b>${country}'s Total GHG emissions in ${year}</b>{br}`;
         if (data.length > 0) {
+            
             captionStr += data[0]["TotalEmissionsMtCO2e"].toString() + `Mt CO<sub>2</sub>e`;
-            subCaptionStr = "X t CO<sub>2</sub>e/cap";
+            subCaptionStr = "{br}" + data[0]["TotalEmissionsCapitatCO2e_cap"].toString() + " t CO<sub>2</sub>e/cap";
         }
         setChartConfigs({
             ...chartConfigs, dataSource: {
@@ -279,7 +281,7 @@ const HomeComponent = ({ country }) => {
                                                 <b><span className="font-bold">AFOLU</span> Sector</b>
                                             </div>
                                             <div className="text-md col-span-2 font-normal">
-                                                <span>Total Net: {"XX"} Mt CO<sub>2</sub>e</span>
+                                                <span>Total Net: {AFOLUData[0]["TotalNetAFOLUMtCO2e"]} Mt CO<sub>2</sub>e</span>
                                             </div>
                                             <div className="px-3 col-span-2 xs:col-span-1" style={{ minHeight: "200px" }}>
                                                 <div className="text-sm my-3"><b>AFOLU Emissions</b></div>
