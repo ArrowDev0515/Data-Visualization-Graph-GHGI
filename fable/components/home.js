@@ -5,7 +5,7 @@ import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 
 const utils = require("../utils/utils");
 const dataSrc1 = require("../consts/Data_Home.json");
-const dataSrc = require("../consts/221118_HomePage.json");
+const dataSrc = require("../consts/221122_HomePage.json");
 const consts = require("../consts/consts");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
@@ -19,6 +19,9 @@ const HomeComponent = ({ country }) => {
 
     const [dataSource, setDataSource] = useState(consts.DATA_SOURCE_UNFCCC);
     const [year, setYear] = useState(1994);
+    const [yearList, setYearList] = useState([]);
+    const [gwpList, setGwpList] = useState([]);
+    const [dataSourceList, setDataSourceList] = useState([]);
 
     const [chartConfigs, setChartConfigs] = useState({
         type: "doughnut2d",
@@ -67,6 +70,37 @@ const HomeComponent = ({ country }) => {
     }, [dataSource, year, gwp, country]);
     const filterData = () => {
         let str = [];
+
+        // get year list
+        let yList = [];
+        yList = dataSrc.map((ele) => {
+            return ele["Year"];
+        });
+        yList = yList.reduce(
+            (arr, item) => (arr.includes(item) ? arr : [...arr, item]),
+            [],
+        );
+        setYearList(yList);
+
+        // get gwp list
+        let gwpArr = [];
+        gwpArr = dataSrc.map((ele) => {
+            return ele["AR"];
+        }).reduce(
+            (arr, item) => (arr.includes(item) ? arr : [...arr, item]), [],
+        );
+        setGwpList(gwpArr);
+
+        // get dataSource list
+        let dataSourceArr = [];
+        dataSourceArr = dataSrc.map((ele) => {
+            return ele["DataSource"];
+        }).reduce(
+            (arr, item) => (arr.includes(item) ? arr : [...arr, item]),
+            [],
+        );
+        setDataSourceList(dataSourceArr);
+
         let data = dataSrc.filter((ele) => {
             if (!str.includes(ele["Party"])) {
                 str.push(ele["Party"]);
@@ -74,9 +108,9 @@ const HomeComponent = ({ country }) => {
             return (ele["Party"].toString() === country && parseInt(ele["Year"]) === parseInt(year) && ele["DataSource"] === dataSource && ele["AR"] === gwp);
         });
         setExportData(data);
-        
+
         str = str.sort((a, b) => {
-            if(a > b)
+            if (a > b)
                 return 1;
             else return -1;
         })
@@ -118,7 +152,7 @@ const HomeComponent = ({ country }) => {
     useEffect(() => {
         if (AFOLUData.length) {
             setHeight2(height1 / parseFloat(AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]) *
-                Math.abs(parseFloat(AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"])));
+                Math.abs(parseFloat(AFOLUData[0]["TotalAFOLURemovalsMtCO2e"])));
         }
     }, [AFOLUData]);
 
@@ -156,7 +190,7 @@ const HomeComponent = ({ country }) => {
                                 <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">Year : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={year} onChange={yearChange}>
                                     {
-                                        consts.YEAR_LIST.map((item, idx) => (
+                                        yearList.map((item, idx) => (
                                             <option className="text-[#113458]" key={"year_option" + idx} value={item}>{item}</option>
                                         ))
                                     }
@@ -167,7 +201,7 @@ const HomeComponent = ({ country }) => {
                                 <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">GWP : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={gwp} onChange={gwpChange}>
                                     {
-                                        consts.AR_LIST.map((arItem, idx) => (
+                                        gwpList.map((arItem, idx) => (
                                             <option className="text-[#113458]" key={"ar_option" + idx} value={arItem}>{arItem}</option>
                                         ))
                                     }
@@ -179,7 +213,7 @@ const HomeComponent = ({ country }) => {
                                 <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">Data Source : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={dataSource} onChange={dataSourceChange}>
                                     {
-                                        consts.DATA_SOURCE_LIST.map((dataSrcItem, idx) => (
+                                        dataSourceList.map((dataSrcItem, idx) => (
                                             <option className="text-[#113458]" key={"dataSrc_option" + idx} value={dataSrcItem}>{dataSrcItem}</option>
                                         ))
                                     }
@@ -200,7 +234,7 @@ const HomeComponent = ({ country }) => {
                     </div>
                     <div className="grid grid-cols-12" style={{ minHeight: "400px" }}>
                         <div className="grid col-span-12 lg:col-span-4 bg-gradient-to-b lg:bg-gradient-to-r from-[#11345822] rounded-md text-[#113458] text-center items-center p-3 my-3">
-                        {/* <div className="grid col-span-12 lg:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3"> */}
+                            {/* <div className="grid col-span-12 lg:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3"> */}
                             <b>Some Text Here!</b>
                         </div>
                         <div className="hidden md:block lg:hidden col-span-12 justify-self-end">
@@ -271,7 +305,7 @@ const HomeComponent = ({ country }) => {
                                             <div className="px-3 col-span-2 xs:col-span-1" style={{ minHeight: "200px" }}>
                                                 <div className="text-sm my-3"><b>AFOLU Removals</b></div>
                                                 <div className="text-xs mb-3 text-[#113458]"><b>
-                                                    {AFOLUData[0]["TotalAFOLURemovalsMtCO2e2"]} Mt CO<sub>2</sub>e
+                                                    {AFOLUData[0]["TotalAFOLURemovalsMtCO2e"]} Mt CO<sub>2</sub>e
                                                 </b></div>
                                                 <div className="w-full" style={{ height: `${height2}px` }}>
                                                     {
@@ -279,8 +313,8 @@ const HomeComponent = ({ country }) => {
                                                             <span key={"SinksForRemovals" + idx}>
                                                                 {/* {console.log(item["TotalAFOLURemovalsMtCO2e2"], parseFloat(item["TotalAFOLURemovalsMtCO2e2"]), parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) * 100) : 0)} */}
                                                                 {(parseFloat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
-                                                                    <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) * 100) : 0}%`, backgroundColor: `${item["HEX"]}` }}>
-                                                                        {Math.abs((height1 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"])).toFixed(2)) > 20 ? <span className="text-[#113458]">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : ""}
+                                                                    <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"]) * 100) : 0}%`, backgroundColor: `${item["HEX"]}` }}>
+                                                                        {Math.abs((height1 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"])).toFixed(2)) > 20 ? <span className="text-[#113458]">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : ""}
                                                                     </div>
                                                                     : ""
                                                                 }

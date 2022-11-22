@@ -9,7 +9,7 @@ const consts = require("../consts/consts");
 
 export default function Index() {
 
-  const [country, setCountry] = useState("Albania");
+  const [country, setCountry] = useState(consts.COUNTRY_CHINA);
 
   const countryChange = (e) => {
     setCountry(e.target.value);
