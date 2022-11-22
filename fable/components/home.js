@@ -311,7 +311,6 @@ const HomeComponent = ({ country }) => {
                                                     {
                                                         AFOLUData.map((item, idx) => (
                                                             <span key={"SinksForRemovals" + idx}>
-                                                                {/* {console.log(item["TotalAFOLURemovalsMtCO2e2"], parseFloat(item["TotalAFOLURemovalsMtCO2e2"]), parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e2"]) * 100) : 0)} */}
                                                                 {(parseFloat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
                                                                     <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"]) * 100) : 0}%`, backgroundColor: `${item["HEX"]}` }}>
                                                                         {Math.abs((height1 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"])).toFixed(2)) > 20 ? <span className="text-[#113458]">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : ""}
