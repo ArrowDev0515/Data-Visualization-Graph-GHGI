@@ -4,8 +4,8 @@ import { exportToCSV } from "../utils/exportCSV";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 
 const utils = require("../utils/utils");
-const dataSrc = require("../consts/221121_HomePage2.json");
-// const dataSrc = require("../consts/221123_HomePage.json");
+// const dataSrc = require("../consts/221121_HomePage2.json");
+const dataSrc = require("../consts/221123_HomePage.json");
 const consts = require("../consts/consts");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
