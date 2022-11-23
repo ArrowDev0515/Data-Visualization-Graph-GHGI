@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic.js";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
-const dataSrc = require("../consts/Data_EmissionReductionPotential.json");
+const dataSrc = require("../consts/221122_MitigationPotential.json");
 const consts = require("../consts/consts");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
@@ -10,11 +10,14 @@ const defaultHeight = 400;
 const EmissionRedcutionPotentialComponent = ({ country }) => {
 
     // const [country, setCountry] = useState(consts.COUNTRY_CHINA);
-    const [mitigationOption, setMitigationOption] = useState(consts.MITIGATION_OPTION_RICE_CULTIVATION);
-    const [unit, setUnit] = useState(consts.UNIT_TCH4_HA);
-    const [exportData, setExportData] = useState([]);
+    const [AFOLUSector, setAFOLUSector] = useState(consts.AFOLU_SECTOR_RICE_CULTIVATION);
+    const [AFOLUSectorList, setAFOLUSectorList] = useState([]);
+    const [unit, setUnit] = useState(consts.UNIT_CH4_HA);
+    const [unitList, setUnitList] = useState([]);
+    const [farmingSystem, setFarmingSystem] = useState(consts.FARMING_SYSTEM_CONVENTIONAL_RICE);
+    const [farmingSystemList, setFarmingSystemList] = useState([]);
 
-    const [yMax, setYMax] = useState(0);
+    const [exportData, setExportData] = useState([]);
     const [chartConfigs1, setChartConfigs1] = useState({
         type: "scatter",
         width: "99%",
@@ -43,7 +46,6 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 xnumbersuffix: "",
                 theme: "fusion",
                 drawCustomLegend: "1",
-                // yAxisMinValue: "0",
                 numDivLines: "4",
                 plottooltext:
                     "$seriesname : <b>$yDataValue</b>"
@@ -92,7 +94,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 bgAlpha: "0",
                 labelFontSize: "12",
                 labelFontColor: "#113458",
-                yaxisname: consts.UNIT_TCH4_HA,
+                yaxisname: consts.UNIT_CH4_HA,
                 plotHighlightEffect: "fadeout|borderColor=ff0000, borderAlpha=50",
                 interactiveLegend: 0,
                 ynumberprefix: "",
@@ -121,10 +123,43 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         }
     });
     const generateChartData = () => {
+
+        // set data for MitigationOption(AFOLU Sector) SelectBox
+        let afoluSectorArr = [];
+        afoluSectorArr = dataSrc.map((ele) => {
+            return ele["AFOLU_Sector"];
+        }).reduce(
+            (arr, item) => (arr.includes(item) ? arr : [...arr, item]),
+            [],
+        );
+        setAFOLUSectorList(afoluSectorArr);
+
+        // set data for Unit SelectBox
+        let unitArr = [];
+        unitArr = dataSrc.map((ele) => {
+            return ele["Unit"];
+        }).reduce(
+            (arr, item) => (arr.includes(item) ? arr : [...arr, item]),
+            [],
+        );
+        setUnitList(unitArr);
+
+        // set data for Unit SelectBox
+        let farmingSystemArr = [];
+        farmingSystemArr = dataSrc.map((ele) => {
+            return ele["FarmingSystem"];
+        }).reduce(
+            (arr, item) => (arr.includes(item) ? arr : [...arr, item]),
+            [],
+        );
+        setFarmingSystemList(farmingSystemArr);
+
+        // filter Data for Chart
         let data = dataSrc.filter((ele) => {
-            return (ele["Country"] === country && ele["Unit"] === unit && ele["MitigationOption"] === mitigationOption);
+            return (ele["Party"] === country && ele["AFOLU_Sector"] === AFOLUSector && ele["FarmingSystem"] === farmingSystem && ele["Unit"] === unit);
         });
         setExportData(data);
+
 
         let xLabels1 = new Map();
         let xLabels2 = new Map();
@@ -133,6 +168,8 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         let key1 = 1;
         let key2 = 1;
         categoryData1.push({ x: (key1 * 20).toString(), label: "" });
+        categoryData2.push({ x: (key1 * 20).toString(), label: "" });
+
         data.map((item) => {
             if (item["DataSource"] === consts.DATA_SOURCE_FAO || item["DataSource"] === consts.DATA_SOURCE_IPCC) {
                 if (!xLabels1.has(item["DataSource"])) {
@@ -141,15 +178,19 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     categoryData1.push({ x: (key1 * 20).toString(), label: item["DataSource"] });
                 }
             } else {
-                if (!xLabels2.has(item["System"])) {
-                    xLabels2.set(item["System"], key2);
-                    categoryData2.push({ x: (key2 * 20).toString(), label: item["System"] });
+                // console.log(data, item, xLabels2, item["MitigationOption"]);
+
+                if (!xLabels2.has(item["MitigationOption"])) {
                     key2++;
+                    xLabels2.set(item["MitigationOption"], key2);
+                    categoryData2.push({ x: (key2 * 20).toString(), label: item["MitigationOption"] });
                 }
             }
         });
         key1++;
+        key2++;
         categoryData1.push({ x: (key1 * 20).toString(), label: "" });
+        categoryData2.push({ x: (key2 * 20).toString(), label: "" });
 
         let dataArrForMax = [];
         let dataArrForMin = [];
@@ -157,56 +198,79 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         let dataArrForMedian2 = [];
         let dataArrForAverage = [];
 
+        let yMax1 = 0, yMax2 = 0;
+        let yMin1 = 99999999, yMin2 = 99999999;
         data.map((ele) => {
             if (ele["DataSource"] === consts.DATA_SOURCE_FAO || ele["DataSource"] === consts.DATA_SOURCE_IPCC) {
                 let xValue = categoryData1.find((e) => {
                     return e["label"] == ele["DataSource"];
                 })["x"];
-                dataArrForMedian1.push({ x: xValue, y: ele["Median"] });
-                if (ele["Median"] > yMax) {
-                    yMax = ele["Median"];
+                dataArrForMedian1.push({ x: xValue, y: ele["Average"] });
+                if (ele["Average"] > yMax1) {
+                    yMax1 = ele["Average"];
+                }
+                if (ele["Average"] < yMin1) {
+                    yMin1 = ele["Average"];
                 }
             } else {
                 let xValue = categoryData2.find((e) => {
-                    return e["label"] == ele["System"];
+                    return e["label"] == ele["MitigationOption"];
                 })["x"];
                 if (ele["Max"]) {
                     dataArrForMax.push({ x: xValue, y: ele["Max"] });
-                    if (ele["Max"] > yMax) {
-                        yMax = ele["Max"];
+                    if (ele["Max"] > yMax2) {
+                        yMax2 = ele["Max"];
+                    }
+                    if (ele["Max"] < yMin2) {
+                        yMin2 = ele["Max"];
                     }
                 }
                 if (ele["Min"]) {
                     dataArrForMin.push({ x: xValue, y: ele["Min"] });
-                    if (ele["Min"] > yMax) {
-                        yMax = ele["Min"];
+                    if (ele["Min"] > yMax2) {
+                        yMax2 = ele["Min"];
+                    }
+                    if (ele["Min"] < yMin2) {
+                        yMin2 = ele["Min"];
                     }
                 }
                 if (ele["Median"]) {
                     dataArrForMedian2.push({ x: xValue, y: ele["Median"] });
-                    if (ele["Median"] > yMax) {
-                        yMax = ele["Median"];
+                    if (ele["Median"] > yMax2) {
+                        yMax2 = ele["Median"];
+                    }
+                    if (ele["Median"] < yMin2) {
+                        yMin2 = ele["Median"];
                     }
                 }
                 if (ele["Average"]) {
                     dataArrForAverage.push({ x: xValue, y: ele["Average"] });
-                    if (ele["Average"] > yMax) {
-                        yMax = ele["Average"];
+                    if (ele["Average"] > yMax2) {
+                        yMax2 = ele["Average"];
+                    }
+                    if (ele["Average"] < yMin2) {
+                        yMin2 = ele["Average"];
                     }
                 }
             }
         });
+
+        // console.log("dataArrForMax", dataArrForMax);
+        // console.log("dataArrForMin", dataArrForMin);
+        // console.log("dataArrForMedian2", dataArrForMedian2);
+        // console.log("dataArrForAverage", dataArrForAverage);
 
         setChartConfigs1({
             ...chartConfigs1, dataSource: {
                 ...chartConfigs1.dataSource,
                 chart: {
                     ...chartConfigs1.dataSource.chart,
-                    yAxisMaxValue: yMax
+                    yAxisMaxValue: yMax1,
+                    yAxisMinValue: yMin1
                 },
                 categories: [{ category: categoryData1 }],
                 dataset: [
-                    { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian1, anchorsides: 4, anchorradius: 5 }
+                    { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForMedian1, anchorsides: 2, anchorradius: 5 }
                 ],
             }
         });
@@ -216,7 +280,8 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 ...chartConfigs2.dataSource,
                 chart: {
                     ...chartConfigs2.dataSource.chart,
-                    yAxisMaxValue: yMax
+                    yAxisMaxValue: yMax2,
+                    yAxisMinValue: yMin2
                 },
                 categories: [{ category: categoryData2 }],
                 dataset: [
@@ -235,7 +300,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
 
     useEffect(() => {
         generateChartData();
-    }, [country, mitigationOption, unit]);
+    }, [country, AFOLUSector, farmingSystem, unit]);
 
     useEffect(() => {
         setChartConfigs1(prev => {
@@ -271,8 +336,12 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         setUnit(e.target.value);
     }
 
-    const mitigationOptionChange = (e) => {
-        setMitigationOption(e.target.value);
+    const afoluSectorOptionChange = (e) => {
+        setAFOLUSector(e.target.value);
+    }
+
+    const farmingSystemChange = (e) => {
+        setFarmingSystem(e.target.value);
     }
 
     const downloadData = () => {
@@ -293,9 +362,9 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
             <div className="grid grid-cols-12 rounded-xl px-3 sm:px-5 justify-center">
                 <div className="flex items-center col-span-12 ml-2.5 mb-2.5">
                     <label htmlFor="countries" className="text-xs sm:text-sm font-medium text-[#113458] mr-2.5">AFOLU Sector: </label>
-                    <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
+                    <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={afoluSectorOptionChange} value={AFOLUSector}>
                         {
-                            consts.MITIGATION_OPTION_LIST.map((optionItem, idx) => (
+                            AFOLUSectorList.map((optionItem, idx) => (
                                 <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
                             ))
                         }
@@ -315,10 +384,10 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                             </div> */}
                             <div className="flex items-center ml-2.5">
                                 <label htmlFor="countries" className="text-xs sm:text-sm font-medium text-[#113458] mr-2.5">Farming System: </label>
-                                <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
+                                <select id="farmingSystemOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={farmingSystemChange} value={farmingSystem}>
                                     {
-                                        consts.MITIGATION_OPTION_LIST.map((optionItem, idx) => (
-                                            <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
+                                        farmingSystemList.map((optionItem, idx) => (
+                                            <option className="text-[#113458]" key={"fs_option" + idx} value={optionItem}>{optionItem}</option>
                                         ))
                                     }
                                 </select>
@@ -327,8 +396,8 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                                 <label htmlFor="countries" className="text-xs sm:text-sm font-medium text-[#113458] mr-2.5">Unit : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={unitChange} value={unit}>
                                     {
-                                        consts.UNIT_LIST.map((unitItem, idx) => (
-                                            <option className="text-[#113458]" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>
+                                        unitList.map((unitItem, idx) => (
+                                            <option className="text-[#113458]" key={"unit_option" + idx} value={unitItem}>{unitItem}</option>
                                         ))
                                     }
                                 </select>
@@ -349,7 +418,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     </div>
                 </div>
                 <div className="grid col-span-12 xl:col-span-4 bg-gradient-to-t from-[#11345822] rounded-md text-[#113458] text-center items-center p-3 my-3" style={{ minHeight: `${400}px` }}>
-                {/* <div className="grid col-span-12 xl:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3" style={{ minHeight: `${400}px` }}> */}
+                    {/* <div className="grid col-span-12 xl:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3" style={{ minHeight: `${400}px` }}> */}
                     <b>Some Text Here!</b>
                 </div>
 

@@ -4,8 +4,8 @@ import { exportToCSV } from "../utils/exportCSV";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 
 const utils = require("../utils/utils");
-const dataSrc1 = require("../consts/Data_Home.json");
-const dataSrc = require("../consts/221122_HomePage.json");
+const dataSrc = require("../consts/221121_HomePage2.json");
+// const dataSrc = require("../consts/221123_HomePage.json");
 const consts = require("../consts/consts");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
@@ -69,18 +69,15 @@ const HomeComponent = ({ country }) => {
         filterData();
     }, [dataSource, year, gwp, country]);
     const filterData = () => {
-        let str = [];
-
         // get year list
-        let yList = [];
-        yList = dataSrc.map((ele) => {
+        let yearArr = [];
+        yearArr = dataSrc.map((ele) => {
             return ele["Year"];
-        });
-        yList = yList.reduce(
+        }).reduce(
             (arr, item) => (arr.includes(item) ? arr : [...arr, item]),
             [],
         );
-        setYearList(yList);
+        setYearList(yearArr);
 
         // get gwp list
         let gwpArr = [];
@@ -102,18 +99,9 @@ const HomeComponent = ({ country }) => {
         setDataSourceList(dataSourceArr);
 
         let data = dataSrc.filter((ele) => {
-            if (!str.includes(ele["Party"])) {
-                str.push(ele["Party"]);
-            }
-            return (ele["Party"].toString() === country && parseInt(ele["Year"]) === parseInt(year) && ele["DataSource"] === dataSource && ele["AR"] === gwp);
+            return (ele["Party"] === country && parseInt(ele["Year"]) === parseInt(year) && ele["DataSource"] === dataSource && ele["AR"] === gwp);
         });
         setExportData(data);
-
-        str = str.sort((a, b) => {
-            if (a > b)
-                return 1;
-            else return -1;
-        })
 
         let afoluData = data.filter((ele) => {
             return (ele["Category"] === consts.CATEGORY_AFOLU);
@@ -129,7 +117,7 @@ const HomeComponent = ({ country }) => {
             tmpItem["label"] = item["Category"];
             tmpItem["value"] = parseFloat(item["EmissionCategoryMtCO2e"]);
             tmpItem["percentValue"] = (parseFloat(item["EmissionCategoryMtCO2e"]) / parseFloat(item["TotalEmissionsMtCO2e"]) * 100).toFixed(2);
-            tmpItem["color"] = item["HEX"];
+            tmpItem["color"] = item["HEX_Donut"];
             if (!set.has(item["Category"])) {
                 set.add(item["Category"]);
                 arr.push(tmpItem);
@@ -138,9 +126,9 @@ const HomeComponent = ({ country }) => {
         })
         let captionStr = `<b>${country}'s Total GHG emissions in ${year}</b>{br}`;
         if (data.length > 0) {
-            
-            captionStr += data[0]["TotalEmissionsMtCO2e"].toString() + `Mt CO<sub>2</sub>e`;
-            subCaptionStr = "{br}" + data[0]["TotalEmissionsCapitatCO2e_cap"].toString() + " t CO<sub>2</sub>e/cap";
+
+            captionStr += data[0]["TotalEmissionsMtCO2e"] + `Mt CO<sub>2</sub>e`;
+            subCaptionStr = "{br}" + data[0]["TotalEmissionsCapitatCO2e_cap"] + " t CO<sub>2</sub>e/cap";
         }
         setChartConfigs({
             ...chartConfigs, dataSource: {
@@ -283,6 +271,8 @@ const HomeComponent = ({ country }) => {
                                             <div className="text-md col-span-2 font-normal">
                                                 <span>Total Net: {AFOLUData[0]["TotalNetAFOLUMtCO2e"]} Mt CO<sub>2</sub>e</span>
                                             </div>
+
+                                            {/* AFOLU Emissions Section */}
                                             <div className="px-3 col-span-2 xs:col-span-1" style={{ minHeight: "200px" }}>
                                                 <div className="text-sm my-3"><b>AFOLU Emissions</b></div>
                                                 <div className="text-xs mb-3 text-[#113458]"><b>
@@ -304,27 +294,35 @@ const HomeComponent = ({ country }) => {
                                                 </div>
                                             </div>
 
+                                            {/* AFOLU Removals Section */}
                                             <div className="px-3 col-span-2 xs:col-span-1" style={{ minHeight: "200px" }}>
-                                                <div className="text-sm my-3"><b>AFOLU Removals</b></div>
-                                                <div className="text-xs mb-3 text-[#113458]"><b>
-                                                    {AFOLUData[0]["TotalAFOLURemovalsMtCO2e"]} Mt CO<sub>2</sub>e
-                                                </b></div>
-                                                <div className="w-full" style={{ height: `${height2}px` }}>
-                                                    {
-                                                        AFOLUData.map((item, idx) => (
-                                                            <span key={"SinksForRemovals" + idx}>
-                                                                {(parseFloat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
-                                                                    <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"]) * 100) : 0}%`, backgroundColor: `${item["HEX"]}` }}>
-                                                                        {Math.abs((height1 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"])).toFixed(2)) > 20 ? <span className="text-[#113458]">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : ""}
-                                                                    </div>
-                                                                    : ""
-                                                                }
-                                                            </span>
-                                                        ))
-                                                    }
-                                                </div>
-                                                <div className="w-full bg-opacity-10" style={{ backgroundImage: "url(../)", height: `${height1 - height2}px` }}></div>
+                                                {AFOLUData[0]["TotalAFOLURemovalsMtCO2e"] != 0 ?
+                                                    <>
+                                                        <div className="text-sm my-3"><b>AFOLU Removals</b></div>
+                                                        <div className="text-xs mb-3 text-[#113458]"><b>
+                                                            {AFOLUData[0]["TotalAFOLURemovalsMtCO2e"]} Mt CO<sub>2</sub>e
+                                                        </b></div>
+                                                        <div className="w-full" style={{ height: `${height2}px` }}>
+                                                            {
+                                                                AFOLUData.map((item, idx) => (
+                                                                    <span key={"SinksForRemovals" + idx}>
+                                                                        {(parseFloat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
+                                                                            <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"]) * 100) : 0}%`, backgroundColor: `${item["HEX"]}` }}>
+                                                                                {Math.abs((height2 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"])).toFixed(2)) > 20 ? <span className="text-[#113458]">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : ""}
+                                                                            </div>
+                                                                            : ""
+                                                                        }
+                                                                    </span>
+                                                                ))
+                                                            }
+                                                        </div>
+                                                        <div className="w-full bg-opacity-10" style={{ backgroundImage: "url(../)", height: `${height1 - height2}px` }}></div>
+                                                    </> :
+                                                    ""
+                                                }
                                             </div>
+
+                                            {/* Legend for AFOLU Emissions */}
                                             <div className="text-left my-3 px-3">
                                                 {
                                                     AFOLUData.map((item, idx) => (
@@ -341,22 +339,29 @@ const HomeComponent = ({ country }) => {
                                                     ))
                                                 }
                                             </div>
-                                            <div className="text-left my-3 px-3">
-                                                {
-                                                    AFOLUData.map((item, idx) => (
-                                                        <div key={"left" + idx}>
-                                                            {(parseFloat(item["AFOLURemovalsMtCO2e"]) != 0) ?
-                                                                <div className="flex mt-2 items-center">
-                                                                    <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${item["HEX"]}` }}>
-                                                                    </div>
-                                                                    <p className="text-xs pl-2">{item["SubCategory"]}</p>
+
+                                            {/* Legend for AFOLU Removals */}
+                                            {AFOLUData[0]["TotalAFOLURemovalsMtCO2e"] != 0 ?
+                                                <>
+                                                    <div className="text-left my-3 px-3">
+                                                        {
+                                                            AFOLUData.map((item, idx) => (
+                                                                <div key={"left" + idx}>
+                                                                    {(parseFloat(item["AFOLURemovalsMtCO2e"]) != 0) ?
+                                                                        <div className="flex mt-2 items-center">
+                                                                            <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${item["HEX"]}` }}>
+                                                                            </div>
+                                                                            <p className="text-xs pl-2">{item["SubCategory"]}</p>
+                                                                        </div>
+                                                                        : ""
+                                                                    }
                                                                 </div>
-                                                                : ""
-                                                            }
-                                                        </div>
-                                                    ))
-                                                }
-                                            </div>
+                                                            ))
+                                                        }
+                                                    </div>
+                                                </> :
+                                                ""
+                                            }
                                         </> :
                                         <>
                                             <div className="text-lg mt-3 pl-3 col-span-2 font-normal"><b>No AFOLU Data</b></div>
