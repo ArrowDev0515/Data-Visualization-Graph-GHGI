@@ -45,7 +45,7 @@ const ModalComponent = ({title, content, isModalOpen, closeModal}) => {
                   <div className="mt-4 flex justify-end text-[#113458]">
                     <button
                       type="button"
-                      className="rounded-lg bg-[#04A675] px-3 py-1.5 text-sm font-medium hover:text-white"
+                      className="rounded-lg bg-[#f4cc13] px-3 py-1.5 text-sm font-medium hover:text-white"
                       onClick={closeModal}
                     >
                       Got it, thanks!
