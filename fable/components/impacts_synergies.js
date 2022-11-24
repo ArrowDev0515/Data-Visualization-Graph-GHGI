@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic.js";
 import { ArrowDownTrayIcon, ArrowDownIcon, ArrowUpIcon, MinusIcon } from "@heroicons/react/20/solid";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import ModalComponent from "./modal_component";
+
+import { exportToCSV } from "../utils/exportCSV";
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
 const consts = require("../consts/consts");
@@ -12,7 +16,7 @@ const ImpactsAndSynergiesComponent = ({ country }) => {
     const [unit, setUnit] = useState(consts.UNIT_TCH4_HA);
     const [inout, setInOut] = useState(consts.IN_OUT_OPTION_INPUT);
     const [exportData, setExportData] = useState([]);
-    const [data, setData] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [chartConfigs, setChartConfigs] = useState({
         type: "scatter",
@@ -115,6 +119,15 @@ const ImpactsAndSynergiesComponent = ({ country }) => {
         });
     }
 
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
+
+
     // const unitChange = (e) => {
     //     setUnit(e.target.value);
     // }
@@ -170,6 +183,13 @@ const ImpactsAndSynergiesComponent = ({ country }) => {
                 );
         }
     }
+
+    const modalContent = <>
+        <div className="mt-5 text-[#113458]">
+            <b>Mitigation Option :</b> {mitigationOption}<br />
+        </div>
+    </>
+
     return (
         <>
             <div className="mt-10 px-5 py-3">
@@ -218,6 +238,21 @@ const ImpactsAndSynergiesComponent = ({ country }) => {
                             </select>
                         </div> */}
                     <div className="flex items-center ml-2.5">
+                        <button
+                            type="button"
+                            onClick={openModal}
+                            className="text-[#113458] hover:text-white focus:bg-gray-300 font-medium rounded-lg text-xs sm:text-sm px-1.5 py-1.5 text-center mr-2"
+                        >
+                            <span className="">
+                                <InformationCircleIcon
+                                    className="h-5 w-5 text-[#113458] hover:text-white"
+                                    aria-hidden="true"
+                                />
+                            </span>
+                        </button>
+
+                        <ModalComponent title={consts.MODAL_TITLE_IMPACTS_SYNERGIES} content={modalContent} isModalOpen={isModalOpen} closeModal={closeModal} />
+
                         <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-4 py-1.5 text-center" onClick={downloadData}>
                             <span className="hidden xl:block">Download Data</span>
                             <span className="xl:hidden">

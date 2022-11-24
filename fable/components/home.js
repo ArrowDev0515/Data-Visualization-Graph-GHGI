@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic.js";
 import { exportToCSV } from "../utils/exportCSV";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import ModalComponent from "./modal_component";
 
 const utils = require("../utils/utils");
 // const dataSrc = require("../consts/221121_HomePage2.json");
@@ -22,6 +24,7 @@ const HomeComponent = ({ country }) => {
     const [yearList, setYearList] = useState([]);
     const [gwpList, setGwpList] = useState([]);
     const [dataSourceList, setDataSourceList] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [chartConfigs, setChartConfigs] = useState({
         type: "doughnut2d",
@@ -146,6 +149,15 @@ const HomeComponent = ({ country }) => {
         }
     }, [AFOLUData]);
 
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
+
+
     const dataSourceChange = (e) => {
         setDataSource(e.target.value);
     }
@@ -164,6 +176,14 @@ const HomeComponent = ({ country }) => {
             fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
         exportToCSV(exportData, fileName);
     }
+
+    const modalContent = <>
+        <div className="mt-5 text-[#113458]">
+            <b>Country :</b> {country}<br />
+            <b>Year :</b> {year}<br />
+            <b>GWP :</b> {gwp}<br />
+        </div>
+    </>
 
     return (
         <>
@@ -210,6 +230,21 @@ const HomeComponent = ({ country }) => {
                                 </select>
                             </div>
                             <div className="flex items-center">
+                                <button
+                                    type="button"
+                                    onClick={openModal}
+                                    className="text-[#113458] hover:text-white focus:bg-gray-300 font-medium rounded-lg text-xs sm:text-sm px-1.5 py-1.5 text-center mr-2"
+                                >
+                                    <span className="">
+                                        <InformationCircleIcon
+                                            className="h-5 w-5 text-[#113458] hover:text-white"
+                                            aria-hidden="true"
+                                        />
+                                    </span>
+                                </button>
+
+                                <ModalComponent title={consts.MODAL_TITLE_OVERVIEW} content={modalContent} isModalOpen={isModalOpen} closeModal={closeModal} />
+
                                 <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-4 py-1.5 text-center" onClick={downloadData}>
                                     <span className="hidden xl:block">Download Data</span>
                                     <span className="xl:hidden">

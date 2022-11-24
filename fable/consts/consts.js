@@ -25,6 +25,10 @@ export const YEAR_LIST = [
 export const AR_5 = "AR5";
 export const AR_LIST = [AR_5];
 
+export const MODAL_TITLE_MITIGATION_POTENTIAL = "Mitigation Potential Per AFOLU Sector Data";
+export const MODAL_TITLE_IMPACTS_SYNERGIES = "Trade - offs and synergies for specific mitigation option";
+export const MODAL_TITLE_OVERVIEW = "Overview of total greenhouse gas emissions and role of AFOLU";
+
 export const DATA_SOURCE_FAO = "FAO";
 export const DATA_SOURCE_IPCC = "IPCC";
 export const DATA_SOURCE_UNFCCC = "UNFCCC";

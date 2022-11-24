@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic.js";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
+
+import { exportToCSV } from "../utils/exportCSV";
+import ModalComponent from "./modal_component";
 const dataSrc = require("../consts/221122_MitigationPotential.json");
 const consts = require("../consts/consts");
 
@@ -17,6 +21,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
     const [farmingSystem, setFarmingSystem] = useState(consts.FARMING_SYSTEM_CONVENTIONAL_RICE);
     const [farmingSystemList, setFarmingSystemList] = useState([]);
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [exportData, setExportData] = useState([]);
     const [chartConfigs1, setChartConfigs1] = useState({
         type: "scatter",
@@ -27,7 +32,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
 
         dataSource: {
             chart: {
-                caption: " ",
+                caption: `Current Emission Factor for ${country}`,
                 captionFontColor: "#113458",
                 divLineColor: "#113458",
                 xAxisNameFontColor: "#113458",
@@ -35,13 +40,17 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 yAxisNameFontColor: "#113458",
                 yAxisValueFontColor: "#113458",
                 legendItemFontColor: "#113458",
+                yAxisMaxValue: "6000",
+                yAxisMinValue: "0",
                 bgColor: "#000000",
                 bgAlpha: "0",
                 labelFontSize: "12",
                 labelFontColor: "#113458",
-                yaxisname: consts.UNIT_TCH4_HA,
+                yaxisname: consts.UNIT_CH4_HA,
                 plotHighlightEffect: "fadeout|borderColor=ff0000, borderAlpha=50",
                 interactiveLegend: 0,
+                numberScaleUnit: ",M,B",
+                showLegend: "0",
                 ynumberprefix: "",
                 xnumbersuffix: "",
                 theme: "fusion",
@@ -80,7 +89,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         dataSource: {
             numDivLines: "4",
             chart: {
-                caption: consts.CAPTION_TEXT_EMISSION_REDUCTION_POTENTIAL,
+                caption: `${consts.CAPTION_TEXT_EMISSION_REDUCTION_POTENTIAL}{br} {br}`,
                 captionFontColor: "#113458",
                 divLineColor: "#113458",
                 xAxisNameFontColor: "#ff0000",
@@ -90,6 +99,8 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 yAxisNameFontColor: "#113458",
                 yAxisValueFontColor: "#113458",
                 legendItemFontColor: "#113458",
+                yAxisMaxValue: "6000",
+                yAxisMinValue: "0",
                 bgColor: "#000000",
                 bgAlpha: "0",
                 labelFontSize: "12",
@@ -97,6 +108,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 yaxisname: consts.UNIT_CH4_HA,
                 plotHighlightEffect: "fadeout|borderColor=ff0000, borderAlpha=50",
                 interactiveLegend: 0,
+                numberScaleUnit: ",M,B",
                 ynumberprefix: "",
                 xnumbersuffix: "",
                 theme: "fusion",
@@ -178,8 +190,6 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     categoryData1.push({ x: (key1 * 20).toString(), label: item["DataSource"] });
                 }
             } else {
-                // console.log(data, item, xLabels2, item["MitigationOption"]);
-
                 if (!xLabels2.has(item["MitigationOption"])) {
                     key2++;
                     xLabels2.set(item["MitigationOption"], key2);
@@ -198,7 +208,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         let dataArrForMedian2 = [];
         let dataArrForAverage = [];
 
-        let yMax1 = 0, yMax2 = 0;
+        let yMax1 = 0, yMax2 = 0, yMax = 0;
         let yMin1 = 99999999, yMin2 = 99999999;
         data.map((ele) => {
             if (ele["DataSource"] === consts.DATA_SOURCE_FAO || ele["DataSource"] === consts.DATA_SOURCE_IPCC) {
@@ -206,71 +216,81 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     return e["label"] == ele["DataSource"];
                 })["x"];
                 dataArrForMedian1.push({ x: xValue, y: ele["Average"] });
-                if (ele["Average"] > yMax1) {
-                    yMax1 = ele["Average"];
+                if (ele["Average"] > yMax) {
+                    yMax = ele["Average"];
                 }
-                if (ele["Average"] < yMin1) {
-                    yMin1 = ele["Average"];
-                }
+                // if (ele["Average"] > yMax1) {
+                //     yMax1 = ele["Average"];
+                // }
+                // if (ele["Average"] < yMin1) {
+                //     yMin1 = ele["Average"];
+                // }
             } else {
                 let xValue = categoryData2.find((e) => {
                     return e["label"] == ele["MitigationOption"];
                 })["x"];
                 if (ele["Max"]) {
                     dataArrForMax.push({ x: xValue, y: ele["Max"] });
-                    if (ele["Max"] > yMax2) {
-                        yMax2 = ele["Max"];
+                    if (ele["Max"] > yMax) {
+                        yMax = ele["Max"];
                     }
-                    if (ele["Max"] < yMin2) {
-                        yMin2 = ele["Max"];
-                    }
+                    // if (ele["Max"] > yMax2) {
+                    //     yMax2 = ele["Max"];
+                    // }
+                    // if (ele["Max"] < yMin2) {
+                    //     yMin2 = ele["Max"];
+                    // }
                 }
                 if (ele["Min"]) {
                     dataArrForMin.push({ x: xValue, y: ele["Min"] });
-                    if (ele["Min"] > yMax2) {
-                        yMax2 = ele["Min"];
+                    if (ele["Min"] > yMax) {
+                        yMax = ele["Min"];
                     }
-                    if (ele["Min"] < yMin2) {
-                        yMin2 = ele["Min"];
-                    }
+                    // if (ele["Min"] > yMax2) {
+                    //     yMax2 = ele["Min"];
+                    // }
+                    // if (ele["Min"] < yMin2) {
+                    //     yMin2 = ele["Min"];
+                    // }
                 }
                 if (ele["Median"]) {
                     dataArrForMedian2.push({ x: xValue, y: ele["Median"] });
-                    if (ele["Median"] > yMax2) {
-                        yMax2 = ele["Median"];
+                    if (ele["Median"] > yMax) {
+                        yMax = ele["Median"];
                     }
-                    if (ele["Median"] < yMin2) {
-                        yMin2 = ele["Median"];
-                    }
+                    // if (ele["Median"] > yMax2) {
+                    //     yMax2 = ele["Median"];
+                    // }
+                    // if (ele["Median"] < yMin2) {
+                    //     yMin2 = ele["Median"];
+                    // }
                 }
                 if (ele["Average"]) {
                     dataArrForAverage.push({ x: xValue, y: ele["Average"] });
-                    if (ele["Average"] > yMax2) {
-                        yMax2 = ele["Average"];
+                    if (ele["Average"] > yMax) {
+                        yMax = ele["Average"];
                     }
-                    if (ele["Average"] < yMin2) {
-                        yMin2 = ele["Average"];
-                    }
+                    // if (ele["Average"] > yMax2) {
+                    //     yMax2 = ele["Average"];
+                    // }
+                    // if (ele["Average"] < yMin2) {
+                    //     yMin2 = ele["Average"];
+                    // }
                 }
             }
         });
-
-        // console.log("dataArrForMax", dataArrForMax);
-        // console.log("dataArrForMin", dataArrForMin);
-        // console.log("dataArrForMedian2", dataArrForMedian2);
-        // console.log("dataArrForAverage", dataArrForAverage);
-
         setChartConfigs1({
             ...chartConfigs1, dataSource: {
                 ...chartConfigs1.dataSource,
                 chart: {
                     ...chartConfigs1.dataSource.chart,
-                    yAxisMaxValue: yMax1,
-                    yAxisMinValue: yMin1
+                    // yAxisMaxValue: yMax,
+                    // yAxisMaxValue: yMax1,
+                    // yAxisMinValue: yMin1
                 },
                 categories: [{ category: categoryData1 }],
                 dataset: [
-                    { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForMedian1, anchorsides: 2, anchorradius: 5 }
+                    { seriesname: "Average", anchorbgcolor: "#666666", data: dataArrForMedian1, anchorsides: 4, anchorstartangle: 45, anchorradius: 5 }
                 ],
             }
         });
@@ -280,8 +300,9 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 ...chartConfigs2.dataSource,
                 chart: {
                     ...chartConfigs2.dataSource.chart,
-                    yAxisMaxValue: yMax2,
-                    yAxisMinValue: yMin2
+                    // yAxisMaxValue: yMax,
+                    // yAxisMaxValue: yMax2,
+                    // yAxisMinValue: yMin2
                 },
                 categories: [{ category: categoryData2 }],
                 dataset: [
@@ -332,6 +353,14 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         })
     }, [unit]);
 
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
+
     const unitChange = (e) => {
         setUnit(e.target.value);
     }
@@ -351,6 +380,14 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         exportToCSV(exportData, fileName);
     }
 
+    const modalContent = <>
+        <div className="mt-5 text-[#113458]">
+            <b>Country :</b> {country}<br />
+            <b>Farming System :</b> {farmingSystem}<br />
+            <b>Unit :</b> {unit}<br />
+        </div>
+    </>
+
     return (
         <>
             <div className="mt-10 px-5 py-3">
@@ -360,15 +397,42 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
             </div>
             {/* <div className="grid grid-cols-6 bg-gray-800 bg-opacity-10 rounded-xl py-3 px-3 sm:px-5 mt-12 items-center justify-center"> */}
             <div className="grid grid-cols-12 rounded-xl px-3 sm:px-5 justify-center">
-                <div className="flex items-center col-span-12 ml-2.5 mb-2.5">
-                    <label htmlFor="countries" className="text-xs sm:text-sm font-medium text-[#113458] mr-2.5">AFOLU Sector: </label>
-                    <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={afoluSectorOptionChange} value={AFOLUSector}>
-                        {
-                            AFOLUSectorList.map((optionItem, idx) => (
-                                <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
-                            ))
-                        }
-                    </select>
+                <div className="flex col-span-12 ml-2.5 mb-2.5 justify-between">
+                    <div className="flex items-center ">
+                        <label htmlFor="countries" className="text-xs sm:text-sm font-medium text-[#113458] mr-2.5">AFOLU Sector: </label>
+                        <select id="mitigationOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={afoluSectorOptionChange} value={AFOLUSector}>
+                            {
+                                AFOLUSectorList.map((optionItem, idx) => (
+                                    <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
+                                ))
+                            }
+                        </select></div>
+                    <div className="flex items-center ml-2.5">
+                        <button
+                            type="button"
+                            onClick={openModal}
+                            className="text-[#113458] hover:text-white focus:bg-gray-300 font-medium rounded-lg text-xs sm:text-sm px-1.5 py-1.5 text-center mr-2"
+                        >
+                            <span className="">
+                                <InformationCircleIcon
+                                    className="h-5 w-5 text-[#113458] hover:text-white"
+                                    aria-hidden="true"
+                                />
+                            </span>
+                        </button>
+
+                        <ModalComponent title={consts.MODAL_TITLE_MITIGATION_POTENTIAL} content={modalContent} isModalOpen={isModalOpen} closeModal={closeModal} />
+
+                        <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-4 py-1.5 text-center" onClick={downloadData}>
+                            <span className="hidden xl:block">Download Data</span>
+                            <span className="xl:hidden">
+                                <ArrowDownTrayIcon
+                                    className="h-5 w-5 text-[#113458] hover:text-white"
+                                    aria-hidden="true"
+                                />
+                            </span>
+                        </button>
+                    </div>
                 </div>
                 <div className="hidden xs:block col-span-12 mb-3">
                     <div className="flex justify-between">
@@ -383,7 +447,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                                 </select>
                             </div> */}
                             <div className="flex items-center ml-2.5">
-                                <label htmlFor="countries" className="text-xs sm:text-sm font-medium text-[#113458] mr-2.5">Farming System: </label>
+                                <label htmlFor="countries" className="hidden sm:block text-xs sm:text-sm font-medium text-[#113458] mr-2.5">Farming System: </label>
                                 <select id="farmingSystemOptions" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={farmingSystemChange} value={farmingSystem}>
                                     {
                                         farmingSystemList.map((optionItem, idx) => (
@@ -393,7 +457,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                                 </select>
                             </div>
                             <div className="flex items-center ml-2.5">
-                                <label htmlFor="countries" className="text-xs sm:text-sm font-medium text-[#113458] mr-2.5">Unit : </label>
+                                <label htmlFor="countries" className="hidden sm:block text-xs sm:text-sm font-medium text-[#113458] mr-2.5">Unit : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" onChange={unitChange} value={unit}>
                                     {
                                         unitList.map((unitItem, idx) => (
@@ -403,18 +467,6 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                                 </select>
                             </div>
                         </div>
-
-                        <div className="flex items-center ml-2.5">
-                            <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-4 py-1.5 text-center" onClick={downloadData}>
-                                <span className="hidden xl:block">Download Data</span>
-                                <span className="xl:hidden">
-                                    <ArrowDownTrayIcon
-                                        className="h-5 w-5 text-[#113458] hover:text-white"
-                                        aria-hidden="true"
-                                    />
-                                </span>
-                            </button>
-                        </div>
                     </div>
                 </div>
                 <div className="grid col-span-12 xl:col-span-4 bg-gradient-to-t from-[#11345822] rounded-md text-[#113458] text-center items-center p-3 my-3" style={{ minHeight: `${400}px` }}>
@@ -422,13 +474,13 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     <b>Some Text Here!</b>
                 </div>
 
-                {(exportData && exportData.length) ? <div className="col-span-12 xl:col-span-8 bg-gradient-to-b from-[#11345822] grid grid-cols-12 rounded-md xl:ml-3">
-                    <div className="col-span-12 md:col-span-4">
+                {(exportData && exportData.length) ? <div className="col-span-12 xl:col-span-8 grid grid-cols-12 xl:ml-3">
+                    <div className="bg-gradient-to-b from-[#11345822] rounded-md col-span-12 md:col-span-4">
                         <div className="grid" style={{ minHeight: `${400}px` }}>
                             <FC chartConfigs={chartConfigs1}></FC>
                         </div>
                     </div>
-                    <div className="col-span-12 md:col-span-8">
+                    <div className="bg-gradient-to-b from-[#11345822] rounded-md col-span-12 md:col-span-8 md:ml-3">
                         <div className="grid" style={{ minHeight: `${400}px` }}>
                             <FC chartConfigs={chartConfigs2}></FC>
                         </div>

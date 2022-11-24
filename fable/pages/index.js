@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Header from '../components/header'
+import Header from '../components/header';
 import EmissionRedcutionPotentialComponent from '../components/emission_reduction_potential';
 import ImpactsAndSynergiesComponent from '../components/impacts_synergies';
 import DataExplorerComponent from '../components/data_explorer';
