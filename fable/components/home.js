@@ -7,7 +7,7 @@ import ModalComponent from "./modal_component";
 
 const utils = require("../utils/utils");
 // const dataSrc = require("../consts/221121_HomePage2.json");
-const dataSrc = require("../consts/221123_HomePage.json");
+const dataSrc = require("../consts/221125_HomePage.json");
 const consts = require("../consts/consts");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
@@ -258,9 +258,9 @@ const HomeComponent = ({ country }) => {
                         </div>
                     </div>
                     <div className="grid grid-cols-12" style={{ minHeight: "400px" }}>
-                        <div className="grid col-span-12 lg:col-span-4 bg-gradient-to-b lg:bg-gradient-to-r from-[#11345822] rounded-md text-[#113458] text-center items-center p-3 my-3">
+                        <div className="grid col-span-12 lg:col-span-4 bg-gradient-to-b lg:bg-gradient-to-r from-[#11345822] rounded-md text-[#113458] leading-loose p-3 my-3">
                             {/* <div className="grid col-span-12 lg:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3"> */}
-                            <b>Some Text Here!</b>
+                            {exportData.length ? exportData[0]["Text"] : <span className="text-[#11345822]"><i>No Data to Display</i></span>}
                         </div>
                         <div className="hidden md:block lg:hidden col-span-12 justify-self-end">
                             <div className="items-center flex">
