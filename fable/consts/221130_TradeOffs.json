@@ -1,0 +1,1058 @@
+[
+  {
+    "Country": "China",
+    "Mitig_Option": "ADW",
+    "Mitig_Option_FullName": "Alternate drying and wetting irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PFMSD",
+    "Mitig_Option_FullName": "Persistent flooding with midseason drainage",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ADW",
+    "Mitig_Option_FullName": "Alternate drying and wetting irrigation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CI",
+    "Mitig_Option_FullName": "Controlled irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "FI",
+    "Mitig_Option_FullName": "Flooding irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASR-W",
+    "Mitig_Option_FullName": "Annual straw incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASBBRR-W",
+    "Mitig_Option_FullName": "Annual straw-based biogas residues incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "BDF",
+    "Mitig_Option_FullName": "Biodegradable film",
+    "FarmingSystem": "Ground cover rice production system",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "TSWD",
+    "Mitig_Option_FullName": "Thin-shallow-wet-dry",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CFMSD",
+    "Mitig_Option_FullName": "Continuously flooded with midseason drainage",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASR-W",
+    "Mitig_Option_FullName": "Annual straw incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASBBRR-W",
+    "Mitig_Option_FullName": "Annual straw-based biogas residues incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-F",
+    "Mitig_Option_FullName": "Rice-Fallow rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-GM",
+    "Mitig_Option_FullName": "Rice-green manure rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "FMSDII",
+    "Mitig_Option_FullName": "Flood for transplanting and tillering, drainage during the midseason, and intermittent irrigation after midseason",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CISB",
+    "Mitig_Option_FullName": "Controlled irrigation with straw biochar",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PTSI",
+    "Mitig_Option_FullName": "Plough tillage with straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PT",
+    "Mitig_Option_FullName": "Plough tillage without straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "RPF",
+    "Mitig_Option_FullName": "Regular Polyethylene film",
+    "FarmingSystem": "Ground cover rice production system",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-F",
+    "Mitig_Option_FullName": "Rice-Fallow rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CFMSD",
+    "Mitig_Option_FullName": "Continuously flooded with midseason drainage",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-GM",
+    "Mitig_Option_FullName": "Rice-green manure rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "RTSI",
+    "Mitig_Option_FullName": "Rotary tillage with straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "TSWD",
+    "Mitig_Option_FullName": "Thin-shallow-wet-dry",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Irrigation Water (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ADW",
+    "Mitig_Option_FullName": "Alternate drying and wetting irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PFMSD",
+    "Mitig_Option_FullName": "Persistent flooding with midseason drainage",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ADW",
+    "Mitig_Option_FullName": "Alternate drying and wetting irrigation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CI",
+    "Mitig_Option_FullName": "Controlled irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "FI",
+    "Mitig_Option_FullName": "Flooding irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASR-W",
+    "Mitig_Option_FullName": "Annual straw incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASBBRR-W",
+    "Mitig_Option_FullName": "Annual straw-based biogas residues incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "BDF",
+    "Mitig_Option_FullName": "Biodegradable film",
+    "FarmingSystem": "Ground cover rice production system",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "TSWD",
+    "Mitig_Option_FullName": "Thin-shallow-wet-dry",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CFMSD",
+    "Mitig_Option_FullName": "Continuously flooded with midseason drainage",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASR-W",
+    "Mitig_Option_FullName": "Annual straw incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASBBRR-W",
+    "Mitig_Option_FullName": "Annual straw-based biogas residues incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-F",
+    "Mitig_Option_FullName": "Rice-Fallow rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 1,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-GM",
+    "Mitig_Option_FullName": "Rice-green manure rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "FMSDII",
+    "Mitig_Option_FullName": "Flood for transplanting and tillering, drainage during the midseason, and intermittent irrigation after midseason",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CISB",
+    "Mitig_Option_FullName": "Controlled irrigation with straw biochar",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PTSI",
+    "Mitig_Option_FullName": "Plough tillage with straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PT",
+    "Mitig_Option_FullName": "Plough tillage without straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "RPF",
+    "Mitig_Option_FullName": "Regular Polyethylene film",
+    "FarmingSystem": "Ground cover rice production system",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-F",
+    "Mitig_Option_FullName": "Rice-Fallow rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CFMSD",
+    "Mitig_Option_FullName": "Continuously flooded with midseason drainage",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-GM",
+    "Mitig_Option_FullName": "Rice-green manure rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "RTSI",
+    "Mitig_Option_FullName": "Rotary tillage with straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "TSWD",
+    "Mitig_Option_FullName": "Thin-shallow-wet-dry",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Nitrogen Use Efficiency (Input)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ADW",
+    "Mitig_Option_FullName": "Alternate drying and wetting irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PFMSD",
+    "Mitig_Option_FullName": "Persistent flooding with midseason drainage",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ADW",
+    "Mitig_Option_FullName": "Alternate drying and wetting irrigation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CI",
+    "Mitig_Option_FullName": "Controlled irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "FI",
+    "Mitig_Option_FullName": "Flooding irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 1,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASR-W",
+    "Mitig_Option_FullName": "Annual straw incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASBBRR-W",
+    "Mitig_Option_FullName": "Annual straw-based biogas residues incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "BDF",
+    "Mitig_Option_FullName": "Biodegradable film",
+    "FarmingSystem": "Ground cover rice production system",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "TSWD",
+    "Mitig_Option_FullName": "Thin-shallow-wet-dry",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CFMSD",
+    "Mitig_Option_FullName": "Continuously flooded with midseason drainage",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASR-W",
+    "Mitig_Option_FullName": "Annual straw incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASBBRR-W",
+    "Mitig_Option_FullName": "Annual straw-based biogas residues incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-F",
+    "Mitig_Option_FullName": "Rice-Fallow rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-GM",
+    "Mitig_Option_FullName": "Rice-green manure rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "FMSDII",
+    "Mitig_Option_FullName": "Flood for transplanting and tillering, drainage during the midseason, and intermittent irrigation after midseason",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CISB",
+    "Mitig_Option_FullName": "Controlled irrigation with straw biochar",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PTSI",
+    "Mitig_Option_FullName": "Plough tillage with straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PT",
+    "Mitig_Option_FullName": "Plough tillage without straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "RPF",
+    "Mitig_Option_FullName": "Regular Polyethylene film",
+    "FarmingSystem": "Ground cover rice production system",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-F",
+    "Mitig_Option_FullName": "Rice-Fallow rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CFMSD",
+    "Mitig_Option_FullName": "Continuously flooded with midseason drainage",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-GM",
+    "Mitig_Option_FullName": "Rice-green manure rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "RTSI",
+    "Mitig_Option_FullName": "Rotary tillage with straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 1,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "TSWD",
+    "Mitig_Option_FullName": "Thin-shallow-wet-dry",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Yield (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ADW",
+    "Mitig_Option_FullName": "Alternate drying and wetting irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PFMSD",
+    "Mitig_Option_FullName": "Persistent flooding with midseason drainage",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ADW",
+    "Mitig_Option_FullName": "Alternate drying and wetting irrigation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CI",
+    "Mitig_Option_FullName": "Controlled irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "FI",
+    "Mitig_Option_FullName": "Flooding irrigation",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASR-W",
+    "Mitig_Option_FullName": "Annual straw incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 1,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASBBRR-W",
+    "Mitig_Option_FullName": "Annual straw-based biogas residues incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "BDF",
+    "Mitig_Option_FullName": "Biodegradable film",
+    "FarmingSystem": "Ground cover rice production system",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "TSWD",
+    "Mitig_Option_FullName": "Thin-shallow-wet-dry",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CF",
+    "Mitig_Option_FullName": "Continuously flooded",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 0,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CFMSD",
+    "Mitig_Option_FullName": "Continuously flooded with midseason drainage",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASR-W",
+    "Mitig_Option_FullName": "Annual straw incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "ASBBRR-W",
+    "Mitig_Option_FullName": "Annual straw-based biogas residues incorporating in rice-wheat rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-F",
+    "Mitig_Option_FullName": "Rice-Fallow rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-GM",
+    "Mitig_Option_FullName": "Rice-green manure rotation system",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 4,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "FMSDII",
+    "Mitig_Option_FullName": "Flood for transplanting and tillering, drainage during the midseason, and intermittent irrigation after midseason",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CISB",
+    "Mitig_Option_FullName": "Controlled irrigation with straw biochar",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 5,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PTSI",
+    "Mitig_Option_FullName": "Plough tillage with straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 1,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "PT",
+    "Mitig_Option_FullName": "Plough tillage without straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "RPF",
+    "Mitig_Option_FullName": "Regular Polyethylene film",
+    "FarmingSystem": "Ground cover rice production system",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-F",
+    "Mitig_Option_FullName": "Rice-Fallow rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "CFMSD",
+    "Mitig_Option_FullName": "Continuously flooded with midseason drainage",
+    "FarmingSystem": "Conventional rice farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "R-GM",
+    "Mitig_Option_FullName": "Rice-green manure rotation system",
+    "FarmingSystem": "Integrated rice-duck farming",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "RTSI",
+    "Mitig_Option_FullName": "Rotary tillage with straw incorporation",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 2,
+    "DescriptionText": "Insert some text here"
+  },
+  {
+    "Country": "China",
+    "Mitig_Option": "TSWD",
+    "Mitig_Option_FullName": "Thin-shallow-wet-dry",
+    "FarmingSystem": "Double rice cropping",
+    "NonGHGIndicator": "Aboveground Biomass (Output)",
+    "AFOLU_Sector": "Rice Cultivation",
+    "Magnitude": 3,
+    "DescriptionText": "Insert some text here"
+  }
+]

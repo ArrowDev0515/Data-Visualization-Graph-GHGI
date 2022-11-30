@@ -8,115 +8,124 @@ import { exportToCSV } from "../utils/exportCSV";
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
 const consts = require("../consts/consts");
-const dataSrc = require("../consts/Data_TradeoffSynergies.json");
+const dataSrc = require("../consts/221130_TradeOffs.json");
 
 
-const ImpactsAndSynergiesComponent = ({ country }) => {
-    const [mitigationOption, setMitigationOption] = useState(consts.MITIGATION_OPTION_RICE_FALLOW);
-    const [unit, setUnit] = useState(consts.UNIT_TCH4_HA);
-    const [inout, setInOut] = useState(consts.IN_OUT_OPTION_INPUT);
+const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) => {
+    const [mitigationOption, setMitigationOption] = useState(consts.MITIGATION_OPTION_TSWD);
+    const [mitigationOptionList, setMitigationOptionList] = useState([]);
+    // const [inout, setInOut] = useState(consts.IN_OUT_OPTION_INPUT);
     const [exportData, setExportData] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const [chartConfigs, setChartConfigs] = useState({
-        type: "scatter",
-        width: "99%",
-        height: "100%",
-        dataFormat: "JSON",
-        containerBackgroundOpacity: "0",
-        dataSource: {
-            chart: {
-                caption: inout == consts.IN_OUT_OPTION_OUTPUT ? consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_OUTPUT :
-                    consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_INPUT,
-                captionFontColor: "#113458",
-                xAxisNameFontColor: "#113458",
-                yAxisMaxValue: 5,
-                divLineColor: "#113458",
-                xAxisValueFontColor: "#113458",
-                yAxisNameFontColor: "#113458",
-                yAxisValueFontColor: "#113458",
-                yAxisName: "Gradient",
-                xAxisPosition: "right",
-                legendItemFontColor: "#113458",
-                bgColor: "#000000",
-                bgAlpha: "0",
-                labelFontSize: "12",
-                labelFontColor: "#113458",
-                ynumberprefix: "",
-                xnumbersuffix: "",
-                theme: "fusion",
-                legendIconSides: 5,
-                plottooltext:
-                    "Gradient Value : <b>$yDataValue</b>"
-            },
-            categories: [
-                {
-                    category: []
-                }
-            ],
-            dataset: [
-                {
-                    seriesname: "",
-                    anchorbgcolor: "",
-                    data: []
-                },
-                {
-                    seriesname: "",
-                    anchorbgcolor: "",
-                    data: []
-                }
-            ]
-        }
-    });
+    // const [chartConfigs, setChartConfigs] = useState({
+    //     type: "scatter",
+    //     width: "99%",
+    //     height: "100%",
+    //     dataFormat: "JSON",
+    //     containerBackgroundOpacity: "0",
+    //     dataSource: {
+    //         chart: {
+    //             caption: inout == consts.IN_OUT_OPTION_OUTPUT ? consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_OUTPUT :
+    //                 consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_INPUT,
+    //             captionFontColor: "#113458",
+    //             xAxisNameFontColor: "#113458",
+    //             yAxisMaxValue: 5,
+    //             divLineColor: "#113458",
+    //             xAxisValueFontColor: "#113458",
+    //             yAxisNameFontColor: "#113458",
+    //             yAxisValueFontColor: "#113458",
+    //             yAxisName: "Gradient",
+    //             xAxisPosition: "right",
+    //             legendItemFontColor: "#113458",
+    //             bgColor: "#000000",
+    //             bgAlpha: "0",
+    //             labelFontSize: "12",
+    //             labelFontColor: "#113458",
+    //             ynumberprefix: "",
+    //             xnumbersuffix: "",
+    //             theme: "fusion",
+    //             legendIconSides: 5,
+    //             plottooltext:
+    //                 "Gradient Value : <b>$yDataValue</b>"
+    //         },
+    //         categories: [
+    //             {
+    //                 category: []
+    //             }
+    //         ],
+    //         dataset: [
+    //             {
+    //                 seriesname: "",
+    //                 anchorbgcolor: "",
+    //                 data: []
+    //             },
+    //             {
+    //                 seriesname: "",
+    //                 anchorbgcolor: "",
+    //                 data: []
+    //             }
+    //         ]
+    //     }
+    // });
 
     useEffect(() => {
         generateChartData();
-    }, [country, unit, inout, mitigationOption]);
+    }, [country, AFOLUSector, farmingSystem, mitigationOption]);
 
     const generateChartData = async () => {
+        let mitigationOptionArr = [];
+        mitigationOptionArr = dataSrc.map((ele) => {
+            return ele["Mitig_Option"];
+        }).reduce(
+            (arr, item) => (arr.includes(item) ? arr : [...arr, item]),
+            [],
+        );
+        setMitigationOptionList(mitigationOptionArr);
+
         //Filter Data with Select
         let data = dataSrc.filter((ele) => {
-            return (ele["Country"] === country && ele["Unit"] === unit && ele["MitigationOption"] === mitigationOption);
+            return (ele["Country"] === country && ele["Mitig_Option"] === mitigationOption && ele["AFOLU_Sector"] === AFOLUSector && ele["FarmingSystem"] === farmingSystem);
             // return (ele["Country"] === country && ele["Unit"] === unit && ele["Input_Output"] === inout && ele["MitigationOption"] === mitigationOption);
         });
         setExportData(data);
+        console.log(data);
+        // let xLabels = new Map();
+        // let categoryData = [];      // x Axis Label Array
+        // let key = 1;
+        // categoryData.push({ x: key.toString(), label: "" });
+        // data.map((item) => {
+        //     key++;
+        //     if (!xLabels.has(item["NonGHGIndicator"])) {
+        //         xLabels.set(item["NonGHGIndicator"], key);
+        //         categoryData.push({ x: key.toString(), label: item["NonGHGIndicator"] });
+        //     }
+        // });
+        // key++;
+        // categoryData.push({ x: key.toString(), label: "" });
+        // let dataArr = [];
 
-        let xLabels = new Map();
-        let categoryData = [];      // x Axis Label Array
-        let key = 1;
-        categoryData.push({ x: key.toString(), label: "" });
-        data.map((item) => {
-            key++;
-            if (!xLabels.has(item["Input_OutputName"])) {
-                xLabels.set(item["Input_OutputName"], key);
-                categoryData.push({ x: key.toString(), label: item["Input_OutputName"] });
-            }
-        });
-        key++;
-        categoryData.push({ x: key.toString(), label: "" });
-        let dataArr = [];
+        // data.map((ele) => {
+        //     let xValue = categoryData.find((e) => {
+        //         return e["label"] == ele["NonGHGIndicator"];
+        //     })["x"];
+        //     dataArr.push({ x: xValue, y: ele["Magnitude"] });
+        // });
 
-        data.map((ele) => {
-            let xValue = categoryData.find((e) => {
-                return e["label"] == ele["Input_OutputName"];
-            })["x"];
-            dataArr.push({ x: xValue, y: ele["Gradient"] });
-        });
-
-        setChartConfigs({
-            ...chartConfigs, dataSource: {
-                ...chartConfigs.dataSource,
-                categories: [{ category: categoryData }],
-                chart: {
-                    ...chartConfigs.dataSource.chart,
-                    caption: inout == consts.IN_OUT_OPTION_OUTPUT ? consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_OUTPUT :
-                        consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_INPUT,
-                },
-                dataset: [
-                    { seriesname: "", anchorbgcolor: consts.colors[0], data: dataArr, anchorsides: 2, anchorradius: 5 },
-                ]
-            }
-        });
+        // setChartConfigs({
+        //     ...chartConfigs, dataSource: {
+        //         ...chartConfigs.dataSource,
+        //         categories: [{ category: categoryData }],
+        //         chart: {
+        //             ...chartConfigs.dataSource.chart,
+        //             caption: inout == consts.IN_OUT_OPTION_OUTPUT ? consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_OUTPUT :
+        //                 consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_INPUT,
+        //         },
+        //         dataset: [
+        //             { seriesname: "", anchorbgcolor: consts.colors[0], data: dataArr, anchorsides: 2, anchorradius: 5 },
+        //         ]
+        //     }
+        // });
     }
 
     const openModal = () => {
@@ -181,6 +190,11 @@ const ImpactsAndSynergiesComponent = ({ country }) => {
                         <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                     </div>
                 );
+            case undefined:
+                return (<div>
+                    No Information
+                </div>
+                );
         }
     }
 
@@ -194,17 +208,17 @@ const ImpactsAndSynergiesComponent = ({ country }) => {
         <>
             <div className="mt-10 px-5 py-3">
                 <label htmlFor="countries" className="text-lg font-medium text-[#113458]">
-                    Trade - offs and synergies for specific mitigation option
+                    Trade-offs and synergies for specific mitigation option
                 </label>
             </div>
             {/* <div className="grid grid-cols-6 bg-[#113458] bg-opacity-10 rounded-xl py-3 px-3 sm:px-5 mt-12 items-center justify-center"> */}
             <div className="grid grid-cols-6 rounded-xl px-3 sm:px-5 justify-center">
                 <div className="col-span-6 flex justify-between">
                     <div className="flex items-center">
-                        <label htmlFor="countries" className="flex hidden md:block mx-2.5 text-sm font-medium text-[#113458]">Mitigation Option: </label>
+                        <label htmlFor="countries" className="flex hidden md:block mr-2.5 text-sm font-medium text-[#113458]">Mitigation Option: </label>
                         <select id="mitigationOptions" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
                             {
-                                consts.MITIGATION_OPTION_LIST2.map((optionItem, idx) => (
+                                mitigationOptionList.map((optionItem, idx) => (
                                     <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
                                 ))
                             }
@@ -272,32 +286,26 @@ const ImpactsAndSynergiesComponent = ({ country }) => {
                     {/* <FC chartConfigs={chartConfigs}></FC> */}
                     {(exportData && exportData.length) ?
                         <>
-                            <div className="overflow-x-auto relative rounded-t-xl">
+                            <div className="relative rounded-t-xl">
                                 <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
                                     <thead className="text-xs text-white uppercase bg-[#11345877] ">
                                         <tr>
                                             <th scope="col" className="py-3 px-6">
-                                                Field of Interactive effect
-                                            </th>
-                                            <th scope="col" className="py-3 px-6">
-                                                Type of link
+                                                Non GHG Indicator
                                             </th>
                                             <th scope="col" className="py-3 px-6">
                                                 Magnitude
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-gradient-to-b from-[#11345822]">
+                                    <tbody className="bg-gradient-to-b bg-[#11345822] rounded-b-sm">
                                         {exportData.map((element, idx) => (
-                                            <tr key={idx}>
+                                            <tr key={idx} className="border-t border-gray-400">
                                                 <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap">
-                                                    {element["Input_OutputName"]}
+                                                    {element["NonGHGIndicator"]}
                                                 </th>
                                                 <td className="py-4 px-6">
-                                                    {element["Input_Output"]}
-                                                </td>
-                                                <td className="py-4 px-6">
-                                                    {getIcon(element["Gradient"])}
+                                                    {getIcon(element["Magnitude"])}
                                                 </td>
                                             </tr>
                                         ))}
@@ -306,24 +314,24 @@ const ImpactsAndSynergiesComponent = ({ country }) => {
                             </div>
                             <div className="text-center text-gray-600 mt-2">
                                 <i>
-                                    <div><b>Note</b></div>
+                                    {/* <div><b>Note</b></div> */}
                                     <div className="flex text-center items-center justify-center mt-2">
                                         <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                                         <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        : strongly decrease,
+                                        strongly decrease,
                                         <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        : decrease
+                                        decrease
                                     </div>
                                     <div className="flex text-center items-center justify-center mt-2">
                                         <MinusIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        : neutral
+                                        neutral
                                     </div>
                                     <div className="flex text-center items-center justify-center mt-2">
                                         <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                                         <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        : strongly increase,
+                                        strongly increase,
                                         <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        : increase
+                                        increase
                                     </div>
                                 </i>
                             </div>

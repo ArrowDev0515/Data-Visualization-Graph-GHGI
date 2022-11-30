@@ -28,6 +28,7 @@ export const AR_LIST = [AR_5];
 export const MODAL_TITLE_MITIGATION_POTENTIAL = "Mitigation Potential Per AFOLU Sector Data";
 export const MODAL_TITLE_IMPACTS_SYNERGIES = "Trade - offs and synergies for specific mitigation option";
 export const MODAL_TITLE_OVERVIEW = "Overview of total greenhouse gas emissions and role of AFOLU";
+export const MODAL_TITLE_GWP = "GWP";
 
 export const DATA_SOURCE_FAO = "FAO";
 export const DATA_SOURCE_IPCC = "IPCC";
@@ -51,14 +52,20 @@ export const FARMING_SYSTEM_GROUND_COVER = "Ground cover rice production system"
 export const FARMING_SYSTEM_INTEGRATED_RICE = "Integrated rice-duck farming";
 export const FARMING_SYSTEM_LIST = [FARMING_SYSTEM_CONVENTIONAL_RICE, FARMING_SYSTEM_DOUBLE_RICE, FARMING_SYSTEM_GROUND_COVER, FARMING_SYSTEM_INTEGRATED_RICE];
 
-export const MITIGATION_OPTION_RICE_CULTIVATION = "Rice Cultivation";
-export const MITIGATION_OPTION_ANNUAL_STRAW =
-  "Annual straw incorporating in rice-wheat rotation system";
-export const MITIGATION_OPTION_RICE_FALLOW = "Rice-Fallow rotation system";
-export const MITIGATION_OPTION_LIST = [MITIGATION_OPTION_RICE_CULTIVATION];
+export const MITIGATION_OPTION_FMSDII = "FMSDII";
+export const MITIGATION_OPTION_CISB = "CISB";
+export const MITIGATION_OPTION_PTSI = "PTSI";
+export const MITIGATION_OPTION_PT = "PT";
+export const MITIGATION_OPTION_RPF = "RPF";
+export const MITIGATION_OPTION_R_F = "R-F";
+export const MITIGATION_OPTION_CFMSD = "CFMSD";
+export const MITIGATION_OPTION_R_GM = "R-GM";
+export const MITIGATION_OPTION_TSWD = "TSWD";
+export const MITIGATION_OPTION_RTSI = "RTSI";
+export const MITIGATION_OPTION_LIST = [MITIGATION_OPTION_RTSI];
 export const MITIGATION_OPTION_LIST2 = [
-  MITIGATION_OPTION_ANNUAL_STRAW,
-  MITIGATION_OPTION_RICE_FALLOW,
+  MITIGATION_OPTION_RTSI,
+  MITIGATION_OPTION_TSWD,
 ];
 
 export const COLOR_DARK_BLUE = "#03203D";

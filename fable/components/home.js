@@ -6,7 +6,6 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import ModalComponent from "./modal_component";
 
 const utils = require("../utils/utils");
-// const dataSrc = require("../consts/221121_HomePage2.json");
 const dataSrc = require("../consts/221125_HomePage.json");
 const consts = require("../consts/consts");
 
@@ -25,6 +24,7 @@ const HomeComponent = ({ country }) => {
     const [gwpList, setGwpList] = useState([]);
     const [dataSourceList, setDataSourceList] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isGWPModalOpen, setIsGWPModalOpen] = useState(false);
 
     const [chartConfigs, setChartConfigs] = useState({
         type: "doughnut2d",
@@ -54,11 +54,14 @@ const HomeComponent = ({ country }) => {
                 defaultcenterlabel: "",
                 defaultcenterlabelColor: "#113458",
                 tooltipBorderRadius: "10",
-                plottooltext: `<b>$value</b> Mt CO<sub>2</sub>e from the <b>$label</b> sector`,
+                skipOverlapLabels: "1",
+                label: "",
+                plottooltext: "<b>$value</b> Mt CO2e from the <b>$label</b> sector",
                 link: "#ff0000",
                 showLegend: "0",
                 startingAngle: "30",
                 enableSlicing: "0",
+                decimals: "1",
                 theme: "fusion"
             },
             data: []
@@ -102,12 +105,12 @@ const HomeComponent = ({ country }) => {
         setDataSourceList(dataSourceArr);
 
         let data = dataSrc.filter((ele) => {
-            return (ele["Party"] === country && parseInt(ele["Year"]) === parseInt(year) && ele["DataSource"] === dataSource && ele["AR"] === gwp);
+            return (ele["Party"] === country && parseInt(ele["Year"]) === parseInt(year) && ele["AR"] === gwp);
         });
         setExportData(data);
 
         let afoluData = data.filter((ele) => {
-            return (ele["Category"] === consts.CATEGORY_AFOLU);
+            return (ele["Category"] === consts.CATEGORY_AFOLU && ele["DataSource"] === dataSource);
         })
         setAFOLUData(afoluData);
 
@@ -130,8 +133,8 @@ const HomeComponent = ({ country }) => {
         let captionStr = `<b>${country}'s Total GHG emissions in ${year}</b>{br}`;
         if (data.length > 0) {
 
-            captionStr += data[0]["TotalEmissionsMtCO2e"] + `Mt CO<sub>2</sub>e`;
-            subCaptionStr = "{br}" + data[0]["TotalEmissionsCapitatCO2e_cap"] + " t CO<sub>2</sub>e/cap";
+            captionStr += data[0]["TotalEmissionsMtCO2e"] + ` Mt CO2e`;
+            subCaptionStr = "{br}" + data[0]["TotalEmissionsCapitatCO2e_cap"] + " t CO2e/cap";
         }
         setChartConfigs({
             ...chartConfigs, dataSource: {
@@ -157,6 +160,14 @@ const HomeComponent = ({ country }) => {
         setIsModalOpen(false);
     }
 
+    const openGWPModal = () => {
+        setIsGWPModalOpen(true);
+    }
+
+    const closeGWPModal = () => {
+        setIsGWPModalOpen(false);
+    }
+
 
     const dataSourceChange = (e) => {
         setDataSource(e.target.value);
@@ -177,6 +188,7 @@ const HomeComponent = ({ country }) => {
         exportToCSV(exportData, fileName);
     }
 
+    const gwpModalContent = <><div className="mt-5 text-[#113458]">GWP Modal Content</div></>
     const modalContent = <>
         <div className="mt-5 text-[#113458]">
             <b>Country :</b> {country}<br />
@@ -196,7 +208,7 @@ const HomeComponent = ({ country }) => {
                     </div>
                     <div className="flex justify-between">
                         <div className="flex">
-                            <div className="flex items-center mx-2.5">
+                            <div className="flex items-center mr-2.5">
                                 <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">Year : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={year} onChange={yearChange}>
                                     {
@@ -208,6 +220,20 @@ const HomeComponent = ({ country }) => {
                             </div>
 
                             <div className="flex items-center mx-2.5">
+                                <button
+                                    type="button"
+                                    onClick={openGWPModal}
+                                    className="text-[#113458] hover:text-white focus:bg-gray-300 font-medium rounded-lg text-xs sm:text-sm px-1.5 py-1.5 text-center mr-2"
+                                >
+                                    <span className="">
+                                        <InformationCircleIcon
+                                            className="h-5 w-5 text-[#113458] hover:text-white"
+                                            aria-hidden="true"
+                                        />
+                                    </span>
+                                </button>
+
+                                <ModalComponent title={consts.MODAL_TITLE_GWP} content={gwpModalContent} isModalOpen={isGWPModalOpen} closeModal={closeGWPModal} />
                                 <label htmlFor="countries" className="text-sm font-medium text-[#113458] mr-2.5">GWP : </label>
                                 <select id="countries" className="bg-[#113458] bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-[#113458] focus-visible:outline-none block p-1.5" value={gwp} onChange={gwpChange}>
                                     {
@@ -259,7 +285,6 @@ const HomeComponent = ({ country }) => {
                     </div>
                     <div className="grid grid-cols-12" style={{ minHeight: "400px" }}>
                         <div className="grid col-span-12 lg:col-span-4 bg-gradient-to-b lg:bg-gradient-to-r from-[#11345822] rounded-md text-[#113458] leading-loose p-3 my-3">
-                            {/* <div className="grid col-span-12 lg:col-span-4 bg-[#113458] bg-opacity-10 rounded-md text-[#113458] text-center items-center p-3 my-3"> */}
                             {exportData.length ? exportData[0]["Text"] : <span className="text-[#11345822]"><i>No Data to Display</i></span>}
                         </div>
                         <div className="hidden md:block lg:hidden col-span-12 justify-self-end">
@@ -274,7 +299,8 @@ const HomeComponent = ({ country }) => {
                                 </select>
                             </div>
                         </div>
-                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 bg-gradient-to-t md:bg-gradient-to-r lg:bg-gradient-to-b lg:mx-3 from-[#11345822] rounded-md my-3" style={{ minHeight: "400px" }}>
+                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 my-3" style={{ minHeight: "400px" }}>
+                            {/* <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 bg-gradient-to-t md:bg-gradient-to-r lg:bg-gradient-to-b lg:mx-3 from-[#11345822] rounded-md my-3" style={{ minHeight: "400px" }}> */}
                             {exportData.length ? <FC chartConfigs={chartConfigs}></FC> :
                                 <>
                                     <div className="text-[#113458] grid text-center items-center p-3 my-3">
@@ -301,17 +327,17 @@ const HomeComponent = ({ country }) => {
                                     {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"] > 0 ?
                                         <>
                                             <div className="text-xl mt-3 col-span-2 font-normal">
-                                                <b><span className="font-bold">AFOLU</span> Sector</b>
+                                                <b><span className="font-medium">AFOLU Sector</span></b>
                                             </div>
                                             <div className="text-md col-span-2 font-normal">
-                                                <span>Total Net: {AFOLUData[0]["TotalNetAFOLUMtCO2e"]} Mt CO<sub>2</sub>e</span>
+                                                <span>Total Net: {AFOLUData[0]["TotalNetAFOLUMtCO2e"]} Mt CO2e</span>
                                             </div>
 
                                             {/* AFOLU Emissions Section */}
                                             <div className="px-3 col-span-2 xs:col-span-1" style={{ minHeight: "200px" }}>
                                                 <div className="text-sm my-3"><b>AFOLU Emissions</b></div>
                                                 <div className="text-xs mb-3 text-[#113458]"><b>
-                                                    {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]} Mt CO<sub>2</sub>e
+                                                    {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]} Mt CO2e
                                                 </b></div>
                                                 <div className="w-auto" style={{ height: `${height1}px` }}>
                                                     {
@@ -335,7 +361,7 @@ const HomeComponent = ({ country }) => {
                                                     <>
                                                         <div className="text-sm my-3"><b>AFOLU Removals</b></div>
                                                         <div className="text-xs mb-3 text-[#113458]"><b>
-                                                            {AFOLUData[0]["TotalAFOLURemovalsMtCO2e"]} Mt CO<sub>2</sub>e
+                                                            {AFOLUData[0]["TotalAFOLURemovalsMtCO2e"]} Mt CO2e
                                                         </b></div>
                                                         <div className="w-full" style={{ height: `${height2}px` }}>
                                                             {
