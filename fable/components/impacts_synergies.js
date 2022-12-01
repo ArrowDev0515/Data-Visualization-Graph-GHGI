@@ -89,7 +89,6 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
             // return (ele["Country"] === country && ele["Unit"] === unit && ele["Input_Output"] === inout && ele["MitigationOption"] === mitigationOption);
         });
         setExportData(data);
-        console.log(data);
         // let xLabels = new Map();
         // let categoryData = [];      // x Axis Label Array
         // let key = 1;

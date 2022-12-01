@@ -6,7 +6,7 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import ModalComponent from "./modal_component";
 
 const utils = require("../utils/utils");
-const dataSrc = require("../consts/221125_HomePage.json");
+const dataSrc = require("../consts/221201_HomePage.json");
 const consts = require("../consts/consts");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
@@ -285,7 +285,9 @@ const HomeComponent = ({ country }) => {
                     </div>
                     <div className="grid grid-cols-12" style={{ minHeight: "400px" }}>
                         <div className="grid col-span-12 lg:col-span-4 bg-gradient-to-b lg:bg-gradient-to-r from-[#11345822] rounded-md text-[#113458] leading-loose p-3 my-3">
-                            {exportData.length ? exportData[0]["Text"] : <span className="text-[#11345822]"><i>No Data to Display</i></span>}
+                            {exportData.length ? 
+                            <div>{exportData[0]["TextParagraph1"]}<br/><br/>{exportData[0]["TextParagraph2"]}</div> : 
+                            <span className="text-[#11345822]"><i>No Data to Display</i></span>}
                         </div>
                         <div className="hidden md:block lg:hidden col-span-12 justify-self-end">
                             <div className="items-center flex">
@@ -327,7 +329,7 @@ const HomeComponent = ({ country }) => {
                                     {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"] > 0 ?
                                         <>
                                             <div className="text-xl mt-3 col-span-2 font-normal">
-                                                <b><span className="font-medium">AFOLU Sector</span></b>
+                                                <b><span className="text-lg">AFOLU Sector</span></b>
                                             </div>
                                             <div className="text-md col-span-2 font-normal">
                                                 <span>Total Net: {AFOLUData[0]["TotalNetAFOLUMtCO2e"]} Mt CO2e</span>
@@ -369,7 +371,7 @@ const HomeComponent = ({ country }) => {
                                                                     <span key={"SinksForRemovals" + idx}>
                                                                         {(parseFloat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
                                                                             <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"]) * 100) : 0}%`, backgroundColor: `${item["HEX"]}` }}>
-                                                                                {Math.abs((height2 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"])).toFixed(2)) > 20 ? <span className="text-[#113458]">{parseFloat(item["AFOLURemovalsMtCO2e"])}</span> : ""}
+                                                                                {Math.abs((height2 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"])).toFixed(2)) > 20 ? <span className="text-[#113458]">{item["AFOLURemovalsMtCO2e"]}</span> : ""}
                                                                             </div>
                                                                             : ""
                                                                         }
