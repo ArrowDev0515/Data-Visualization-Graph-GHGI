@@ -73,15 +73,25 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
         generateChartData();
     }, [country, AFOLUSector, farmingSystem, mitigationOption]);
 
-    const generateChartData = async () => {
+    const getMitigationOptionsList = () => {
+        // set data for Unit SelectBox
         let mitigationOptionArr = [];
-        mitigationOptionArr = dataSrc.map((ele) => {
-            return ele["Mitig_Option"];
+        mitigationOptionArr = dataSrc.filter((ele) => {
+            return (ele["AFOLU_Sector"] === AFOLUSector && ele["FarmingSystem"] === farmingSystem)
+        }).map((ele) => {
+            if (ele["AFOLU_Sector"] === AFOLUSector) {
+                return ele["Mitig_Option"];
+            }
         }).reduce(
             (arr, item) => (arr.includes(item) ? arr : [...arr, item]),
             [],
         );
+        setMitigationOption(mitigationOptionArr[0]);
         setMitigationOptionList(mitigationOptionArr);
+    }
+
+    const generateChartData = async () => {
+        getMitigationOptionsList();
 
         //Filter Data with Select
         let data = dataSrc.filter((ele) => {
@@ -156,6 +166,13 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
         exportToCSV(exportData, fileName);
     }
 
+    const bulkDownload = () => {
+        let fileName = new Date();
+        fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
+            fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
+        exportToCSV(exportData, fileName);
+    }
+
     const getIcon = (value) => {
         switch (value) {
             case 1:
@@ -216,6 +233,10 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                     <div className="flex items-center">
                         <label htmlFor="countries" className="flex hidden md:block mr-2.5 text-sm font-medium text-[#113458]">Mitigation Option: </label>
                         <select id="mitigationOptions" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
+                            {
+                                mitigationOptionList.length === 0 ? 
+                                <option value={"No Option Data"}>No Option Data</option> : ""
+                            }
                             {
                                 mitigationOptionList.map((optionItem, idx) => (
                                     <option className="text-[#113458]" key={"mi_option" + idx} value={optionItem}>{optionItem}</option>
@@ -339,6 +360,17 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                             <i>No Impacts & Synergies for <b>{country}</b></i>
                         </div>
                     }
+                </div>
+                <div className="col-span-6 text-center my-8">
+                    <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xl px-8 py-4 text-center" onClick={bulkDownload}>
+                        <span className="hidden xl:block">Bulk Download</span>
+                        <span className="xl:hidden">
+                            <ArrowDownTrayIcon
+                                className="h-5 w-5 text-[#113458] hover:text-white"
+                                aria-hidden="true"
+                            />
+                        </span>
+                    </button>
                 </div>
             </div>
         </>

@@ -10,7 +10,7 @@ export const colors = [
   "#e5b149",
   "#cc8f17",
   "#ffbb99",
-  "#6fb5dd",
+  "#000000",
   "#af8ecd",
   "#5eb5d4",
   "#fde047",
