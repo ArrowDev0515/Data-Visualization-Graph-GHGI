@@ -38,7 +38,7 @@ const SourceDataComponent = ({ AFOLUSector, farmingSystem, mitigationOption }) =
                                             <th scope="col" className="py-3 md:px-6 col-span-1 px-1">DOI</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-gradient-to-b bg-[#11345822] rounded-b-sm">
+                                    <tbody className="bg-gradient-to-b bg-[#ffffff82] rounded-b-sm">
                                         {
                                             data.map((ele, idx) => (
                                                 <tr className="border-t border-gray-400 grid grid-cols-5">

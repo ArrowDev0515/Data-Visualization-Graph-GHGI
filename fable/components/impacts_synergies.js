@@ -329,7 +329,7 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                                             <th scope="col" className="py-3 px-6">Magnitude</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-gradient-to-b bg-[#11345822] rounded-b-sm">
+                                    <tbody className="bg-gradient-to-b bg-[#ffffff82] rounded-b-sm">
                                         {exportData.map((element, idx) => (
                                             <tr key={idx} className="border-t border-gray-400">
                                                 <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap">{element["NonGHGIndicator"]}</th>
