@@ -183,9 +183,28 @@ const HomeComponent = ({ country }) => {
 
     const downloadData = () => {
         let fileName = new Date();
+        let data = exportData.map((ele) => {
+            return {
+                Party : ele["Party"], 
+                DataSource : ele["DataSource"], 
+                Category : ele["Category"], 
+                SubCategory : ele["SubCategory"], 
+                AR : ele["AR"], 
+                Year : ele["Year"], 
+                TotalEmissionsMtCO2e : ele["TotalEmissionsMtCO2e"], 
+                EmissionCategoryMtCO2e : ele["EmissionCategoryMtCO2e"], 
+                TotalEmissionsCapitatCO2e_cap : ele["TotalEmissionsCapitatCO2e_cap"], 
+                Population : ele["Population"], 
+                TotalAFOLUEmissionsMtCO2e : ele["TotalAFOLUEmissionsMtCO2e"], 
+                TotalAFOLURemovalsMtCO2e : ele["TotalAFOLURemovalsMtCO2e"], 
+                TotalNetAFOLUMtCO2e : ele["TotalNetAFOLUMtCO2e"], 
+                AFOLURemovalsMtCO2e : ele["AFOLURemovalsMtCO2e"], 
+                AFOLUEmissionsMtCO2e : ele["AFOLUEmissionsMtCO2e"]
+            };
+        })
         fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
             fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
-        exportToCSV(exportData, fileName);
+        exportToCSV(data, fileName);
     }
 
     const gwpModalContent = <><div className="mt-5 text-[#113458]">GWP Modal Content</div></>

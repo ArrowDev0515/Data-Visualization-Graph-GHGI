@@ -361,9 +361,25 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
 
     const downloadData = () => {
         let fileName = new Date();
+        let data = exportData.map((ele) => {
+            return {
+                Party : ele["Party"], 
+                DataSource : ele["DataSource"], 
+                AFOLU_Sector : ele["AFOLU_Sector"], 
+                FarmingSystem : ele["FarmingSystem"], 
+                Unit : ele["Unit"], 
+                MitigationOption : ele["MitigationOption"], 
+                Mitig_Option_FullName : ele["Mitig_Option_FullName"], 
+                Min : ele["Min"], 
+                Max : ele["Max"], 
+                Median : ele["Median"], 
+                Average : ele["Average"], 
+                Historical : ele["Historical"], 
+            };
+        })
         fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
             fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
-        exportToCSV(exportData, fileName);
+        exportToCSV(data, fileName);
     }
 
     const modalContent = <>

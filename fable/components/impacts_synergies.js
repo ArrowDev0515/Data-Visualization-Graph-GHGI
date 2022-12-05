@@ -159,11 +159,21 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
     // }
 
     const downloadData = () => {
-        // exportToCSV();
         let fileName = new Date();
+        let data = exportData.map((ele) => {
+            return {
+                Country : ele["Country"], 
+                AFOLU_Sector : ele["AFOLU_Sector"], 
+                FarmingSystem : ele["FarmingSystem"], 
+                Mitig_Option : ele["Mitig_Option"], 
+                Mitig_Option_FullName : ele["Mitig_Option_FullName"], 
+                NonGHGIndicator : ele["NonGHGIndicator"], 
+                Magnitude : ele["Magnitude"], 
+            };
+        })
         fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
             fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
-        exportToCSV(exportData, fileName);
+        exportToCSV(data, fileName);
     }
 
     const bulkDownload = () => {
