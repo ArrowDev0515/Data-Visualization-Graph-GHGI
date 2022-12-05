@@ -373,13 +373,7 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                 </div>
                 <div className="col-span-6 text-center my-8">
                     <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xl px-8 py-4 text-center" onClick={bulkDownload}>
-                        <span className="hidden xl:block">Bulk Download</span>
-                        <span className="xl:hidden">
-                            <ArrowDownTrayIcon
-                                className="h-5 w-5 text-[#113458] hover:text-white"
-                                aria-hidden="true"
-                            />
-                        </span>
+                        <span className="">Bulk Download</span>
                     </button>
                 </div>
             </div>

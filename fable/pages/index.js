@@ -3,6 +3,7 @@ import Header from '../components/header';
 import EmissionRedcutionPotentialComponent from '../components/emission_reduction_potential';
 import DataExplorerComponent from '../components/data_explorer';
 import HomeComponent from '../components/home';
+import Footer from "../components/footer";
 
 const consts = require("../consts/consts");
 const dataSrc = require("../consts/221123_HomePage.json");
@@ -55,6 +56,7 @@ export default function Index() {
         <EmissionRedcutionPotentialComponent country={country} />
       </div>
       <section id="data_explorer"><DataExplorerComponent country={country} /></section>
+      <Footer/>
     </>
   )
 }
