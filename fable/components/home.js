@@ -185,21 +185,21 @@ const HomeComponent = ({ country }) => {
         let fileName = new Date();
         let data = exportData.map((ele) => {
             return {
-                Party : ele["Party"], 
-                DataSource : ele["DataSource"], 
-                Category : ele["Category"], 
-                SubCategory : ele["SubCategory"], 
-                AR : ele["AR"], 
-                Year : ele["Year"], 
-                TotalEmissionsMtCO2e : ele["TotalEmissionsMtCO2e"], 
-                EmissionCategoryMtCO2e : ele["EmissionCategoryMtCO2e"], 
-                TotalEmissionsCapitatCO2e_cap : ele["TotalEmissionsCapitatCO2e_cap"], 
-                Population : ele["Population"], 
-                TotalAFOLUEmissionsMtCO2e : ele["TotalAFOLUEmissionsMtCO2e"], 
-                TotalAFOLURemovalsMtCO2e : ele["TotalAFOLURemovalsMtCO2e"], 
-                TotalNetAFOLUMtCO2e : ele["TotalNetAFOLUMtCO2e"], 
-                AFOLURemovalsMtCO2e : ele["AFOLURemovalsMtCO2e"], 
-                AFOLUEmissionsMtCO2e : ele["AFOLUEmissionsMtCO2e"]
+                Party: ele["Party"],
+                DataSource: ele["DataSource"],
+                Category: ele["Category"],
+                SubCategory: ele["SubCategory"],
+                AR: ele["AR"],
+                Year: ele["Year"],
+                TotalEmissionsMtCO2e: ele["TotalEmissionsMtCO2e"],
+                EmissionCategoryMtCO2e: ele["EmissionCategoryMtCO2e"],
+                TotalEmissionsCapitatCO2e_cap: ele["TotalEmissionsCapitatCO2e_cap"],
+                Population: ele["Population"],
+                TotalAFOLUEmissionsMtCO2e: ele["TotalAFOLUEmissionsMtCO2e"],
+                TotalAFOLURemovalsMtCO2e: ele["TotalAFOLURemovalsMtCO2e"],
+                TotalNetAFOLUMtCO2e: ele["TotalNetAFOLUMtCO2e"],
+                AFOLURemovalsMtCO2e: ele["AFOLURemovalsMtCO2e"],
+                AFOLUEmissionsMtCO2e: ele["AFOLUEmissionsMtCO2e"]
             };
         })
         fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
@@ -207,7 +207,45 @@ const HomeComponent = ({ country }) => {
         exportToCSV(data, fileName);
     }
 
-    const gwpModalContent = <><div className="mt-5 text-[#113458]">GWP Modal Content</div></>
+    const gwpModalContent = <>
+        <div className="mt-5 text-[#113458]">
+            {consts.TEXT_GWP}<br/><br/>
+            <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
+                <thead className="text-xs text-white uppercase bg-[#11345877] ">
+                    <tr>
+                        <th scope="col" className="py-3 px-2">Greenhouse Gas</th>
+                        <th scope="col" className="py-3 px-2">SAR</th>
+                        <th scope="col" className="py-3 px-2">AR3</th>
+                        <th scope="col" className="py-3 px-2">AR4</th>
+                        <th scope="col" className="py-3 px-2">AR5</th>
+                    </tr>
+                </thead>
+                <tbody className="bg-gradient-to-b bg-[#11345822] rounded-b-sm">
+                    <tr className="border-t border-gray-400">
+                        <td className="py-4 px-2"><b>{consts.TEXT_CO2}</b></td>
+                        <td className="py-4 px-2">1</td>
+                        <td className="py-4 px-2">1</td>
+                        <td className="py-4 px-2">1</td>
+                        <td className="py-4 px-2">1</td>
+                    </tr>
+                    <tr className="border-t border-gray-400">
+                        <td className="py-4 px-2"><b>{consts.TEXT_CH4}</b></td>
+                        <td className="py-4 px-2">21</td>
+                        <td className="py-4 px-2">23</td>
+                        <td className="py-4 px-2">25</td>
+                        <td className="py-4 px-2">28</td>
+                    </tr>
+                    <tr className="border-t border-gray-400">
+                        <td className="py-4 px-2"><b>{consts.TEXT_N2O}</b></td>
+                        <td className="py-4 px-2">310</td>
+                        <td className="py-4 px-2">296</td>
+                        <td className="py-4 px-2">298</td>
+                        <td className="py-4 px-2">265</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </>
     const modalContent = <>
         <div className="mt-5 text-[#113458]">
             <b>Country :</b> {country}<br />
@@ -304,9 +342,9 @@ const HomeComponent = ({ country }) => {
                     </div>
                     <div className="grid grid-cols-12" style={{ minHeight: "400px" }}>
                         <div className="grid col-span-12 lg:col-span-4 bg-gradient-to-b lg:bg-gradient-to-r from-[#11345822] rounded-md text-[#113458] leading-loose p-3 my-3">
-                            {exportData.length ? 
-                            <div>{exportData[0]["TextParagraph1"]}<br/><br/>{exportData[0]["TextParagraph2"]}</div> : 
-                            <span className="text-[#11345822]"><i>No Data to Display</i></span>}
+                            {exportData.length ?
+                                <div>{exportData[0]["TextParagraph1"]}<br /><br />{exportData[0]["TextParagraph2"]}</div> :
+                                <span className="text-[#11345822]"><i>No Data to Display</i></span>}
                         </div>
                         <div className="hidden md:block lg:hidden col-span-12 justify-self-end">
                             <div className="items-center flex">

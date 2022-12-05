@@ -74,7 +74,7 @@ const Header = ({}) => {
                         className={`${active ? 'bg-[#113458] text-white' : 'text-[#113458]'
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       >
-                        <Link smooth spy offset={-65} to="data_explorer">Data Explorer</Link>
+                        <Link smooth spy offset={-65} to="data_explorer">Source Data</Link>
                       </button>
                     )}
                   </Menu.Item>

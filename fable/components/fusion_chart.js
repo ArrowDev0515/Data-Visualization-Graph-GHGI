@@ -9,7 +9,6 @@ export default function NextFC({ chartConfigs }) {
 
   const onClick = (eventObj) => {
     var senderChart = eventObj.sender; // chart/ map on which event triggered
-    // console.log(chartConfigs.dataSource);
   }
 
   return (

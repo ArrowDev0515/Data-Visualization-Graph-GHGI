@@ -25,6 +25,11 @@ export const YEAR_LIST = [
 export const AR_5 = "AR5";
 export const AR_LIST = [AR_5];
 
+export const TEXT_GWP = "The Global Warming Potential (GWP) was developed to allow comparisons of the global warming impacts of different gases. Specifically, it is a measure of how much energy the emissions of 1 ton of a gas will absorb over a given period of time, relative to the emissions of 1 ton of carbon dioxide (CO2).";
+export const TEXT_CO2 = "CO2";
+export const TEXT_CH4 = "CH4";
+export const TEXT_N2O = "N2O";
+
 export const MODAL_TITLE_MITIGATION_POTENTIAL = "Mitigation Potential Per AFOLU Sector Data";
 export const MODAL_TITLE_IMPACTS_SYNERGIES = "Trade - offs and synergies for specific mitigation option";
 export const MODAL_TITLE_OVERVIEW = "Overview of total greenhouse gas emissions and role of AFOLU";

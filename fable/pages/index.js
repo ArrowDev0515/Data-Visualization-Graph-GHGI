@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from '../components/header';
 import EmissionRedcutionPotentialComponent from '../components/emission_reduction_potential';
-import DataExplorerComponent from '../components/data_explorer';
 import HomeComponent from '../components/home';
 import Footer from "../components/footer";
 
@@ -55,7 +54,6 @@ export default function Index() {
       <div className="my-2 mx-8 bg-[#113458] bg-opacity-10 rounded-xl items-center justify-center">
         <EmissionRedcutionPotentialComponent country={country} />
       </div>
-      <section id="data_explorer"><DataExplorerComponent country={country} /></section>
       <Footer/>
     </>
   )

@@ -3,6 +3,7 @@ import dynamic from "next/dynamic.js";
 import { ArrowDownTrayIcon, ArrowDownIcon, ArrowUpIcon, MinusIcon } from "@heroicons/react/20/solid";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import ModalComponent from "./modal_component";
+import SourceDataComponent from '../components/source_data';
 
 import { exportToCSV } from "../utils/exportCSV";
 
@@ -70,8 +71,13 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
     // });
 
     useEffect(() => {
+        getMitigationOptionsList();
         generateChartData();
-    }, [country, AFOLUSector, farmingSystem, mitigationOption]);
+    }, [country, AFOLUSector, farmingSystem,]);
+
+    useEffect(() => {
+        generateChartData();
+    }, [mitigationOption]);
 
     const getMitigationOptionsList = () => {
         // set data for Unit SelectBox
@@ -91,7 +97,6 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
     }
 
     const generateChartData = async () => {
-        getMitigationOptionsList();
 
         //Filter Data with Select
         let data = dataSrc.filter((ele) => {
@@ -162,13 +167,13 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
         let fileName = new Date();
         let data = exportData.map((ele) => {
             return {
-                Country : ele["Country"], 
-                AFOLU_Sector : ele["AFOLU_Sector"], 
-                FarmingSystem : ele["FarmingSystem"], 
-                Mitig_Option : ele["Mitig_Option"], 
-                Mitig_Option_FullName : ele["Mitig_Option_FullName"], 
-                NonGHGIndicator : ele["NonGHGIndicator"], 
-                Magnitude : ele["Magnitude"], 
+                Country: ele["Country"],
+                AFOLU_Sector: ele["AFOLU_Sector"],
+                FarmingSystem: ele["FarmingSystem"],
+                Mitig_Option: ele["Mitig_Option"],
+                Mitig_Option_FullName: ele["Mitig_Option_FullName"],
+                NonGHGIndicator: ele["NonGHGIndicator"],
+                Magnitude: ele["Magnitude"],
             };
         })
         fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
@@ -244,8 +249,8 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                         <label htmlFor="countries" className="flex hidden md:block mr-2.5 text-sm font-medium text-[#113458]">Mitigation Option: </label>
                         <select id="mitigationOptions" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-xs sm:text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={mitigationOptionChange} value={mitigationOption}>
                             {
-                                mitigationOptionList.length === 0 ? 
-                                <option value={"No Option Data"}>No Option Data</option> : ""
+                                mitigationOptionList.length === 0 ?
+                                    <option value={"No Option Data"}>No Option Data</option> : ""
                             }
                             {
                                 mitigationOptionList.map((optionItem, idx) => (
@@ -320,23 +325,15 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                                 <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
                                     <thead className="text-xs text-white uppercase bg-[#11345877] ">
                                         <tr>
-                                            <th scope="col" className="py-3 px-6">
-                                                Non GHG Indicator
-                                            </th>
-                                            <th scope="col" className="py-3 px-6">
-                                                Magnitude
-                                            </th>
+                                            <th scope="col" className="py-3 px-6">Non GHG Indicator</th>
+                                            <th scope="col" className="py-3 px-6">Magnitude</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-gradient-to-b bg-[#11345822] rounded-b-sm">
                                         {exportData.map((element, idx) => (
                                             <tr key={idx} className="border-t border-gray-400">
-                                                <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap">
-                                                    {element["NonGHGIndicator"]}
-                                                </th>
-                                                <td className="py-4 px-6">
-                                                    {getIcon(element["Magnitude"])}
-                                                </td>
+                                                <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap">{element["NonGHGIndicator"]}</th>
+                                                <td className="py-4 px-6">{getIcon(element["Magnitude"])}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -377,6 +374,9 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                     </button>
                 </div>
             </div>
+            <section id="data_explorer">
+                <SourceDataComponent AFOLUSector={AFOLUSector} farmingSystem={farmingSystem} mitigationOption={mitigationOption} />
+            </section>
         </>
     )
 }

@@ -295,7 +295,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
                     { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
                     { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian2, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
-                    { seriesname: "Historical", anchorbgcolor: consts.colors[4], data: dataArrForHistorical, anchorsides: 5, anchorradius: 5, legendIconAlpha: 100}
+                    { seriesname: "Historical", anchorbgcolor: consts.colors[4], data: dataArrForHistorical, anchorsides: 5, anchorradius: 5, legendIconAlpha: 100 }
                 ],
             }
         });
@@ -363,18 +363,18 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         let fileName = new Date();
         let data = exportData.map((ele) => {
             return {
-                Party : ele["Party"], 
-                DataSource : ele["DataSource"], 
-                AFOLU_Sector : ele["AFOLU_Sector"], 
-                FarmingSystem : ele["FarmingSystem"], 
-                Unit : ele["Unit"], 
-                MitigationOption : ele["MitigationOption"], 
-                Mitig_Option_FullName : ele["Mitig_Option_FullName"], 
-                Min : ele["Min"], 
-                Max : ele["Max"], 
-                Median : ele["Median"], 
-                Average : ele["Average"], 
-                Historical : ele["Historical"], 
+                Party: ele["Party"],
+                DataSource: ele["DataSource"],
+                AFOLU_Sector: ele["AFOLU_Sector"],
+                FarmingSystem: ele["FarmingSystem"],
+                Unit: ele["Unit"],
+                MitigationOption: ele["MitigationOption"],
+                Mitig_Option_FullName: ele["Mitig_Option_FullName"],
+                Min: ele["Min"],
+                Max: ele["Max"],
+                Median: ele["Median"],
+                Average: ele["Average"],
+                Historical: ele["Historical"],
             };
         })
         fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
