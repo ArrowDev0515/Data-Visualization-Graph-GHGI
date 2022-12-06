@@ -1,11 +1,8 @@
-import { useEffect, Fragment } from "react";
+import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 const ModalComponent = ({title, content, isModalOpen, closeModal}) => {
-  useEffect(() => {
 
-  })
-  
   return (
     <>
       {/* Modal Content Here! */}

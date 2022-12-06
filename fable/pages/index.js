@@ -5,7 +5,7 @@ import HomeComponent from '../components/home';
 import Footer from "../components/footer";
 
 const consts = require("../consts/consts");
-const dataSrc = require("../consts/221123_HomePage.json");
+const dataSrc = require("../consts/221201_HomePage.json");
 
 export default function Index() {
 

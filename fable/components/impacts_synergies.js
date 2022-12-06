@@ -4,7 +4,6 @@ import { ArrowDownTrayIcon, ArrowDownIcon, ArrowUpIcon, MinusIcon } from "@heroi
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import ModalComponent from "./modal_component";
 import SourceDataComponent from '../components/source_data';
-
 import { exportToCSV } from "../utils/exportCSV";
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });

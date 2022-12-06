@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic.js";
 import ImpactsAndSynergiesComponent from '../components/impacts_synergies';
-
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
-
 import { exportToCSV } from "../utils/exportCSV";
 import ModalComponent from "./modal_component";
-const dataSrc = require("../consts/221201_MitigationPotential.json");
+const dataSrc = require("../consts/221206_MitigationPotential.json");
 const consts = require("../consts/consts");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
@@ -203,13 +201,9 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         });
         setExportData(data);
 
-        // let xLabels1 = new Map();
         let xLabels2 = new Map();
-        // let categoryData1 = [];      // x Axis Label Array
         let categoryData2 = [];      // x Axis Label Array
-        // let key1 = 1;
         let key2 = 1;
-        // categoryData1.push({ x: (key1 * 20).toString(), label: "" });
         categoryData2.push({ x: (key2 * 20).toString(), label: "" });
 
         data.map((item) => {
@@ -251,16 +245,16 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     return e["label"] == ele["MitigationOption"];
                 })["x"];
                 if (ele["Max"]) {
-                    dataArrForMax.push({ x: xValue, y: ele["Max"] });
+                    dataArrForMax.push({ x: xValue, y: ele["Max"], color: "#333333" });
                 }
                 if (ele["Min"]) {
-                    dataArrForMin.push({ x: xValue, y: ele["Min"] });
+                    dataArrForMin.push({ x: xValue, y: ele["Min"], color: "#222222" });
                 }
                 if (ele["Median"]) {
-                    dataArrForMedian2.push({ x: xValue, y: ele["Median"] });
+                    dataArrForMedian2.push({ x: xValue, y: ele["Median"], color: "#111111" });
                 }
                 if (ele["Average"]) {
-                    dataArrForAverage.push({ x: xValue, y: ele["Average"] });
+                    dataArrForAverage.push({ x: xValue, y: ele["Average"], color: "#666666" });
 
                 }
             }
@@ -274,13 +268,20 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     yAxisMaxValue: yMax,
                 },
                 categories: [{ category: categoryData2 }],
-                dataset: [
-                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
+                dataset: dataArrForHistorical.length > 0 ?
+                [
+                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 6, anchorradius: 8, legendIconAlpha: 100 },
                     { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
                     { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
                     { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian2, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
-                    { seriesname: "Historical", anchorbgcolor: consts.colors[4], data: dataArrForHistorical, anchorsides: 5, anchorradius: 5, legendIconAlpha: 100, plottooltext: "aa" }
-                ],
+                    { seriesname: "Historical", anchorbgcolor: consts.colors[4], data: dataArrForHistorical, anchorsides: 5, anchorradius: 5, legendIconAlpha: 100 }
+                ] : 
+                [
+                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 6, anchorradius: 8, legendIconAlpha: 100 },
+                    { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
+                    { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
+                    { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian2, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
+                ]
             }
         });
     }
