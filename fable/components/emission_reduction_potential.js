@@ -227,14 +227,11 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 }
             }
         });
-        // key1++;
         key2++;
-        // categoryData1.push({ x: (key1 * 20).toString(), label: "" });
         categoryData2.push({ x: (key2 * 20).toString(), label: "" });
 
         let dataArrForMax = [];
         let dataArrForMin = [];
-        // let dataArrForMedian1 = [];
         let dataArrForMedian2 = [];
         let dataArrForAverage = [];
         let dataArrForHistorical = [];
@@ -268,20 +265,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 }
             }
         });
-        // setChartConfigs1({
-        //     ...chartConfigs1, dataSource: {
-        //         ...chartConfigs1.dataSource,
-        //         chart: {
-        //             ...chartConfigs1.dataSource.chart,
-        //             yAxisMaxValue: yMax,
-        //         },
-        //         categories: [{ category: categoryData1 }],
-        //         dataset: [
-        //             { seriesname: "Average", anchorbgcolor: "#666666", data: dataArrForMedian1, anchorsides: 4, anchorstartangle: 45, anchorradius: 5 }
-        //         ],
-        //     }
-        // });
-
+      
         setChartConfigs2({
             ...chartConfigs2, dataSource: {
                 ...chartConfigs2.dataSource,
@@ -475,17 +459,6 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     </div>
 
                     {(exportData && exportData.length) ? <div className="col-span-12 xl:col-span-7 xl:ml-3">
-                        {/* <div className="bg-gradient-to-b from-[#11345822] rounded-md col-span-12 md:col-span-4">
-                            {
-                                chartConfigs1.dataSource.dataset[0].data.length > 0 ?
-                                    <div className="grid" style={{ minHeight: `${400}px` }}>
-                                        <FC chartConfigs={chartConfigs1}></FC>
-                                    </div> :
-                                    <div className="text-[#11345822] text-center grid items-center" style={{ minHeight: `${400}px` }}><span>
-                                        <i><b>No Data to Display</b></i></span>
-                                    </div>
-                            }
-                        </div> */}
                         <div className="grid" style={{ minHeight: `${400}px` }}>
                             <FC chartConfigs={chartConfigs2}></FC>
                         </div>

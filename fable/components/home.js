@@ -5,7 +5,6 @@ import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import ModalComponent from "./modal_component";
 
-const utils = require("../utils/utils");
 const dataSrc = require("../consts/221201_HomePage.json");
 const consts = require("../consts/consts");
 

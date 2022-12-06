@@ -15,60 +15,8 @@ const dataSrc = require("../consts/221205_TradeOffs.json");
 const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) => {
     const [mitigationOption, setMitigationOption] = useState(consts.MITIGATION_OPTION_TSWD);
     const [mitigationOptionList, setMitigationOptionList] = useState([]);
-    // const [inout, setInOut] = useState(consts.IN_OUT_OPTION_INPUT);
     const [exportData, setExportData] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    // const [chartConfigs, setChartConfigs] = useState({
-    //     type: "scatter",
-    //     width: "99%",
-    //     height: "100%",
-    //     dataFormat: "JSON",
-    //     containerBackgroundOpacity: "0",
-    //     dataSource: {
-    //         chart: {
-    //             caption: inout == consts.IN_OUT_OPTION_OUTPUT ? consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_OUTPUT :
-    //                 consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_INPUT,
-    //             captionFontColor: "#113458",
-    //             xAxisNameFontColor: "#113458",
-    //             yAxisMaxValue: 5,
-    //             divLineColor: "#113458",
-    //             xAxisValueFontColor: "#113458",
-    //             yAxisNameFontColor: "#113458",
-    //             yAxisValueFontColor: "#113458",
-    //             yAxisName: "Gradient",
-    //             xAxisPosition: "right",
-    //             legendItemFontColor: "#113458",
-    //             bgColor: "#000000",
-    //             bgAlpha: "0",
-    //             labelFontSize: "12",
-    //             labelFontColor: "#113458",
-    //             ynumberprefix: "",
-    //             xnumbersuffix: "",
-    //             theme: "fusion",
-    //             legendIconSides: 5,
-    //             plottooltext:
-    //                 "Gradient Value : <b>$yDataValue</b>"
-    //         },
-    //         categories: [
-    //             {
-    //                 category: []
-    //             }
-    //         ],
-    //         dataset: [
-    //             {
-    //                 seriesname: "",
-    //                 anchorbgcolor: "",
-    //                 data: []
-    //             },
-    //             {
-    //                 seriesname: "",
-    //                 anchorbgcolor: "",
-    //                 data: []
-    //             }
-    //         ]
-    //     }
-    // });
 
     useEffect(() => {
         getMitigationOptionsList();
@@ -101,45 +49,8 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
         //Filter Data with Select
         let data = dataSrc.filter((ele) => {
             return (ele["Country"] === country && ele["Mitig_Option"] === mitigationOption && ele["AFOLU_Sector"] === AFOLUSector && ele["FarmingSystem"] === farmingSystem);
-            // return (ele["Country"] === country && ele["Unit"] === unit && ele["Input_Output"] === inout && ele["MitigationOption"] === mitigationOption);
         });
         setExportData(data);
-        // let xLabels = new Map();
-        // let categoryData = [];      // x Axis Label Array
-        // let key = 1;
-        // categoryData.push({ x: key.toString(), label: "" });
-        // data.map((item) => {
-        //     key++;
-        //     if (!xLabels.has(item["NonGHGIndicator"])) {
-        //         xLabels.set(item["NonGHGIndicator"], key);
-        //         categoryData.push({ x: key.toString(), label: item["NonGHGIndicator"] });
-        //     }
-        // });
-        // key++;
-        // categoryData.push({ x: key.toString(), label: "" });
-        // let dataArr = [];
-
-        // data.map((ele) => {
-        //     let xValue = categoryData.find((e) => {
-        //         return e["label"] == ele["NonGHGIndicator"];
-        //     })["x"];
-        //     dataArr.push({ x: xValue, y: ele["Magnitude"] });
-        // });
-
-        // setChartConfigs({
-        //     ...chartConfigs, dataSource: {
-        //         ...chartConfigs.dataSource,
-        //         categories: [{ category: categoryData }],
-        //         chart: {
-        //             ...chartConfigs.dataSource.chart,
-        //             caption: inout == consts.IN_OUT_OPTION_OUTPUT ? consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_OUTPUT :
-        //                 consts.CAPTION_TEXT_TRADE_OFF_SYNERGIES_INPUT,
-        //         },
-        //         dataset: [
-        //             { seriesname: "", anchorbgcolor: consts.colors[0], data: dataArr, anchorsides: 2, anchorradius: 5 },
-        //         ]
-        //     }
-        // });
     }
 
     const openModal = () => {
@@ -150,18 +61,9 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
         setIsModalOpen(false);
     }
 
-
-    // const unitChange = (e) => {
-    //     setUnit(e.target.value);
-    // }
-
     const mitigationOptionChange = (e) => {
         setMitigationOption(e.target.value);
     }
-
-    // const inoutChange = (e) => {
-    //     setInOut(e.target.value);
-    // }
 
     const downloadData = () => {
         let fileName = new Date();
@@ -232,7 +134,6 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                     Trade-offs and synergies for specific mitigation option
                 </label>
             </div>
-            {/* <div className="grid grid-cols-6 bg-[#113458] bg-opacity-10 rounded-xl py-3 px-3 sm:px-5 mt-12 items-center justify-center"> */}
             <div className="grid grid-cols-6 rounded-xl px-3 sm:px-5 justify-center">
                 <div className="col-span-6 flex justify-between">
                     <div className="flex items-center">
@@ -249,33 +150,6 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                             }
                         </select>
                     </div>
-                    {/* <div className="flex items-center mx-2.5">
-                            <select id="countries" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={countryChange} value={country}>
-                                {
-                                    consts.COUNTRY_LIST.map((countryItem, idx) => (
-                                        <option className="text-[#113458]" key={"country_list" + idx} value={countryItem}>{countryItem}</option>
-                                    ))
-                                }
-                            </select>
-                        </div>
-                        <div className="flex items-center mx-2.5">
-                            <select id="units" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={unitChange} value={unit}>
-                                {
-                                    consts.UNIT_LIST.map((unitItem, idx) => (
-                                        <option className="text-[#113458]" key={"unit_list" + idx} value={unitItem}>{unitItem}</option>
-                                    ))
-                                }
-                            </select>
-                        </div>
-                        <div className="flex items-center mx-2.5">
-                            <select id="inouts" className="bg-gray-900 bg-opacity-10 border border-[#113458] text-[#113458] text-sm rounded-lg focus:text-[#113458] focus:border-gray-900 focus-visible:outline-none block p-1.5" onChange={inoutChange} value={inout}>
-                                {
-                                    consts.IN_OUT_OPTION_LIST.map((item, idx) => (
-                                        <option className="text-[#113458]" key={"unit_list" + idx} value={item}>{item}</option>
-                                    ))
-                                }
-                            </select>
-                        </div> */}
                     <div className="flex items-center ml-2.5">
                         <button
                             type="button"
@@ -331,7 +205,6 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                             </div>
                             <div className="text-center text-gray-600 mt-2">
                                 <i>
-                                    {/* <div><b>Note</b></div> */}
                                     <div className="flex text-center items-center justify-center mt-2">
                                         <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                                         <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />

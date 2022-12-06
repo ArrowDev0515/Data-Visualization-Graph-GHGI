@@ -23,8 +23,6 @@ const SourceDataComponent = ({ AFOLUSector, farmingSystem, mitigationOption }) =
 
     return (
         <>
-            {/* <div className="my-10 mx-8 bg-[#113458] bg-opacity-10 rounded-xl items-center justify-center"> */}
-            {/* <div className="bg-local text-center grid content-center" style={{ backgroundImage: "url(../fable_bg1.jpg)", minHeight: "700px" }}> */}
             <div className="grid col-span-6 md:col-span-3 mx-3">
                 <div className="mt-3">
                     <label htmlFor="countries" className="mx-2 text-lg font-medium text-[#113458]">
@@ -48,7 +46,7 @@ const SourceDataComponent = ({ AFOLUSector, farmingSystem, mitigationOption }) =
                                     <tbody className="bg-gradient-to-b bg-[#ffffff82] rounded-b-sm">
                                         {
                                             data.map((ele, idx) => (
-                                                <tr className="border-t border-gray-400 grid grid-cols-5">
+                                                <tr key={idx} className="border-t border-gray-400 grid grid-cols-5">
                                                     <td className="py-3 md:px-6 col-span-1 px-1" style={{ overflowWrap: "anywhere" }}>{ele["Authors"]}</td>
                                                     <td className="py-3 md:px-6 col-span-1 px-1" style={{ overflowWrap: "anywhere" }}>{ele["Title"]}</td>
                                                     <td className="py-3 md:px-6 col-span-1 px-1" style={{ overflowWrap: "anywhere" }}>{ele["Year"]}</td>
