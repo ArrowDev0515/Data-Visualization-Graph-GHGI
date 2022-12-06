@@ -10,6 +10,13 @@ const SourceDataComponent = ({ AFOLUSector, farmingSystem, mitigationOption }) =
         }));
     }
 
+    const bulkDownload = () => {
+        let fileName = new Date();
+        fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
+            fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
+        exportToCSV(exportData, fileName);
+    }
+
     useEffect(() => {
         filterData();
     }, [AFOLUSector, farmingSystem, mitigationOption]);
@@ -27,7 +34,7 @@ const SourceDataComponent = ({ AFOLUSector, farmingSystem, mitigationOption }) =
                 {
                     <>
                         {(data.length > 0) ?
-                            <div className="relative rounded-t-xl my-5">
+                            <div className="relative rounded-t-xl mt-5">
                                 <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
                                     <thead className="text-xs text-white uppercase bg-[#11345877]">
                                         <tr className="grid grid-cols-5">
@@ -42,11 +49,11 @@ const SourceDataComponent = ({ AFOLUSector, farmingSystem, mitigationOption }) =
                                         {
                                             data.map((ele, idx) => (
                                                 <tr className="border-t border-gray-400 grid grid-cols-5">
-                                                    <td className="py-3 md:px-6 col-span-1 px-1" style={{overflowWrap: "anywhere"}}>{ele["Authors"]}</td>
-                                                    <td className="py-3 md:px-6 col-span-1 px-1" style={{overflowWrap: "anywhere"}}>{ele["Title"]}</td>
-                                                    <td className="py-3 md:px-6 col-span-1 px-1" style={{overflowWrap: "anywhere"}}>{ele["Year"]}</td>
-                                                    <td className="py-3 md:px-6 col-span-1 px-1" style={{overflowWrap: "anywhere"}}>{ele["Journal"]}</td>
-                                                    <td className="py-3 md:px-6 col-span-1 px-1" style={{overflowWrap: "anywhere"}}>{ele["DOI"]}</td>
+                                                    <td className="py-3 md:px-6 col-span-1 px-1" style={{ overflowWrap: "anywhere" }}>{ele["Authors"]}</td>
+                                                    <td className="py-3 md:px-6 col-span-1 px-1" style={{ overflowWrap: "anywhere" }}>{ele["Title"]}</td>
+                                                    <td className="py-3 md:px-6 col-span-1 px-1" style={{ overflowWrap: "anywhere" }}>{ele["Year"]}</td>
+                                                    <td className="py-3 md:px-6 col-span-1 px-1" style={{ overflowWrap: "anywhere" }}>{ele["Journal"]}</td>
+                                                    <td className="py-3 md:px-6 col-span-1 px-1" style={{ overflowWrap: "anywhere" }}>{ele["DOI"]}</td>
                                                 </tr>
                                             ))
                                         }
@@ -54,12 +61,17 @@ const SourceDataComponent = ({ AFOLUSector, farmingSystem, mitigationOption }) =
                                 </table>
                             </div>
                             :
-                            <div className="grid text-center content-center text-[#11345822] bg-gradient-to-b from-[#11345822] rounded-md my-5 p-5" style={{height: "200px"}}>
+                            <div className="grid text-center content-center text-[#11345822] bg-gradient-to-b from-[#11345822] rounded-md my-5 p-5" style={{ height: "200px" }}>
                                 <i>No Data to Display</i>
                             </div>
                         }
                     </>
                 }
+            </div>
+            <div className="col-span-6 text-center py-8">
+                <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xl px-8 py-4 text-center" onClick={bulkDownload}>
+                    <span className="">Bulk Download</span>
+                </button>
             </div>
             {/* </div> */}
         </>

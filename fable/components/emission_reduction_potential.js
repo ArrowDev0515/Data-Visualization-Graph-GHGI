@@ -217,7 +217,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 if (!xLabels2.has(item["DataSource"])) {
                     key2++;
                     xLabels2.set(item["DataSource"], key2);
-                    categoryData2.push({ x: (key2 * 20).toString(), label: item["DataSource"] });
+                    categoryData2.push({ x: [(key2 * 20).toString()], label: item["DataSource"] });
                 }
             } else {
                 if (!xLabels2.has(item["MitigationOption"])) {
@@ -248,7 +248,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 let xValue = categoryData2.find((e) => {
                     return e["label"] == ele["DataSource"];
                 })["x"];
-                dataArrForHistorical.push({ x: xValue, y: ele["Historical"] });
+                dataArrForHistorical.push({ x: xValue, y: ele["Historical"], toolText : ele["AnchorText"] });
             } else {
                 let xValue = categoryData2.find((e) => {
                     return e["label"] == ele["MitigationOption"];
@@ -295,7 +295,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
                     { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
                     { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian2, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
-                    { seriesname: "Historical", anchorbgcolor: consts.colors[4], data: dataArrForHistorical, anchorsides: 5, anchorradius: 5, legendIconAlpha: 100 }
+                    { seriesname: "Historical", anchorbgcolor: consts.colors[4], data: dataArrForHistorical, anchorsides: 5, anchorradius: 5, legendIconAlpha: 100, plottooltext: "aa" }
                 ],
             }
         });

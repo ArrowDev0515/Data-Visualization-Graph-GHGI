@@ -9,7 +9,7 @@ import { exportToCSV } from "../utils/exportCSV";
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
 const consts = require("../consts/consts");
-const dataSrc = require("../consts/221130_TradeOffs.json");
+const dataSrc = require("../consts/221205_TradeOffs.json");
 
 
 const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) => {
@@ -181,13 +181,6 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
         exportToCSV(data, fileName);
     }
 
-    const bulkDownload = () => {
-        let fileName = new Date();
-        fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
-            fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
-        exportToCSV(exportData, fileName);
-    }
-
     const getIcon = (value) => {
         switch (value) {
             case 1:
@@ -222,10 +215,7 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                     </div>
                 );
             case undefined:
-                return (<div>
-                    No Information
-                </div>
-                );
+                return (<div className="flex justify-center">No Information</div>);
         }
     }
 
@@ -333,7 +323,7 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                                         {exportData.map((element, idx) => (
                                             <tr key={idx} className="border-t border-gray-400">
                                                 <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap">{element["NonGHGIndicator"]}</th>
-                                                <td className="py-4 px-6">{getIcon(element["Magnitude"])}</td>
+                                                <td className="py-4 px-6" style={{backgroundColor: `${element["HEX"]}`}}>{getIcon(element["Magnitude"])}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -367,11 +357,6 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                             <i>No Impacts & Synergies for <b>{country}</b></i>
                         </div>
                     }
-                </div>
-                <div className="col-span-6 text-center my-8">
-                    <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xl px-8 py-4 text-center" onClick={bulkDownload}>
-                        <span className="">Bulk Download</span>
-                    </button>
                 </div>
             </div>
             <section id="data_explorer">
