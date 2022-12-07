@@ -10,12 +10,25 @@ const SourceDataComponent = ({ AFOLUSector, farmingSystem, mitigationOption }) =
         }));
     }
 
-    const bulkDownload = () => {
-        let fileName = new Date();
-        fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
-            fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
-        exportToCSV(exportData, fileName);
-    }
+    // const bulkDownload = () => {
+    //     // let fileName = new Date();
+    //     // fileName = fileName.getFullYear() + "-" + (fileName.getMonth() + 1) + "-" + fileName.getDate() + " " +
+    //     //     fileName.getHours() + ":" + fileName.getMinutes() + ":" + fileName.getSeconds();
+    //     // exportToCSV(exportData, fileName);
+    //     // const url = window.URL.createObjectURL(new Blob([response.data]));
+    //     axios({
+    //         url: 'http://localhost:3000/static/example.pdf',
+    //         method: 'GET',
+    //         responseType: 'blob', // important
+    //     }).then((response) => {
+    //         const url = window.URL.createObjectURL(new Blob([response.data]));
+    //         const link = document.createElement('a');
+    //         link.href = url;
+    //         link.setAttribute('download', 'file.pdf');
+    //         document.body.appendChild(link);
+    //         link.click();
+    //     });
+    // }
 
     useEffect(() => {
         filterData();
@@ -67,9 +80,9 @@ const SourceDataComponent = ({ AFOLUSector, farmingSystem, mitigationOption }) =
                 }
             </div>
             <div className="col-span-6 text-center py-8">
-                <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xl px-8 py-4 text-center" onClick={bulkDownload}>
+                <a type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xl px-8 py-4 text-center" href="/221206_BulkDownload.xlsx">
                     <span className="">Bulk Download</span>
-                </button>
+                </a>
             </div>
             {/* </div> */}
         </>
