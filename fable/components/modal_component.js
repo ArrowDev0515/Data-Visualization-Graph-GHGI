@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+const consts = require("../consts/consts");
 
 const ModalComponent = ({title, content, isModalOpen, closeModal}) => {
 
@@ -7,7 +8,7 @@ const ModalComponent = ({title, content, isModalOpen, closeModal}) => {
     <>
       {/* Modal Content Here! */}
       <Transition appear show={isModalOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-10 w-auto" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -31,7 +32,7 @@ const ModalComponent = ({title, content, isModalOpen, closeModal}) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className={`w-full ${title != consts.MODAL_TITLE_MITIGATION_POTENTIAL ? "max-w-lg" : "max-w-2xl"} transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all`}>
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-[#113458]"

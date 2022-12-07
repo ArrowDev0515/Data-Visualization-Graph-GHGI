@@ -107,7 +107,7 @@ const Header = ({}) => {
             <li className="mr-2">
               <Link activeClass="activeStyle" smooth spy offset={-85} to="data_explorer"
                 className={`inline-block p-3 cursor-pointer rounded-t-lg border-b-2 border-transparent hover:text-white hover:border-gray-300 focus:text-gray-400 focus:border-gray-400`}>
-                Data Explorer
+                Source Data
               </Link>
             </li>
           </ul>

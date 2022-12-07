@@ -10,7 +10,6 @@ const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
 const consts = require("../consts/consts");
 const dataSrc = require("../consts/221205_TradeOffs.json");
 
-
 const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) => {
     const [mitigationOption, setMitigationOption] = useState(consts.MITIGATION_OPTION_TSWD);
     const [mitigationOptionList, setMitigationOptionList] = useState([]);
@@ -122,7 +121,54 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
 
     const modalContent = <>
         <div className="mt-5 text-[#113458]">
-            <b>Mitigation Option :</b> {mitigationOption}<br />
+            <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
+                <thead className="text-xs text-white uppercase bg-[#11345877] ">
+                    <tr>
+                        <th scope="col" className="py-3 px-6">Magnitude</th>
+                        <th scope="col" className="py-3 px-6">Symbol</th>
+                        <th scope="col" className="py-3 px-6">Definition</th>
+                    </tr>
+                </thead>
+                <tbody className="bg-gradient-to-b bg-[#11345811] rounded-b-sm">
+                    <tr className="border-t border-gray-400">
+                        <td className="py-4 px-6">1</td>
+                        <td className="py-4 px-6 flex text-center justify-center">
+                            <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                            <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                        </td>
+                        <td className="py-4 px-6">Strongly decrease</td>
+                    </tr>
+                    <tr className="border-t border-gray-400">
+                        <td className="py-4 px-6">2</td>
+                        <td className="py-4 px-6 flex text-center justify-center">
+                            <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                        </td>
+                        <td className="py-4 px-6">Decrease</td>
+                    </tr>
+                    <tr className="border-t border-gray-400">
+                        <td className="py-4 px-6">3</td>
+                        <td className="py-4 px-6 flex text-center justify-center">
+                            <MinusIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                        </td>
+                        <td className="py-4 px-6">Neutral</td>
+                    </tr>
+                    <tr className="border-t border-gray-400">
+                        <td className="py-4 px-6">4</td>
+                        <td className="py-4 px-6 flex text-center justify-center">
+                            <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                        </td>
+                        <td className="py-4 px-6">Increase</td>
+                    </tr>
+                    <tr className="border-t border-gray-400">
+                        <td className="py-4 px-6">5</td>
+                        <td className="py-4 px-6 flex text-center justify-center">
+                            <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                            <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                        </td>
+                        <td className="py-4 px-6">Strongly Increase</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </>
 
@@ -196,7 +242,7 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                                         {exportData.map((element, idx) => (
                                             <tr key={idx} className="border-t border-gray-400">
                                                 <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap">{element["NonGHGIndicator"]}</th>
-                                                <td className="py-4 px-6" style={{backgroundColor: `${element["HEX"]}`}}>{getIcon(element["Magnitude"])}</td>
+                                                <td className="py-4 px-6" style={{ backgroundColor: `${element["HEX"]}` }}>{getIcon(element["Magnitude"])}</td>
                                             </tr>
                                         ))}
                                     </tbody>

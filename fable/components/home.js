@@ -5,8 +5,9 @@ import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import ModalComponent from "./modal_component";
 
-const dataSrc = require("../consts/221201_HomePage.json");
+const dataSrc = require("../consts/221207_HomePage.json");
 const consts = require("../consts/consts");
+const utils = require("../utils/utils");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
 
@@ -68,12 +69,16 @@ const HomeComponent = ({ country }) => {
     });
 
     useEffect(() => {
-    });
+        getYearOptionList();
+        getGWPOptionList();
+        getDataSoruceOptionList();
+    }, [country]);
 
     useEffect(() => {
         filterData();
     }, [dataSource, year, gwp, country]);
-    const filterData = () => {
+
+    const getYearOptionList = () => {
         // get year list
         let yearArr = [];
         yearArr = dataSrc.map((ele) => {
@@ -82,8 +87,16 @@ const HomeComponent = ({ country }) => {
             (arr, item) => (arr.includes(item) ? arr : [...arr, item]),
             [],
         );
+        yearArr = yearArr.sort((a, b) => {
+            if (a > b)
+                return 1;
+            else return -1;
+        })
+        setYear(yearArr[0]);
         setYearList(yearArr);
+    }
 
+    const getGWPOptionList = () => {
         // get gwp list
         let gwpArr = [];
         gwpArr = dataSrc.map((ele) => {
@@ -91,8 +104,11 @@ const HomeComponent = ({ country }) => {
         }).reduce(
             (arr, item) => (arr.includes(item) ? arr : [...arr, item]), [],
         );
+        setGWP(gwpArr[0]);
         setGwpList(gwpArr);
+    }
 
+    const getDataSoruceOptionList = () => {
         // get dataSource list
         let dataSourceArr = [];
         dataSourceArr = dataSrc.map((ele) => {
@@ -101,8 +117,11 @@ const HomeComponent = ({ country }) => {
             (arr, item) => (arr.includes(item) ? arr : [...arr, item]),
             [],
         );
+        setDataSource(dataSourceArr[0]);
         setDataSourceList(dataSourceArr);
+    }
 
+    const filterData = () => {
         let data = dataSrc.filter((ele) => {
             return (ele["Party"] === country && parseInt(ele["Year"]) === parseInt(year) && ele["AR"] === gwp);
         });
@@ -120,8 +139,8 @@ const HomeComponent = ({ country }) => {
         data.forEach((item) => {
             let tmpItem = new Object();
             tmpItem["label"] = item["Category"];
-            tmpItem["value"] = parseFloat(item["EmissionCategoryMtCO2e"]);
-            tmpItem["percentValue"] = (parseFloat(item["EmissionCategoryMtCO2e"]) / parseFloat(item["TotalEmissionsMtCO2e"]) * 100).toFixed(2);
+            tmpItem["value"] = utils.numberFormat(item["EmissionCategoryMtCO2e"]);
+            tmpItem["percentValue"] = (utils.numberFormat(item["EmissionCategoryMtCO2e"]) / utils.numberFormat(item["TotalEmissionsMtCO2e"]) * 100).toFixed(2);
             tmpItem["color"] = item["HEX_Donut"];
             if (!set.has(item["Category"])) {
                 set.add(item["Category"]);
@@ -135,6 +154,7 @@ const HomeComponent = ({ country }) => {
             captionStr += data[0]["TotalEmissionsMtCO2e"] + ` Mt CO2e`;
             subCaptionStr = "{br}" + data[0]["TotalEmissionsCapitatCO2e_cap"] + " t CO2e/cap";
         }
+
         setChartConfigs({
             ...chartConfigs, dataSource: {
                 ...chartConfigs.dataSource,
@@ -146,8 +166,8 @@ const HomeComponent = ({ country }) => {
 
     useEffect(() => {
         if (AFOLUData.length) {
-            setHeight2(height1 / parseFloat(AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]) *
-                Math.abs(parseFloat(AFOLUData[0]["TotalAFOLURemovalsMtCO2e"])));
+            setHeight2(height1 / utils.numberFormat(AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]) *
+                Math.abs(utils.numberFormat(AFOLUData[0]["TotalAFOLURemovalsMtCO2e"])));
         }
     }, [AFOLUData]);
 
@@ -208,7 +228,7 @@ const HomeComponent = ({ country }) => {
 
     const gwpModalContent = <>
         <div className="mt-5 text-[#113458]">
-            {consts.TEXT_GWP}<br/><br/>
+            {consts.TEXT_GWP}<br /><br />
             <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
                 <thead className="text-xs text-white uppercase bg-[#11345877] ">
                     <tr>
@@ -219,7 +239,7 @@ const HomeComponent = ({ country }) => {
                         <th scope="col" className="py-3 px-2">AR5</th>
                     </tr>
                 </thead>
-                <tbody className="bg-gradient-to-b bg-[#11345822] rounded-b-sm">
+                <tbody className="bg-gradient-to-b bg-[#11345811] rounded-b-sm">
                     <tr className="border-t border-gray-400">
                         <td className="py-4 px-2"><b>{consts.TEXT_CO2}</b></td>
                         <td className="py-4 px-2">1</td>
@@ -247,9 +267,18 @@ const HomeComponent = ({ country }) => {
     </>
     const modalContent = <>
         <div className="mt-5 text-[#113458]">
-            <b>Country :</b> {country}<br />
-            <b>Year :</b> {year}<br />
-            <b>GWP :</b> {gwp}<br />
+            <p>Summary: Overview of historical country-level and sectoral GHG emissions data with detailed AFOLU sector GHG emissions data (1990-2019)
+            </p><br />
+            <div className="ml-3 text-sm">
+                Data source available:
+                <li>Historical country-level sectoral GHG emissions from the GHG inventory (UNFCCC) are presented together with their detailed subcategories for the AFOLU sector. The years available depend on the frequency of biennial update reports.</li>
+                <li>Historical country-level sectoral GHG emissions from Climate Watch Historical Country Greenhouse Gas Emissions Data are presented together with detailed subcategories for the AFOLU sector from the FAO. This time series span from 1990 to 2019 for all countries.</li>
+            </div><br />
+            <div style={{ overflowWrap: "anywhere" }}>
+                The FAO to UNFCCC mapping for the AFOLU sector is documented here: <a href="https://fenixservices.fao.org/faostat/static/documents/GT/Mapping_to_UNFCCC_IPCC.pdf" className="underline hover:text-sky-500">
+                    https://fenixservices.fao.org/faostat/static/documents/GT/Mapping_to_UNFCCC_IPCC.pdf
+                </a>
+            </div>
         </div>
     </>
 
@@ -380,9 +409,9 @@ const HomeComponent = ({ country }) => {
                             </div>
                         </div>
                         <div className="col-span-12 md:col-span-6 lg:col-span-3 grid grid-cols-2 bg-gradient-to-b md:bg-gradient-to-l from-[#11345822] rounded-md text-[#113458] text-center p-3 my-3">
-                            {AFOLUData.length ?
+                            {AFOLUData.length > 0 ?
                                 <>
-                                    {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"] > 0 ?
+                                    {utils.numberFormat(AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]) > 0 ?
                                         <>
                                             <div className="text-xl mt-3 col-span-2 font-normal">
                                                 <b><span className="text-lg">AFOLU Sector</span></b>
@@ -401,9 +430,9 @@ const HomeComponent = ({ country }) => {
                                                     {
                                                         AFOLUData.map((item, idx) => (
                                                             <span key={"SourceOfEmissions" + idx}>
-                                                                {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
-                                                                    <div className="grid items-center relative" style={{ height: `${parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"]) * 100}%`, backgroundColor: `${item["HEX"]}` }}>
-                                                                        {(height1 * parseFloat(item["AFOLUEmissionsMtCO2e"]) / parseFloat(item["TotalAFOLUEmissionsMtCO2e"])).toFixed(2) > 20 ? <span className="text-[#113458]">{parseFloat(item["AFOLUEmissionsMtCO2e"])}</span> : ""}
+                                                                {(utils.numberFormat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
+                                                                    <div className="grid items-center relative" style={{ height: `${utils.numberFormat(item["AFOLUEmissionsMtCO2e"]) / utils.numberFormat(item["TotalAFOLUEmissionsMtCO2e"]) * 100}%`, backgroundColor: `${item["HEX"]}` }}>
+                                                                        {(height1 * utils.numberFormat(item["AFOLUEmissionsMtCO2e"]) / utils.numberFormat(item["TotalAFOLUEmissionsMtCO2e"])).toFixed(2) > 20 ? <span className="text-[#113458]">{utils.numberFormat(item["AFOLUEmissionsMtCO2e"])}</span> : ""}
                                                                     </div>
                                                                     : ""
                                                                 }
@@ -425,9 +454,9 @@ const HomeComponent = ({ country }) => {
                                                             {
                                                                 AFOLUData.map((item, idx) => (
                                                                     <span key={"SinksForRemovals" + idx}>
-                                                                        {(parseFloat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
-                                                                            <div className="grid items-center relative" style={{ height: `${parseFloat(item["TotalAFOLURemovalsMtCO2e"]) ? Math.abs(parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"]) * 100) : 0}%`, backgroundColor: `${item["HEX"]}` }}>
-                                                                                {Math.abs((height2 * parseFloat(item["AFOLURemovalsMtCO2e"]) / parseFloat(item["TotalAFOLURemovalsMtCO2e"])).toFixed(2)) > 20 ? <span className="text-[#113458]">{item["AFOLURemovalsMtCO2e"]}</span> : ""}
+                                                                        {(utils.numberFormat(Math.abs(item["AFOLURemovalsMtCO2e"])) > 0) ?
+                                                                            <div className="grid items-center relative" style={{ height: `${utils.numberFormat(item["TotalAFOLURemovalsMtCO2e"]) ? Math.abs(utils.numberFormat(item["AFOLURemovalsMtCO2e"]) / utils.numberFormat(item["TotalAFOLURemovalsMtCO2e"]) * 100) : 0}%`, backgroundColor: `${item["HEX"]}` }}>
+                                                                                {Math.abs((height2 * utils.numberFormat(item["AFOLURemovalsMtCO2e"]) / utils.numberFormat(item["TotalAFOLURemovalsMtCO2e"])).toFixed(2)) > 20 ? <span className="text-[#113458]">{item["AFOLURemovalsMtCO2e"]}</span> : ""}
                                                                             </div>
                                                                             : ""
                                                                         }
@@ -446,7 +475,7 @@ const HomeComponent = ({ country }) => {
                                                 {
                                                     AFOLUData.map((item, idx) => (
                                                         <div key={"right_" + idx}>
-                                                            {(parseFloat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
+                                                            {(utils.numberFormat(item["AFOLUEmissionsMtCO2e"]) > 0) ?
                                                                 <div key={"right1" + idx} className="flex mt-2 items-center">
                                                                     <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${item["HEX"]}` }}>
                                                                     </div>
@@ -466,7 +495,7 @@ const HomeComponent = ({ country }) => {
                                                         {
                                                             AFOLUData.map((item, idx) => (
                                                                 <div key={"left" + idx}>
-                                                                    {(parseFloat(item["AFOLURemovalsMtCO2e"]) != 0) ?
+                                                                    {(utils.numberFormat(item["AFOLURemovalsMtCO2e"]) != 0) ?
                                                                         <div className="flex mt-2 items-center">
                                                                             <div className="rounded-lg" style={{ minWidth: "15px", width: "15px", height: "15px", backgroundColor: `${item["HEX"]}` }}>
                                                                             </div>
@@ -488,11 +517,9 @@ const HomeComponent = ({ country }) => {
                                     }
                                 </>
                                 :
-                                <>
-                                    <div className="text-[#113458] grid text-center items-center col-span-2 p-3 my-3">
-                                        <b>No Data to Display!</b>
-                                    </div>
-                                </>
+                                <div className="text-[#113458] grid text-center items-center col-span-2 p-3 my-3">
+                                    <b>No Data to Display!</b>
+                                </div>
                             }
                         </div>
                     </div>

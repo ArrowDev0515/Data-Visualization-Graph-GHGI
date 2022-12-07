@@ -1,7 +1,3 @@
-const dataSrc = require("../consts/221118_HomePage.json");
-const consts = require("../consts/consts");
-
-
 export const test = (country, year, dataSource, gwp) => {
   let data = dataSrc.filter((ele) => {
     return (ele["Party"].toString() === country && parseInt(ele["Year"]) === parseInt(year) && ele["DataSource"] === dataSource && ele["AR"] === gwp);
@@ -9,6 +5,9 @@ export const test = (country, year, dataSource, gwp) => {
   console.log(data);
 }
 
+export const numberFormat = (val) => {
+  return parseFloat(val.toString().replace(",", ""));
+}
 export const formatCountryListFromJSON = () => {
   let str = [];
   dataSrc.map((ele) => {

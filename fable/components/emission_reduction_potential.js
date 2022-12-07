@@ -239,7 +239,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 let xValue = categoryData2.find((e) => {
                     return e["label"] == ele["DataSource"];
                 })["x"];
-                dataArrForHistorical.push({ x: xValue, y: ele["Historical"], toolText : ele["AnchorText"] });
+                dataArrForHistorical.push({ x: xValue, y: ele["Historical"], toolText: ele["AnchorText"] });
             } else {
                 let xValue = categoryData2.find((e) => {
                     return e["label"] == ele["MitigationOption"];
@@ -259,7 +259,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 }
             }
         });
-      
+
         setChartConfigs2({
             ...chartConfigs2, dataSource: {
                 ...chartConfigs2.dataSource,
@@ -269,19 +269,19 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 },
                 categories: [{ category: categoryData2 }],
                 dataset: dataArrForHistorical.length > 0 ?
-                [
-                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 6, anchorradius: 8, legendIconAlpha: 100 },
-                    { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
-                    { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
-                    { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian2, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
-                    { seriesname: "Historical", anchorbgcolor: consts.colors[4], data: dataArrForHistorical, anchorsides: 5, anchorradius: 5, legendIconAlpha: 100 }
-                ] : 
-                [
-                    { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 6, anchorradius: 8, legendIconAlpha: 100 },
-                    { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
-                    { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
-                    { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian2, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
-                ]
+                    [
+                        { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 6, anchorradius: 8, legendIconAlpha: 100 },
+                        { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
+                        { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
+                        { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian2, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
+                        { seriesname: "Historical", anchorbgcolor: consts.colors[4], data: dataArrForHistorical, anchorsides: 5, anchorradius: 5, legendIconAlpha: 100 }
+                    ] :
+                    [
+                        { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 6, anchorradius: 8, legendIconAlpha: 100 },
+                        { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
+                        { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
+                        { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian2, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
+                    ]
             }
         });
     }
@@ -369,9 +369,24 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
 
     const modalContent = <>
         <div className="mt-5 text-[#113458]">
-            <b>Country :</b> {country}<br />
-            <b>Farming System :</b> {farmingSystem}<br />
-            <b>Unit :</b> {unit}<br />
+            <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
+                <thead className="text-xs text-white uppercase bg-[#11345877] ">
+                    <tr>
+                        <th scope="col" className="py-3 px-6">AFOLU Sector</th>
+                        <th scope="col" className="py-3 px-6">Mitigation Option</th>
+                        <th scope="col" className="py-3 px-6">Mitigation option name detailed</th>
+                    </tr>
+                </thead>
+                <tbody className="bg-gradient-to-b bg-[#11345811] rounded-b-sm">
+                    {consts.MITIGATION_OPTION_LIST.map((element, idx) => (
+                        <tr key={idx} className="border-t border-gray-400">
+                            <td className="py-4 px-6 font-medium whitespace-nowrap">{consts.AFOLU_SECTOR_RICE_CULTIVATION}</td>
+                            <td className="py-4 px-6 font-medium whitespace-nowrap">{element.text}</td>
+                            <td className="py-4 px-6">{element.detail}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     </>
 
