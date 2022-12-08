@@ -6,10 +6,10 @@ export const CAPTION_TEXT_TRADE_OFF_SYNERGIES_OUTPUT =
 export const CAPTION_TEXT_TRADE_OFF_SYNERGIES_INPUT =
   "Scaling mitigation relationship with non-GHG inputs";
 export const colors = [
-  "#dada70",
-  "#e5b149",
-  "#cc8f17",
-  "#ffbb99",
+  "#7700BF",
+  "#9F00FF",
+  "#FF0000",
+  "#FFCE00",
   "#000000",
   "#af8ecd",
   "#5eb5d4",
@@ -24,16 +24,6 @@ export const YEAR_LIST = [
 
 export const AR_5 = "AR5";
 export const AR_LIST = [AR_5];
-
-export const TEXT_GWP = "The Global Warming Potential (GWP) was developed to allow comparisons of the global warming impacts of different gases. Specifically, it is a measure of how much energy the emissions of 1 ton of a gas will absorb over a given period of time, relative to the emissions of 1 ton of carbon dioxide (CO2).";
-export const TEXT_CO2 = "CO2";
-export const TEXT_CH4 = "CH4";
-export const TEXT_N2O = "N2O";
-
-export const MODAL_TITLE_MITIGATION_POTENTIAL = "Mitigation Potential Per AFOLU Sector Data";
-export const MODAL_TITLE_IMPACTS_SYNERGIES = "Trade - offs and synergies for specific mitigation option";
-export const MODAL_TITLE_OVERVIEW = "Overview of total greenhouse gas emissions and role of AFOLU";
-export const MODAL_TITLE_GWP = "GWP";
 
 export const DATA_SOURCE_FAO = "FAO";
 export const DATA_SOURCE_IPCC = "IPCC";
@@ -57,88 +47,6 @@ export const FARMING_SYSTEM_GROUND_COVER = "Ground cover rice production system"
 export const FARMING_SYSTEM_INTEGRATED_RICE = "Integrated rice-duck farming";
 export const FARMING_SYSTEM_LIST = [FARMING_SYSTEM_CONVENTIONAL_RICE, FARMING_SYSTEM_DOUBLE_RICE, FARMING_SYSTEM_GROUND_COVER, FARMING_SYSTEM_INTEGRATED_RICE];
 
-export const MITIGATION_OPTION_TEXT_ADW = "ADW";
-export const MITIGATION_OPTION_TEXT_CF = "CF";
-export const MITIGATION_OPTION_TEXT_PFMSD = "PFMSD";
-export const MITIGATION_OPTION_TEXT_CFMSD = "CFMSD";
-export const MITIGATION_OPTION_TEXT_FMSDII = "FMSDII";
-export const MITIGATION_OPTION_TEXT_CI = "CI";
-export const MITIGATION_OPTION_TEXT_FI = "FI";
-export const MITIGATION_OPTION_TEXT_ASR_W = "ASR-W";
-export const MITIGATION_OPTION_TEXT_ASBBRR_W = "ASBBRR-W";
-export const MITIGATION_OPTION_TEXT_R_F = "R-F";
-export const MITIGATION_OPTION_TEXT_R_GM = "R-GM";
-export const MITIGATION_OPTION_TEXT_CISB = "CISB";
-export const MITIGATION_OPTION_TEXT_BDF = "BDF";
-export const MITIGATION_OPTION_TEXT_RPF = "RPF";
-export const MITIGATION_OPTION_TEXT_TSWD = "TSWD";
-export const MITIGATION_OPTION_TEXT_PTSI = "PTSI";
-export const MITIGATION_OPTION_TEXT_PT = "PT";
-export const MITIGATION_OPTION_TEXT_RTSI = "RTSI";
-
-export const MITIGATION_OPTION_TEXT_LIST = [
-  MITIGATION_OPTION_TEXT_ADW, MITIGATION_OPTION_TEXT_CF,
-  MITIGATION_OPTION_TEXT_PFMSD, MITIGATION_OPTION_TEXT_CFMSD,
-  MITIGATION_OPTION_TEXT_FMSDII, MITIGATION_OPTION_TEXT_CI,
-  MITIGATION_OPTION_TEXT_FI, MITIGATION_OPTION_TEXT_ASR_W,
-  MITIGATION_OPTION_TEXT_ASBBRR_W, MITIGATION_OPTION_TEXT_R_F,
-  MITIGATION_OPTION_TEXT_R_GM, MITIGATION_OPTION_TEXT_CISB,
-  MITIGATION_OPTION_TEXT_BDF, MITIGATION_OPTION_TEXT_RPF,
-  MITIGATION_OPTION_TEXT_TSWD, MITIGATION_OPTION_TEXT_PTSI,
-  MITIGATION_OPTION_TEXT_PT, MITIGATION_OPTION_TEXT_RTSI
-];
-
-export const MITIGATION_OPTION_DETAIL_ADW = "Alternate drying and wetting irrigation";
-export const MITIGATION_OPTION_DETAIL_CF = "Continuously flooded";
-export const MITIGATION_OPTION_DETAIL_PFMSD = "Persistent flooding with midseason drainage";
-export const MITIGATION_OPTION_DETAIL_CFMSD = "Continuously flooded with midseason drainage";
-export const MITIGATION_OPTION_DETAIL_FMSDII = "Flood for transplanting and tillering, drainage during the midseason, and intermittent irrigation after midseason";
-export const MITIGATION_OPTION_DETAIL_CI = "Controlled irrigation";
-export const MITIGATION_OPTION_DETAIL_FI = "Flooding irrigation";
-export const MITIGATION_OPTION_DETAIL_ASR_W = "Annual straw incorporating in rice-wheat rotation system";
-export const MITIGATION_OPTION_DETAIL_ASBBRR_W = "Annual straw-based biogas residues incorporating in rice-wheat rotation system";
-export const MITIGATION_OPTION_DETAIL_R_F = "Rice-Fallow rotation system";
-export const MITIGATION_OPTION_DETAIL_R_GM = "Rice-green manure rotation system";
-export const MITIGATION_OPTION_DETAIL_CISB = "Controlled irrigation with straw biochar";
-export const MITIGATION_OPTION_DETAIL_BDF = "Biodegradable film";
-export const MITIGATION_OPTION_DETAIL_RPF = "Regular Polyethylene film";
-export const MITIGATION_OPTION_DETAIL_TSWD = "Thin-shallow-wet-dry";
-export const MITIGATION_OPTION_DETAIL_PTSI = "Plough tillage with straw incorporation";
-export const MITIGATION_OPTION_DETAIL_PT = "Plough tillage without straw incorporation";
-export const MITIGATION_OPTION_DETAIL_RTSI = "Rotary tillage with straw incorporation";
-
-export const MITIGATION_OPTION_DETAIL_LIST = [
-  MITIGATION_OPTION_DETAIL_ADW, MITIGATION_OPTION_DETAIL_CF,
-  MITIGATION_OPTION_DETAIL_PFMSD, MITIGATION_OPTION_DETAIL_CFMSD,
-  MITIGATION_OPTION_DETAIL_FMSDII, MITIGATION_OPTION_DETAIL_CI,
-  MITIGATION_OPTION_DETAIL_FI, MITIGATION_OPTION_DETAIL_ASR_W,
-  MITIGATION_OPTION_DETAIL_ASBBRR_W, MITIGATION_OPTION_DETAIL_R_F,
-  MITIGATION_OPTION_DETAIL_R_GM, MITIGATION_OPTION_DETAIL_CISB,
-  MITIGATION_OPTION_DETAIL_BDF, MITIGATION_OPTION_DETAIL_RPF,
-  MITIGATION_OPTION_DETAIL_TSWD, MITIGATION_OPTION_DETAIL_PTSI,
-  MITIGATION_OPTION_DETAIL_PT, MITIGATION_OPTION_DETAIL_RTSI
-];
-
-export const MITIGATION_OPTION_LIST = [
-  { text: MITIGATION_OPTION_TEXT_ADW, detail: MITIGATION_OPTION_DETAIL_ADW },
-  { text: MITIGATION_OPTION_TEXT_CF, detail: MITIGATION_OPTION_DETAIL_CF },
-  { text: MITIGATION_OPTION_TEXT_PFMSD, detail: MITIGATION_OPTION_DETAIL_PFMSD },
-  { text: MITIGATION_OPTION_TEXT_CFMSD, detail: MITIGATION_OPTION_DETAIL_CFMSD },
-  { text: MITIGATION_OPTION_TEXT_FMSDII, detail: MITIGATION_OPTION_DETAIL_FMSDII },
-  { text: MITIGATION_OPTION_TEXT_CI, detail: MITIGATION_OPTION_DETAIL_CI },
-  { text: MITIGATION_OPTION_TEXT_FI, detail: MITIGATION_OPTION_DETAIL_FI },
-  { text: MITIGATION_OPTION_TEXT_ASR_W, detail: MITIGATION_OPTION_DETAIL_ASR_W },
-  { text: MITIGATION_OPTION_TEXT_ASBBRR_W, detail: MITIGATION_OPTION_DETAIL_ASBBRR_W },
-  { text: MITIGATION_OPTION_TEXT_R_F, detail: MITIGATION_OPTION_DETAIL_R_F },
-  { text: MITIGATION_OPTION_TEXT_R_GM, detail: MITIGATION_OPTION_DETAIL_R_GM },
-  { text: MITIGATION_OPTION_TEXT_CISB, detail: MITIGATION_OPTION_DETAIL_CISB },
-  { text: MITIGATION_OPTION_TEXT_BDF, detail: MITIGATION_OPTION_DETAIL_BDF },
-  { text: MITIGATION_OPTION_TEXT_RPF, detail: MITIGATION_OPTION_DETAIL_RPF },
-  { text: MITIGATION_OPTION_TEXT_TSWD, detail: MITIGATION_OPTION_DETAIL_TSWD },
-  { text: MITIGATION_OPTION_TEXT_PTSI, detail: MITIGATION_OPTION_DETAIL_PTSI },
-  { text: MITIGATION_OPTION_TEXT_PT, detail: MITIGATION_OPTION_DETAIL_PT },
-  { text: MITIGATION_OPTION_TEXT_RTSI, detail: MITIGATION_OPTION_DETAIL_RTSI }
-];
 
 export const COLOR_DARK_BLUE = "#03203D";
 export const COLOR_BLUE = "#113458";
@@ -340,3 +248,102 @@ export const COUNTRY_LIST = ["Afghanistan",
   "Zambia",
   "Zimbabwe"
 ];
+
+export const TEXT_NON_GHG_INDICATOR = "Non GHG Indicator";
+export const TEXT_MAGNITUDE = "Magnitude";
+
+
+//Texts for GWP Modal
+export const TEXT_GWP = "The Global Warming Potential (GWP) was developed to allow comparisons of the global warming impacts of different gases. Specifically, it is a measure of how much energy the emissions of 1 ton of a gas will absorb over a given period of time, relative to the emissions of 1 ton of carbon dioxide (CO2).";
+export const MODAL_TITLE_GREENHOUSE_GAS = "Greenhouse Gas";
+export const MODAL_TITLE_SAR = "SAR";
+export const MODAL_TITLE_AR3 = "AR3";
+export const MODAL_TITLE_AR4 = "AR4";
+export const MODAL_TITLE_AR5 = "AR5";
+
+export const MODAL_TEXT_CO2 = "CO2";
+export const MODAL_TEXT_CH4 = "CH4";
+export const MODAL_TEXT_N2O = "N2O";
+
+export const TEXT_AFOLU_SUMMARY = "Summary: Overview of historical country-level and sectoral GHG emissions data with detailed AFOLU sector GHG emissions data (1990-2019)";
+
+// Title Texts for Modals
+export const MODAL_TITLE_MITIGATION_POTENTIAL = "Mitigation Potential Per AFOLU Sector Data";
+export const MODAL_TITLE_TRADE_OFFS = "Trade-offs and synergies for specific mitigation option";
+export const MODAL_TITLE_OVERVIEW = "Overview of total greenhouse gas emissions and role of AFOLU";
+export const MODAL_TITLE_GWP = "GWP";
+
+// Texts for Mitigation Potential Modal
+export const MODAL_TABLE_HEADER_AFOLU_SECTOR = "AFOLU Sector";
+export const MODAL_TABLE_HEADER_MITIGATION_OPTION = "Mitigation Option";
+export const MODAL_TABLE_HEADER_MITIGATION_OPTION_NAME_DETAILED = "Mitigation option name detailed";
+
+export const MITIGATION_OPTION_TEXT_ADW = "ADW";
+export const MITIGATION_OPTION_TEXT_CF = "CF";
+export const MITIGATION_OPTION_TEXT_PFMSD = "PFMSD";
+export const MITIGATION_OPTION_TEXT_CFMSD = "CFMSD";
+export const MITIGATION_OPTION_TEXT_FMSDII = "FMSDII";
+export const MITIGATION_OPTION_TEXT_CI = "CI";
+export const MITIGATION_OPTION_TEXT_FI = "FI";
+export const MITIGATION_OPTION_TEXT_ASR_W = "ASR-W";
+export const MITIGATION_OPTION_TEXT_ASBBRR_W = "ASBBRR-W";
+export const MITIGATION_OPTION_TEXT_R_F = "R-F";
+export const MITIGATION_OPTION_TEXT_R_GM = "R-GM";
+export const MITIGATION_OPTION_TEXT_CISB = "CISB";
+export const MITIGATION_OPTION_TEXT_BDF = "BDF";
+export const MITIGATION_OPTION_TEXT_RPF = "RPF";
+export const MITIGATION_OPTION_TEXT_TSWD = "TSWD";
+export const MITIGATION_OPTION_TEXT_PTSI = "PTSI";
+export const MITIGATION_OPTION_TEXT_PT = "PT";
+export const MITIGATION_OPTION_TEXT_RTSI = "RTSI";
+
+export const MITIGATION_OPTION_DETAIL_ADW = "Alternate drying and wetting irrigation";
+export const MITIGATION_OPTION_DETAIL_CF = "Continuously flooded";
+export const MITIGATION_OPTION_DETAIL_PFMSD = "Persistent flooding with midseason drainage";
+export const MITIGATION_OPTION_DETAIL_CFMSD = "Continuously flooded with midseason drainage";
+export const MITIGATION_OPTION_DETAIL_FMSDII = "Flood for transplanting and tillering, drainage during the midseason, and intermittent irrigation after midseason";
+export const MITIGATION_OPTION_DETAIL_CI = "Controlled irrigation";
+export const MITIGATION_OPTION_DETAIL_FI = "Flooding irrigation";
+export const MITIGATION_OPTION_DETAIL_ASR_W = "Annual straw incorporating in rice-wheat rotation system";
+export const MITIGATION_OPTION_DETAIL_ASBBRR_W = "Annual straw-based biogas residues incorporating in rice-wheat rotation system";
+export const MITIGATION_OPTION_DETAIL_R_F = "Rice-Fallow rotation system";
+export const MITIGATION_OPTION_DETAIL_R_GM = "Rice-green manure rotation system";
+export const MITIGATION_OPTION_DETAIL_CISB = "Controlled irrigation with straw biochar";
+export const MITIGATION_OPTION_DETAIL_BDF = "Biodegradable film";
+export const MITIGATION_OPTION_DETAIL_RPF = "Regular Polyethylene film";
+export const MITIGATION_OPTION_DETAIL_TSWD = "Thin-shallow-wet-dry";
+export const MITIGATION_OPTION_DETAIL_PTSI = "Plough tillage with straw incorporation";
+export const MITIGATION_OPTION_DETAIL_PT = "Plough tillage without straw incorporation";
+export const MITIGATION_OPTION_DETAIL_RTSI = "Rotary tillage with straw incorporation";
+
+export const MITIGATION_OPTION_LIST = [
+  { text: MITIGATION_OPTION_TEXT_ADW, detail: MITIGATION_OPTION_DETAIL_ADW },
+  { text: MITIGATION_OPTION_TEXT_CF, detail: MITIGATION_OPTION_DETAIL_CF },
+  { text: MITIGATION_OPTION_TEXT_PFMSD, detail: MITIGATION_OPTION_DETAIL_PFMSD },
+  { text: MITIGATION_OPTION_TEXT_CFMSD, detail: MITIGATION_OPTION_DETAIL_CFMSD },
+  { text: MITIGATION_OPTION_TEXT_FMSDII, detail: MITIGATION_OPTION_DETAIL_FMSDII },
+  { text: MITIGATION_OPTION_TEXT_CI, detail: MITIGATION_OPTION_DETAIL_CI },
+  { text: MITIGATION_OPTION_TEXT_FI, detail: MITIGATION_OPTION_DETAIL_FI },
+  { text: MITIGATION_OPTION_TEXT_ASR_W, detail: MITIGATION_OPTION_DETAIL_ASR_W },
+  { text: MITIGATION_OPTION_TEXT_ASBBRR_W, detail: MITIGATION_OPTION_DETAIL_ASBBRR_W },
+  { text: MITIGATION_OPTION_TEXT_R_F, detail: MITIGATION_OPTION_DETAIL_R_F },
+  { text: MITIGATION_OPTION_TEXT_R_GM, detail: MITIGATION_OPTION_DETAIL_R_GM },
+  { text: MITIGATION_OPTION_TEXT_CISB, detail: MITIGATION_OPTION_DETAIL_CISB },
+  { text: MITIGATION_OPTION_TEXT_BDF, detail: MITIGATION_OPTION_DETAIL_BDF },
+  { text: MITIGATION_OPTION_TEXT_RPF, detail: MITIGATION_OPTION_DETAIL_RPF },
+  { text: MITIGATION_OPTION_TEXT_TSWD, detail: MITIGATION_OPTION_DETAIL_TSWD },
+  { text: MITIGATION_OPTION_TEXT_PTSI, detail: MITIGATION_OPTION_DETAIL_PTSI },
+  { text: MITIGATION_OPTION_TEXT_PT, detail: MITIGATION_OPTION_DETAIL_PT },
+  { text: MITIGATION_OPTION_TEXT_RTSI, detail: MITIGATION_OPTION_DETAIL_RTSI }
+];
+
+// Texts for TradeOff Modal
+export const MODAL_TABLE_HEADER_MAGNITUDE = "Magnitude";
+export const MODAL_TABLE_HEADER_SYMBOL = "Symbol";
+export const MODAL_TABLE_HEADER_DEFINITION = "Definition";
+
+export const MODAL_TEXT_STRONGLY_DECREASE = "Strongly decrease";
+export const MODAL_TEXT_DECREASE = "Decrease";
+export const MODAL_TEXT_NEUTRAL = "Neutral";
+export const MODAL_TEXT_INCREASE = "Increase";
+export const MODAL_TEXT_STRONGLY_INCREASE = "Strongly Increase";

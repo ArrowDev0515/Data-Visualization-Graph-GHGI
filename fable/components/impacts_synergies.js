@@ -124,9 +124,9 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
             <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
                 <thead className="text-xs text-white uppercase bg-[#11345877] ">
                     <tr>
-                        <th scope="col" className="py-3 px-6">Magnitude</th>
-                        <th scope="col" className="py-3 px-6">Symbol</th>
-                        <th scope="col" className="py-3 px-6">Definition</th>
+                        <th scope="col" className="py-3 px-6">{consts.MODAL_TABLE_HEADER_MAGNITUDE}</th>
+                        <th scope="col" className="py-3 px-6">{consts.MODAL_TABLE_HEADER_SYMBOL}</th>
+                        <th scope="col" className="py-3 px-6">{consts.MODAL_TABLE_HEADER_DEFINITION}</th>
                     </tr>
                 </thead>
                 <tbody className="bg-gradient-to-b bg-[#11345811] rounded-b-sm">
@@ -136,28 +136,28 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                             <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                             <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                         </td>
-                        <td className="py-4 px-6">Strongly decrease</td>
+                        <td className="py-4 px-6">{consts.MODAL_TEXT_STRONGLY_DECREASE}</td>
                     </tr>
                     <tr className="border-t border-gray-400">
                         <td className="py-4 px-6">2</td>
                         <td className="py-4 px-6 flex text-center justify-center">
                             <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                         </td>
-                        <td className="py-4 px-6">Decrease</td>
+                        <td className="py-4 px-6">{consts.MODAL_TEXT_DECREASE}</td>
                     </tr>
                     <tr className="border-t border-gray-400">
                         <td className="py-4 px-6">3</td>
                         <td className="py-4 px-6 flex text-center justify-center">
                             <MinusIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                         </td>
-                        <td className="py-4 px-6">Neutral</td>
+                        <td className="py-4 px-6">{consts.MODAL_TEXT_NEUTRAL}</td>
                     </tr>
                     <tr className="border-t border-gray-400">
                         <td className="py-4 px-6">4</td>
                         <td className="py-4 px-6 flex text-center justify-center">
                             <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                         </td>
-                        <td className="py-4 px-6">Increase</td>
+                        <td className="py-4 px-6">{consts.MODAL_TEXT_INCREASE}</td>
                     </tr>
                     <tr className="border-t border-gray-400">
                         <td className="py-4 px-6">5</td>
@@ -165,7 +165,7 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                             <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                             <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                         </td>
-                        <td className="py-4 px-6">Strongly Increase</td>
+                        <td className="py-4 px-6">{consts.MODAL_TEXT_STRONGLY_INCREASE}</td>
                     </tr>
                 </tbody>
             </table>
@@ -175,8 +175,8 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
     return (
         <>
             <div className="mt-10 px-5 py-3">
-                <label htmlFor="countries" className="text-lg font-medium text-[#113458]">
-                    Trade-offs and synergies for specific mitigation option
+                <label htmlFor="countries" className="text-2xl font-medium text-[#113458]">
+                    {consts.MODAL_TITLE_TRADE_OFFS}
                 </label>
             </div>
             <div className="grid grid-cols-6 rounded-xl px-3 sm:px-5 justify-center">
@@ -209,7 +209,7 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                             </span>
                         </button>
 
-                        <ModalComponent title={consts.MODAL_TITLE_IMPACTS_SYNERGIES} content={modalContent} isModalOpen={isModalOpen} closeModal={closeModal} />
+                        <ModalComponent title={consts.MODAL_TITLE_TRADE_OFFS} content={modalContent} isModalOpen={isModalOpen} closeModal={closeModal} />
 
                         <button type="button" className="text-[#113458] bg-[#f4cc13] hover:text-white focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs sm:text-sm px-4 py-1.5 text-center" onClick={downloadData}>
                             <span className="hidden xl:block">Download Data</span>
@@ -234,8 +234,8 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                                 <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
                                     <thead className="text-xs text-white uppercase bg-[#11345877] ">
                                         <tr>
-                                            <th scope="col" className="py-3 px-6">Non GHG Indicator</th>
-                                            <th scope="col" className="py-3 px-6">Magnitude</th>
+                                            <th scope="col" className="py-3 px-6">{consts.TEXT_NON_GHG_INDICATOR}</th>
+                                            <th scope="col" className="py-3 px-6">{consts.TEXT_MAGNITUDE}</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-gradient-to-b bg-[#ffffff82] rounded-b-sm">
@@ -253,20 +253,20 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                                     <div className="flex text-center items-center justify-center mt-2">
                                         <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                                         <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        strongly decrease,
+                                        {consts.MODAL_TEXT_STRONGLY_DECREASE},
                                         <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        decrease
+                                        {consts.MODAL_TEXT_DECREASE}
                                     </div>
                                     <div className="flex text-center items-center justify-center mt-2">
                                         <MinusIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        neutral
+                                        {consts.MODAL_TEXT_NEUTRAL}
                                     </div>
                                     <div className="flex text-center items-center justify-center mt-2">
                                         <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                                         <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        strongly increase,
+                                        {consts.MODAL_TEXT_STRONGLY_INCREASE}
                                         <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        increase
+                                        {consts.MODAL_TEXT_INCREASE}
                                     </div>
                                 </i>
                             </div>

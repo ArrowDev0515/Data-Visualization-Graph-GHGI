@@ -21,63 +21,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [exportData, setExportData] = useState([]);
-    const [chartConfigs1, setChartConfigs1] = useState({
-        type: "scatter",
-        width: "99%",
-        height: "100%",
-        dataFormat: "JSON",
-        containerBackgroundOpacity: "0",
-
-        dataSource: {
-            chart: {
-                caption: `Current Emission Factor for ${country}`,
-                captionFontColor: "#113458",
-                divLineColor: "#113458",
-                xAxisNameFontColor: "#113458",
-                xAxisValueFontColor: "#113458",
-                yAxisNameFontColor: "#113458",
-                yAxisValueFontColor: "#113458",
-                legendItemFontColor: "#113458",
-                yAxisMaxValue: "6000",
-                yAxisMinValue: "0",
-                bgColor: "#000000",
-                bgAlpha: "0",
-                labelFontSize: "12",
-                labelFontColor: "#113458",
-                yaxisname: consts.UNIT_CH4_HA,
-                plotHighlightEffect: "fadeout|borderColor=ff0000, borderAlpha=50",
-                interactiveLegend: 0,
-                numberScaleUnit: ",M,B",
-                showLegend: "0",
-                ynumberprefix: "",
-                xnumbersuffix: "",
-                theme: "fusion",
-                drawCustomLegend: "1",
-                numDivLines: "4",
-                plottooltext:
-                    "$seriesname : <b>$yDataValue</b>"
-            },
-            categories: [
-                {
-                    category: []
-                }
-            ],
-            dataset: [
-                {
-                    seriesname: "",
-                    anchorbgcolor: "",
-                    data: []
-                },
-                {
-                    seriesname: "",
-                    anchorbgcolor: "",
-                    data: []
-                }
-            ]
-        }
-    });
-
-    const [chartConfigs2, setChartConfigs2] = useState({
+    const [chartConfigs, setChartConfigs] = useState({
         type: "scatter",
         width: "99%",
         height: "100%",
@@ -97,7 +41,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 yAxisNameFontColor: "#113458",
                 yAxisValueFontColor: "#113458",
                 legendItemFontColor: "#113458",
-
+                legendPosition: "top",
                 "legendIconBgColor": "#ff0000",
                 "legendIconAlpha": "50",
                 "legendIconBgAlpha": "30",
@@ -117,6 +61,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 numberScaleUnit: ",M,B",
                 ynumberprefix: "",
                 xnumbersuffix: "",
+                // drawCustomLegendIcon: "1",
                 theme: "fusion",
                 plottooltext:
                     "$seriesname : <b>$yDataValue</b>"
@@ -202,31 +147,29 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         setExportData(data);
 
         let xLabels2 = new Map();
-        let categoryData2 = [];      // x Axis Label Array
-        let key2 = 1;
-        categoryData2.push({ x: (key2 * 20).toString(), label: "" });
-
+        let categoryData = [];      // x Axis Label Array
+        let key = 0;
         data.map((item) => {
             if (item["DataSource"] === consts.DATA_SOURCE_FAO || item["DataSource"] === consts.DATA_SOURCE_IPCC) {
                 if (!xLabels2.has(item["DataSource"])) {
-                    key2++;
-                    xLabels2.set(item["DataSource"], key2);
-                    categoryData2.push({ x: [(key2 * 20).toString()], label: item["DataSource"] });
-                }
-            } else {
-                if (!xLabels2.has(item["MitigationOption"])) {
-                    key2++;
-                    xLabels2.set(item["MitigationOption"], key2);
-                    categoryData2.push({ x: (key2 * 20).toString(), label: item["MitigationOption"] });
+                    key++;
+                    xLabels2.set(item["DataSource"], key);
+                    categoryData.push({ x: (key * 20).toString(), label: item["DataSource"] });
                 }
             }
         });
-        key2++;
-        categoryData2.push({ x: (key2 * 20).toString(), label: "" });
-
+        data.map((item) => {
+            if (!(item["DataSource"] === consts.DATA_SOURCE_FAO || item["DataSource"] === consts.DATA_SOURCE_IPCC)) {
+                if (!xLabels2.has(item["MitigationOption"])) {
+                    key++;
+                    xLabels2.set(item["MitigationOption"], key);
+                    categoryData.push({ x: (key * 20).toString(), label: item["MitigationOption"] });
+                }
+            }
+        });
         let dataArrForMax = [];
         let dataArrForMin = [];
-        let dataArrForMedian2 = [];
+        let dataArrForMedian = [];
         let dataArrForAverage = [];
         let dataArrForHistorical = [];
 
@@ -236,12 +179,12 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         }
         data.map((ele) => {
             if (ele["DataSource"] === consts.DATA_SOURCE_FAO || ele["DataSource"] === consts.DATA_SOURCE_IPCC) {
-                let xValue = categoryData2.find((e) => {
+                let xValue = categoryData.find((e) => {
                     return e["label"] == ele["DataSource"];
                 })["x"];
                 dataArrForHistorical.push({ x: xValue, y: ele["Historical"], toolText: ele["AnchorText"] });
             } else {
-                let xValue = categoryData2.find((e) => {
+                let xValue = categoryData.find((e) => {
                     return e["label"] == ele["MitigationOption"];
                 })["x"];
                 if (ele["Max"]) {
@@ -251,7 +194,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     dataArrForMin.push({ x: xValue, y: ele["Min"], color: "#222222" });
                 }
                 if (ele["Median"]) {
-                    dataArrForMedian2.push({ x: xValue, y: ele["Median"], color: "#111111" });
+                    dataArrForMedian.push({ x: xValue, y: ele["Median"], color: "#111111" });
                 }
                 if (ele["Average"]) {
                     dataArrForAverage.push({ x: xValue, y: ele["Average"], color: "#666666" });
@@ -260,27 +203,28 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
             }
         });
 
-        setChartConfigs2({
-            ...chartConfigs2, dataSource: {
-                ...chartConfigs2.dataSource,
+        setChartConfigs({
+            ...chartConfigs, dataSource: {
+                ...chartConfigs.dataSource,
                 chart: {
-                    ...chartConfigs2.dataSource.chart,
+                    ...chartConfigs.dataSource.chart,
                     yAxisMaxValue: yMax,
                 },
-                categories: [{ category: categoryData2 }],
+                categories: [{ category: categoryData }],
                 dataset: dataArrForHistorical.length > 0 ?
                     [
-                        { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 6, anchorradius: 8, legendIconAlpha: 100 },
+                        { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100,
+                        legendIconBorderColor: "#ff0000", legendIconSides: "3"},
                         { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
-                        { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
-                        { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian2, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
+                        { seriesname: "Average", anchorbgcolor: consts.colors[2], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
+                        { seriesname: "Median", anchorbgcolor: consts.colors[3], data: dataArrForMedian, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
                         { seriesname: "Historical", anchorbgcolor: consts.colors[4], data: dataArrForHistorical, anchorsides: 5, anchorradius: 5, legendIconAlpha: 100 }
                     ] :
                     [
-                        { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 6, anchorradius: 8, legendIconAlpha: 100 },
+                        { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
                         { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
-                        { seriesname: "Average", anchorbgcolor: consts.colors[3], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
-                        { seriesname: "Median", anchorbgcolor: consts.colors[2], data: dataArrForMedian2, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
+                        { seriesname: "Average", anchorbgcolor: consts.colors[2], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
+                        { seriesname: "Median", anchorbgcolor: consts.colors[3], data: dataArrForMedian, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
                     ]
             }
         });
@@ -295,21 +239,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
     }, [country, AFOLUSector, farmingSystem, unit]);
 
     useEffect(() => {
-        setChartConfigs1(prev => {
-            return {
-                ...prev,
-                dataSource:
-                {
-                    ...prev.dataSource,
-                    chart: {
-                        ...prev.dataSource.chart,
-                        yaxisname: unit
-                    }
-                }
-            };
-        });
-
-        setChartConfigs2(prev => {
+        setChartConfigs(prev => {
             return {
                 ...prev,
                 dataSource:
@@ -372,9 +302,9 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
             <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
                 <thead className="text-xs text-white uppercase bg-[#11345877] ">
                     <tr>
-                        <th scope="col" className="py-3 px-6">AFOLU Sector</th>
-                        <th scope="col" className="py-3 px-6">Mitigation Option</th>
-                        <th scope="col" className="py-3 px-6">Mitigation option name detailed</th>
+                        <th scope="col" className="py-3 px-6">{consts.MODAL_TABLE_HEADER_AFOLU_SECTOR}</th>
+                        <th scope="col" className="py-3 px-6">{consts.MODAL_TABLE_HEADER_MITIGATION_OPTION}</th>
+                        <th scope="col" className="py-3 px-6">{consts.MODAL_TABLE_HEADER_MITIGATION_OPTION_NAME_DETAILED}</th>
                     </tr>
                 </thead>
                 <tbody className="bg-gradient-to-b bg-[#11345811] rounded-b-sm">
@@ -394,8 +324,8 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         <>
             <section id="emission_reduction_potential">
                 <div className="mt-10 px-5 py-3">
-                    <label htmlFor="countries" className="text-lg font-medium text-[#113458]">
-                        Mitigation potential per AFOLU sector
+                    <label htmlFor="countries" className="text-2xl font-medium text-[#113458]">
+                        {consts.MODAL_TITLE_MITIGATION_POTENTIAL}
                     </label>
                 </div>
                 <div className="grid grid-cols-12 rounded-xl px-3 sm:px-5 justify-center">
@@ -476,7 +406,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
 
                     {(exportData && exportData.length) ? <div className="col-span-12 xl:col-span-7 xl:ml-3">
                         <div className="grid" style={{ minHeight: `${400}px` }}>
-                            <FC chartConfigs={chartConfigs2}></FC>
+                            <FC chartConfigs={chartConfigs}></FC>
                         </div>
                     </div> :
                         <div className="col-span-12 xl:col-span-7 grid bg-gradient-to-b from-[#11345822] rounded-md text-center content-center text-[#11345822] xl:ml-3 mb-3" style={{ minHeight: `${200}px` }}>

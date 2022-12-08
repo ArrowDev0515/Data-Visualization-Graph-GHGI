@@ -34,9 +34,11 @@ const HomeComponent = ({ country }) => {
         containerBackgroundOpacity: "0",
         dataSource: {
             chart: {
+                baseFont:"Arial",
                 caption: "",
+                pieRadius: "110",
                 captionFontColor: "#113458",
-                captionFontSize: "20",
+                captionFontSize: "18",
                 captionFontBold: "0",
                 subCaptionFontColor: "#113458",
                 subCaptionFontSize: "16",
@@ -148,9 +150,9 @@ const HomeComponent = ({ country }) => {
             }
             i++;
         })
+        console.log(arr);
         let captionStr = `<b>${country}'s Total GHG emissions in ${year}</b>{br}`;
         if (data.length > 0) {
-
             captionStr += data[0]["TotalEmissionsMtCO2e"] + ` Mt CO2e`;
             subCaptionStr = "{br}" + data[0]["TotalEmissionsCapitatCO2e_cap"] + " t CO2e/cap";
         }
@@ -232,30 +234,30 @@ const HomeComponent = ({ country }) => {
             <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
                 <thead className="text-xs text-white uppercase bg-[#11345877] ">
                     <tr>
-                        <th scope="col" className="py-3 px-2">Greenhouse Gas</th>
-                        <th scope="col" className="py-3 px-2">SAR</th>
-                        <th scope="col" className="py-3 px-2">AR3</th>
-                        <th scope="col" className="py-3 px-2">AR4</th>
-                        <th scope="col" className="py-3 px-2">AR5</th>
+                        <th scope="col" className="py-3 px-2">{consts.MODAL_TITLE_GREENHOUSE_GAS}</th>
+                        <th scope="col" className="py-3 px-2">{consts.MODAL_TITLE_SAR}</th>
+                        <th scope="col" className="py-3 px-2">{consts.MODAL_TITLE_AR3}</th>
+                        <th scope="col" className="py-3 px-2">{consts.MODAL_TITLE_AR4}</th>
+                        <th scope="col" className="py-3 px-2">{consts.MODAL_TITLE_AR5}</th>
                     </tr>
                 </thead>
                 <tbody className="bg-gradient-to-b bg-[#11345811] rounded-b-sm">
                     <tr className="border-t border-gray-400">
-                        <td className="py-4 px-2"><b>{consts.TEXT_CO2}</b></td>
+                        <td className="py-4 px-2"><b>{consts.MODAL_TEXT_CO2}</b></td>
                         <td className="py-4 px-2">1</td>
                         <td className="py-4 px-2">1</td>
                         <td className="py-4 px-2">1</td>
                         <td className="py-4 px-2">1</td>
                     </tr>
                     <tr className="border-t border-gray-400">
-                        <td className="py-4 px-2"><b>{consts.TEXT_CH4}</b></td>
+                        <td className="py-4 px-2"><b>{consts.MODAL_TEXT_CH4}</b></td>
                         <td className="py-4 px-2">21</td>
                         <td className="py-4 px-2">23</td>
                         <td className="py-4 px-2">25</td>
                         <td className="py-4 px-2">28</td>
                     </tr>
                     <tr className="border-t border-gray-400">
-                        <td className="py-4 px-2"><b>{consts.TEXT_N2O}</b></td>
+                        <td className="py-4 px-2"><b>{consts.MODAL_TEXT_N2O}</b></td>
                         <td className="py-4 px-2">310</td>
                         <td className="py-4 px-2">296</td>
                         <td className="py-4 px-2">298</td>
@@ -287,8 +289,8 @@ const HomeComponent = ({ country }) => {
             <div className="py-2 px-8">
                 <div className="bg-[#113458] bg-opacity-10 rounded-xl py-3 px-3 sm:px-5 grid items-center" >
                     <div className="mb-5">
-                        <label htmlFor="countries" className="hidden md:block text-lg font-medium text-[#113458]">
-                            Overview of total greenhouse gas emissions and role of AFOLU
+                        <label htmlFor="countries" className="hidden md:block text-2xl font-medium text-[#113458]">
+                            {consts.MODAL_TITLE_OVERVIEW}
                         </label>
                     </div>
                     <div className="flex justify-between">
@@ -413,8 +415,8 @@ const HomeComponent = ({ country }) => {
                                 <>
                                     {utils.numberFormat(AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]) > 0 ?
                                         <>
-                                            <div className="text-xl mt-3 col-span-2 font-normal">
-                                                <b><span className="text-lg">AFOLU Sector</span></b>
+                                            <div className="text-xl mt-3 col-span-2">
+                                                <b><span className="text-lg" style={{fontFamily: "Arial"}}>AFOLU Sector</span></b>
                                             </div>
                                             <div className="text-md col-span-2 font-normal">
                                                 <span>Total Net: {AFOLUData[0]["TotalNetAFOLUMtCO2e"]} Mt CO2e</span>
@@ -423,9 +425,9 @@ const HomeComponent = ({ country }) => {
                                             {/* AFOLU Emissions Section */}
                                             <div className="px-3 col-span-2 xs:col-span-1" style={{ minHeight: "200px" }}>
                                                 <div className="text-sm my-3"><b>AFOLU Emissions</b></div>
-                                                <div className="text-xs mb-3 text-[#113458]"><b>
+                                                <div className="text-md mb-3 text-[#113458]">
                                                     {AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]} Mt CO2e
-                                                </b></div>
+                                                </div>
                                                 <div className="w-auto" style={{ height: `${height1}px` }}>
                                                     {
                                                         AFOLUData.map((item, idx) => (
@@ -447,9 +449,9 @@ const HomeComponent = ({ country }) => {
                                                 {AFOLUData[0]["TotalAFOLURemovalsMtCO2e"] != 0 ?
                                                     <>
                                                         <div className="text-sm my-3"><b>AFOLU Removals</b></div>
-                                                        <div className="text-xs mb-3 text-[#113458]"><b>
+                                                        <div className="text-md mb-3 text-[#113458]">
                                                             {AFOLUData[0]["TotalAFOLURemovalsMtCO2e"]} Mt CO2e
-                                                        </b></div>
+                                                        </div>
                                                         <div className="w-full" style={{ height: `${height2}px` }}>
                                                             {
                                                                 AFOLUData.map((item, idx) => (
