@@ -2,7 +2,6 @@ export const test = (country, year, dataSource, gwp) => {
   let data = dataSrc.filter((ele) => {
     return (ele["Party"].toString() === country && parseInt(ele["Year"]) === parseInt(year) && ele["DataSource"] === dataSource && ele["AR"] === gwp);
   });
-  console.log(data);
 }
 
 export const numberFormat = (val) => {
@@ -20,5 +19,4 @@ export const formatCountryListFromJSON = () => {
       return 1;
     else return -1;
   })
-  console.log(str.toString())
 }

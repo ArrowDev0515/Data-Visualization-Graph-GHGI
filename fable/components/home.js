@@ -150,7 +150,6 @@ const HomeComponent = ({ country }) => {
             }
             i++;
         })
-        console.log(arr);
         let captionStr = `<b>${country}'s Total GHG emissions in ${year}</b>{br}`;
         if (data.length > 0) {
             captionStr += data[0]["TotalEmissionsMtCO2e"] + ` Mt CO2e`;
