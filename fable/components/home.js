@@ -77,13 +77,19 @@ const HomeComponent = ({ country }) => {
     }, [country]);
 
     useEffect(() => {
+        getYearOptionList();
+    }, [dataSource]);
+
+    useEffect(() => {
         filterData();
     }, [dataSource, year, gwp, country]);
 
     const getYearOptionList = () => {
         // get year list
         let yearArr = [];
-        yearArr = dataSrc.map((ele) => {
+        yearArr = dataSrc.filter((ele) => {
+            return ele["DataSource"] === dataSource;
+        }).map((ele) => {
             return ele["Year"];
         }).reduce(
             (arr, item) => (arr.includes(item) ? arr : [...arr, item]),
@@ -125,12 +131,12 @@ const HomeComponent = ({ country }) => {
 
     const filterData = () => {
         let data = dataSrc.filter((ele) => {
-            return (ele["Party"] === country && parseInt(ele["Year"]) === parseInt(year) && ele["AR"] === gwp);
+            return (ele["Party"] === country && ele["DataSource"] === dataSource && parseInt(ele["Year"]) === parseInt(year) && ele["AR"] === gwp);
         });
         setExportData(data);
 
         let afoluData = data.filter((ele) => {
-            return (ele["Category"] === consts.CATEGORY_AFOLU && ele["DataSource"] === dataSource);
+            return (ele["Category"] === consts.CATEGORY_AFOLU);
         })
         setAFOLUData(afoluData);
 

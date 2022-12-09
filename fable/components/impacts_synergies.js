@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic.js";
-import { ArrowDownTrayIcon, ArrowDownIcon, ArrowUpIcon, MinusIcon } from "@heroicons/react/20/solid";
+import { ArrowDownTrayIcon, ArrowDownIcon, ArrowUpIcon, ArrowLongRightIcon } from "@heroicons/react/20/solid";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import ModalComponent from "./modal_component";
 import SourceDataComponent from '../components/source_data';
@@ -99,7 +99,7 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
             case 3:
                 return (
                     <div className="flex justify-center">
-                        <MinusIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                        <ArrowLongRightIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                     </div>);
             case 4:
                 return (
@@ -115,7 +115,7 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                     </div>
                 );
             case undefined:
-                return (<div className="flex justify-center">No Information</div>);
+                return (<div className="flex justify-center">NA</div>);
         }
     }
 
@@ -148,7 +148,7 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                     <tr className="border-t border-gray-400">
                         <td className="py-4 px-6">3</td>
                         <td className="py-4 px-6 flex text-center justify-center">
-                            <MinusIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                            <ArrowLongRightIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
                         </td>
                         <td className="py-4 px-6">{consts.MODAL_TEXT_NEUTRAL}</td>
                     </tr>
@@ -222,11 +222,11 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                         </button>
                     </div>
                 </div>
-                <div className="col-span-6 md:col-span-3 bg-gradient-to-t from-[#11345822] rounded-md text-[#113458] justify-items-center grid p-3 my-3" style={{ minHeight: "400px" }}>
+                <div className="col-span-6 lg:col-span-3 bg-gradient-to-t from-[#11345822] rounded-md text-[#113458] justify-items-center grid p-3 my-3" style={{ minHeight: "300px" }}>
                     <img src="avatar2.png" className="h-40 bg-gray-900 bg-opacity-10 rounded-md m-3" />
                     <div className="my-3 text-3xl">Some Text Here!</div>
                 </div>
-                <div className="grid col-span-6 md:col-span-3 md:ml-5 my-3" style={{ minHeight: `${400}px` }}>
+                <div className="grid col-span-6 md:col-span-4 lg:col-span-2 md:ml-5 my-3 items-center" style={{ minHeight: `${300}px` }}>
                     {/* <FC chartConfigs={chartConfigs}></FC> */}
                     {(exportData && exportData.length) ?
                         <>
@@ -234,47 +234,51 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                                 <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
                                     <thead className="text-xs text-white uppercase bg-[#11345877] ">
                                         <tr>
-                                            <th scope="col" className="py-3 px-6">{consts.TEXT_NON_GHG_INDICATOR}</th>
-                                            <th scope="col" className="py-3 px-6">{consts.TEXT_MAGNITUDE}</th>
+                                            <th scope="col" className="py-3 px-1">{consts.TEXT_NON_GHG_INDICATOR}</th>
+                                            <th scope="col" className="py-3 px-1">{consts.TEXT_MAGNITUDE}</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-gradient-to-b bg-[#ffffff82] rounded-b-sm">
                                         {exportData.map((element, idx) => (
                                             <tr key={idx} className="border-t border-gray-400">
-                                                <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap">{element["NonGHGIndicator"]}</th>
-                                                <td className="py-4 px-6" style={{ backgroundColor: `${element["HEX"]}` }}>{getIcon(element["Magnitude"])}</td>
+                                                <td scope="row" className="py-4 px-1 font-medium whitespace-nowrap" style={{ overflowWrap: "anywhere" }}>{element["NonGHGIndicator"]}</td>
+                                                <td className="py-4 px-1" style={{ backgroundColor: `${element["HEX"]}` }}>{getIcon(element["Magnitude"])}</td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
-                            </div>
-                            <div className="text-center text-gray-600 mt-2">
-                                <i>
-                                    <div className="flex text-center items-center justify-center mt-2">
-                                        <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        {consts.MODAL_TEXT_STRONGLY_DECREASE},
-                                        <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        {consts.MODAL_TEXT_DECREASE}
-                                    </div>
-                                    <div className="flex text-center items-center justify-center mt-2">
-                                        <MinusIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        {consts.MODAL_TEXT_NEUTRAL}
-                                    </div>
-                                    <div className="flex text-center items-center justify-center mt-2">
-                                        <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        {consts.MODAL_TEXT_STRONGLY_INCREASE}
-                                        <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
-                                        {consts.MODAL_TEXT_INCREASE}
-                                    </div>
-                                </i>
                             </div>
                         </> :
                         <div className="grid text-center content-center text-[#11345822] bg-gradient-to-b from-[#11345822] rounded-md">
                             <i>No Impacts & Synergies for <b>{country}</b></i>
                         </div>
                     }
+                </div>
+                <div className="col-span-6 md:col-span-2 lg:col-span-1 grid text-center text-gray-600 mt-2 text-xs items-center">
+                    <i>
+                        <div className="flex text-center items-center justify-center mt-2">
+                            <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                            <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                            {consts.MODAL_TEXT_STRONGLY_DECREASE}
+                        </div>
+                        <div className="flex text-center items-center justify-center mt-2">
+                            <ArrowDownIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                            {consts.MODAL_TEXT_DECREASE}
+                        </div>
+                        <div className="flex text-center items-center justify-center mt-2">
+                            <ArrowLongRightIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                            {consts.MODAL_TEXT_NEUTRAL}
+                        </div>
+                        <div className="flex text-center items-center justify-center mt-2">
+                            <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                            <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                            {consts.MODAL_TEXT_STRONGLY_INCREASE}
+                        </div>
+                        <div className="flex text-center items-center justify-center mt-2">
+                            <ArrowUpIcon className="h-5 w-5 hover:text-white" aria-hidden="true" />
+                            {consts.MODAL_TEXT_INCREASE}
+                        </div>
+                    </i>
                 </div>
             </div>
             <section id="data_explorer">

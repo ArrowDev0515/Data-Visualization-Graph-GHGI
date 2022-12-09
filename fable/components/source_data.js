@@ -19,7 +19,7 @@ const SourceDataComponent = ({ AFOLUSector, farmingSystem, mitigationOption }) =
             <div className="grid col-span-6 md:col-span-3 mx-3">
                 <div className="mt-3">
                     <label htmlFor="countries" className="mx-2 text-2xl font-medium text-[#113458]">
-                        Source Data
+                        Source Data for {mitigationOption}
                     </label>
                 </div>
                 {
