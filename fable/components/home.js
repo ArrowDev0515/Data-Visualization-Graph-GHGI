@@ -36,7 +36,7 @@ const HomeComponent = ({ country }) => {
             chart: {
                 baseFont:"Arial",
                 caption: "",
-                pieRadius: "110",
+                pieRadius: "120",
                 captionFontColor: "#113458",
                 captionFontSize: "18",
                 captionFontBold: "0",
@@ -64,6 +64,8 @@ const HomeComponent = ({ country }) => {
                 startingAngle: "30",
                 enableSlicing: "0",
                 decimals: "1",
+                // showLabels: "0",
+                // showValues: "0",
                 theme: "fusion"
             },
             data: []
@@ -235,7 +237,7 @@ const HomeComponent = ({ country }) => {
 
     const gwpModalContent = <>
         <div className="mt-5 text-[#113458]">
-            {consts.TEXT_GWP}<br /><br />
+            {consts.TEXT_GWP}<br /> <br />{consts.TEXT_GWP2}<br /> <br />{consts.TEXT_GWP3}<br /><br />
             <table className="w-full text-sm text-center text-[#113458] rounded-t-sm">
                 <thead className="text-xs text-white uppercase bg-[#11345877] ">
                     <tr>
@@ -270,17 +272,17 @@ const HomeComponent = ({ country }) => {
                     </tr>
                 </tbody>
             </table>
+            <br />{consts.TEXT_GWP4}<br /> {consts.TEXT_GWP5}
         </div>
     </>
     const modalContent = <>
         <div className="mt-5 text-[#113458]">
             <p>Summary: Overview of historical country-level and sectoral GHG emissions data with detailed AFOLU sector GHG emissions data (1990-2019)
             </p><br />
-            <div className="ml-3 text-sm">
-                Data source available:
-                <li>Historical country-level sectoral GHG emissions from the GHG inventory (UNFCCC) are presented together with their detailed subcategories for the AFOLU sector. The years available depend on the frequency of biennial update reports.</li>
-                <li>Historical country-level sectoral GHG emissions from Climate Watch Historical Country Greenhouse Gas Emissions Data are presented together with detailed subcategories for the AFOLU sector from the FAO. This time series span from 1990 to 2019 for all countries.</li>
-            </div><br />
+                Two sets of data sources is available:<br />
+                If you select UNFCCC, the historical country-level sectoral GHG emissions from the GHG inventory (UNFCCC) are presented in the donut chart together with their detailed subcategories for the AFOLU sector in the bar chart. The years available depend on the frequency of biennial update reports.<br />
+                If you select FAO, the historical country-level sectoral GHG emissions from Climate Watch Historical Country Greenhouse Gas Emissions Data are presented in the donut chart in the donut chart together with detailed subcategories for the AFOLU sector from the FAO in the bar chart. This time series span from 1990 to 2019 for all countries.
+            <br /><br />
             <div style={{ overflowWrap: "anywhere" }}>
                 The FAO to UNFCCC mapping for the AFOLU sector is documented here: <a href="https://fenixservices.fao.org/faostat/static/documents/GT/Mapping_to_UNFCCC_IPCC.pdf" className="underline hover:text-sky-500">
                     https://fenixservices.fao.org/faostat/static/documents/GT/Mapping_to_UNFCCC_IPCC.pdf

@@ -255,6 +255,10 @@ export const TEXT_MAGNITUDE = "Magnitude";
 
 //Texts for GWP Modal
 export const TEXT_GWP = "The Global Warming Potential (GWP) was developed to allow comparisons of the global warming impacts of different gases. Specifically, it is a measure of how much energy the emissions of 1 ton of a gas will absorb over a given period of time, relative to the emissions of 1 ton of carbon dioxide (CO2).";
+export const TEXT_GWP2 = "The GWPs are published by the Intergovernmental Panel on Climate Change (IPCC) and their names come from the IPCC’s Assessment Report in which they were updated. They are updated following changes in the understanding of the global warming impacts of CO2.";
+export const TEXT_GWP3 = "The GWP used has a strong effect on the final GHG emissions of a country. For example, CH4 global warming equivalent in CO2 is 33% in AR5 compared with SAR. Indeed, according to AR5, 1 ton of CH4 is equivalent to 28 t CO2, when it is 21 t CO2 with SAR.";
+export const TEXT_GWP4 = "IPCC data sources for more information:";
+export const TEXT_GWP5 = "AR4 values: https://www.ipcc.ch/publications_and_data/ar4/wg1/en/ch2s2-10-2.html";
 export const MODAL_TITLE_GREENHOUSE_GAS = "Greenhouse Gas";
 export const MODAL_TITLE_SAR = "SAR";
 export const MODAL_TITLE_AR3 = "AR3";

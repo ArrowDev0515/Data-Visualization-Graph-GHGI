@@ -222,9 +222,9 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                         </button>
                     </div>
                 </div>
-                <div className="col-span-6 lg:col-span-3 bg-gradient-to-t from-[#11345822] rounded-md text-[#113458] justify-items-center grid p-3 my-3" style={{ minHeight: "300px" }}>
-                    <img src="avatar2.png" className="h-40 bg-gray-900 bg-opacity-10 rounded-md m-3" />
-                    <div className="my-3 text-3xl">Some Text Here!</div>
+                <div className="col-span-6 lg:col-span-3 bg-gradient-to-t from-[#11345822] rounded-md text-[#113458] grid p-3 my-3" style={{ minHeight: "300px" }}>
+                    {/* <img src="avatar2.png" className="h-40 bg-gray-900 bg-opacity-10 rounded-md m-3" /> */}
+                    <div className="my-3">Some Text Here!</div>
                 </div>
                 <div className="grid col-span-6 md:col-span-4 lg:col-span-2 md:ml-5 my-3 items-center" style={{ minHeight: `${300}px` }}>
                     {/* <FC chartConfigs={chartConfigs}></FC> */}
