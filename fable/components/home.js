@@ -5,11 +5,16 @@ import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import ModalComponent from "./modal_component";
 
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title, plugins } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 const dataSrc = require("../consts/221207_HomePage.json");
 const consts = require("../consts/consts");
 const utils = require("../utils/utils");
 
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
+ChartJS.register(ArcElement, Tooltip, Legend, Title, plugins, ChartDataLabels);
 
 const HomeComponent = ({ country }) => {
     const [AFOLUData, setAFOLUData] = useState([]);
@@ -26,6 +31,20 @@ const HomeComponent = ({ country }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isGWPModalOpen, setIsGWPModalOpen] = useState(false);
 
+    const [options, setOptions] = useState([]);
+    const [doughnutData, setDoughnutData] = useState({
+        labels: [],
+        datasets: [
+            {
+                label: '',
+                data: [],
+                backgroundColor: [],
+                borderColor: [],
+                borderWidth: 1,
+            },
+        ],
+    });
+
     const [chartConfigs, setChartConfigs] = useState({
         type: "doughnut2d",
         width: "99%",
@@ -34,7 +53,7 @@ const HomeComponent = ({ country }) => {
         containerBackgroundOpacity: "0",
         dataSource: {
             chart: {
-                baseFont:"Arial",
+                baseFont: "Arial",
                 caption: "",
                 pieRadius: "120",
                 captionFontColor: "#113458",
@@ -146,6 +165,16 @@ const HomeComponent = ({ country }) => {
         let arr = [];
         let i = 0;
         let subCaptionStr = "No Data to Display";
+
+        /* ****************************** */
+        let labelArr = [];
+        let dataArr = [];
+        let percentArr = [];
+        let backgroundColorArr = [];
+        let borderColorArr = [];
+        let dataItem = {};
+        //////////////////////////////////
+
         data.forEach((item) => {
             let tmpItem = new Object();
             tmpItem["label"] = item["Category"];
@@ -155,13 +184,30 @@ const HomeComponent = ({ country }) => {
             if (!set.has(item["Category"])) {
                 set.add(item["Category"]);
                 arr.push(tmpItem);
+
+                /* ****************************** */
+                labelArr.push(item["Category"]);
+                dataArr.push(utils.numberFormat(item["EmissionCategoryMtCO2e"]));
+                percentArr.push((utils.numberFormat(item["EmissionCategoryMtCO2e"]) / utils.numberFormat(item["TotalEmissionsMtCO2e"]) * 100).toFixed(2));
+                backgroundColorArr.push(item["HEX_Donut"]);
+                borderColorArr.push(item["HEX_Donut"]);
+                //////////////////////////////////
+
             }
             i++;
         })
         let captionStr = `<b>${country}'s Total GHG emissions in ${year}</b>{br}`;
+
+        let title = `${country}'s Total GHG emissions in ${year}`;
+        let title2 = '';
+        let subTitle = '';
+
         if (data.length > 0) {
             captionStr += data[0]["TotalEmissionsMtCO2e"] + ` Mt CO2e`;
             subCaptionStr = "{br}" + data[0]["TotalEmissionsCapitatCO2e_cap"] + " t CO2e/cap";
+
+            title2 = data[0]["TotalEmissionsMtCO2e"] + ` Mt CO2e`;
+            subTitle = data[0]["TotalEmissionsCapitatCO2e_cap"] + " t CO2e/cap";
         }
 
         setChartConfigs({
@@ -171,6 +217,91 @@ const HomeComponent = ({ country }) => {
                 chart: { ...chartConfigs.dataSource.chart, caption: captionStr, subCaption: subCaptionStr }
             }
         });
+
+        /* ****************************** */
+        dataItem = {
+            percent: percentArr,
+            data: dataArr,
+            backgroundColor: backgroundColorArr,
+            borderColor: borderColorArr,
+            datalabels: {
+                color: '#113458',
+                anchor: 'end',
+            },
+        }
+        let ttt = {
+            labels: labelArr,
+            datasets: [dataItem]
+        }
+
+
+        setOptions({
+            layout: {
+                padding: 10
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                    position: "bottom",
+                    padding: {
+                        top: 20
+                    },
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: 'circle'
+                    }
+                },
+                title: {
+                    display: true,
+                    text: [title],
+                    color: "#113458",
+                    font: {
+                        size: 18,
+                        family: 'Arial',
+                    },
+                    padding: {
+                        top: 30
+                    }
+                },
+                subtitle: {
+                    display: true,
+                    text: [title2, ' ', subTitle],
+                    color: "#113458",
+                    // fontSize: [16, 14],
+                    font: {
+                        size: 18,
+                        family: 'Arial',
+                    },
+                    padding: {
+                        bottom: 10
+                    }
+                },
+                datalabels: {
+                    display: true,
+                    formatter: function (value, context) {
+                        return context.chart.data.labels[context.dataIndex] + ', ' +
+                            context.chart.data.datasets[0].percent[context.dataIndex] + '%';
+                    },
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            var dataset = tooltipItem.dataset;
+                            var index = tooltipItem.dataIndex;
+                            return dataset.data[index] + ' Mt CO2e from the ' + tooltipItem.label + ' sector';
+                        },
+                    },
+                    backgroundColor: 'white',
+                    bodyColor: 'black',
+                    titleColor: "black",
+                    boxPadding: 5
+                }
+            },
+        })
+
+        setDoughnutData(ttt);
+        /* ****************************** */
+
     }
 
     useEffect(() => {
@@ -279,9 +410,9 @@ const HomeComponent = ({ country }) => {
         <div className="mt-5 text-[#113458]">
             <p>Summary: Overview of historical country-level and sectoral GHG emissions data with detailed AFOLU sector GHG emissions data (1990-2019)
             </p><br />
-                Two sets of data sources is available:<br />
-                If you select UNFCCC, the historical country-level sectoral GHG emissions from the GHG inventory (UNFCCC) are presented in the donut chart together with their detailed subcategories for the AFOLU sector in the bar chart. The years available depend on the frequency of biennial update reports.<br />
-                If you select FAO, the historical country-level sectoral GHG emissions from Climate Watch Historical Country Greenhouse Gas Emissions Data are presented in the donut chart in the donut chart together with detailed subcategories for the AFOLU sector from the FAO in the bar chart. This time series span from 1990 to 2019 for all countries.
+            Two sets of data sources is available:<br />
+            If you select UNFCCC, the historical country-level sectoral GHG emissions from the GHG inventory (UNFCCC) are presented in the donut chart together with their detailed subcategories for the AFOLU sector in the bar chart. The years available depend on the frequency of biennial update reports.<br />
+            If you select FAO, the historical country-level sectoral GHG emissions from Climate Watch Historical Country Greenhouse Gas Emissions Data are presented in the donut chart in the donut chart together with detailed subcategories for the AFOLU sector from the FAO in the bar chart. This time series span from 1990 to 2019 for all countries.
             <br /><br />
             <div style={{ overflowWrap: "anywhere" }}>
                 The FAO to UNFCCC mapping for the AFOLU sector is documented here: <a href="https://fenixservices.fao.org/faostat/static/documents/GT/Mapping_to_UNFCCC_IPCC.pdf" className="underline hover:text-sky-500">
@@ -395,15 +526,22 @@ const HomeComponent = ({ country }) => {
                                 </select>
                             </div>
                         </div>
-                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 my-3" style={{ minHeight: "400px" }}>
+                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 my-3 justify-center" style={{ minHeight: "500px" }}>
                             {/* <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 bg-gradient-to-t md:bg-gradient-to-r lg:bg-gradient-to-b lg:mx-3 from-[#11345822] rounded-md my-3" style={{ minHeight: "400px" }}> */}
-                            {exportData.length ? <FC chartConfigs={chartConfigs}></FC> :
+                            {doughnutData ? <Doughnut data={doughnutData} options={options} /> :
                                 <>
                                     <div className="text-[#113458] grid text-center items-center p-3 my-3">
                                         <b>No Data to Display!</b>
                                     </div>
                                 </>
                             }
+                            {/* {exportData.length ? <FC chartConfigs={chartConfigs}></FC> :
+                                <>
+                                    <div className="text-[#113458] grid text-center items-center p-3 my-3">
+                                        <b>No Data to Display!</b>
+                                    </div>
+                                </>
+                            } */}
                         </div>
                         <div className="md:hidden col-span-12 justify-self-end">
                             <div className="items-center flex">
@@ -423,7 +561,7 @@ const HomeComponent = ({ country }) => {
                                     {utils.numberFormat(AFOLUData[0]["TotalAFOLUEmissionsMtCO2e"]) > 0 ?
                                         <>
                                             <div className="text-xl mt-3 col-span-2">
-                                                <b><span className="text-lg" style={{fontFamily: "Arial"}}>AFOLU Sector</span></b>
+                                                <b><span className="text-lg" style={{ fontFamily: "Arial" }}>AFOLU Sector</span></b>
                                             </div>
                                             <div className="text-md col-span-2 font-normal">
                                                 <span>Total Net: {AFOLUData[0]["TotalNetAFOLUMtCO2e"]} Mt CO2e</span>
