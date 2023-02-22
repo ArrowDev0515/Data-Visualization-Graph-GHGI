@@ -249,7 +249,7 @@ const ImpactsAndSynergiesComponent = ({ country, AFOLUSector, farmingSystem }) =
                                 </table>
                             </div>
                         </> :
-                        <div className="grid text-center content-center text-[#11345822] bg-gradient-to-b from-[#11345822] rounded-md">
+                        <div className="grid text-center content-center text-[#11345822] rounded-md">
                             <i>No Impacts & Synergies for <b>{country}</b></i>
                         </div>
                     }
