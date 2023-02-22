@@ -260,7 +260,7 @@ const HomeComponent = ({ country }) => {
                         family: 'Arial',
                     },
                     padding: {
-                        top: 30
+                        top: 20
                     }
                 },
                 subtitle: {
@@ -526,7 +526,7 @@ const HomeComponent = ({ country }) => {
                                 </select>
                             </div>
                         </div>
-                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 my-3 justify-center" style={{ minHeight: "500px" }}>
+                        <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 my-3 justify-center" style={{ minHeight: "400px" }}>
                             {/* <div className="grid col-span-12 md:col-span-6 lg:col-span-5 md:mr-3 bg-gradient-to-t md:bg-gradient-to-r lg:bg-gradient-to-b lg:mx-3 from-[#11345822] rounded-md my-3" style={{ minHeight: "400px" }}> */}
                             {doughnutData ? <Doughnut data={doughnutData} options={options} /> :
                                 <>

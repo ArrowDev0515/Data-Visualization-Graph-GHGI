@@ -7,7 +7,20 @@ import { exportToCSV } from "../utils/exportCSV";
 import ModalComponent from "./modal_component";
 const dataSrc = require("../consts/221206_MitigationPotential.json");
 const consts = require("../consts/consts");
+import { Scatter } from "react-chartjs-2";
+import {
+    Chart as ChartJS,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Tooltip,
+    Legend,
+    plugins,
+    Title,
+    CategoryScale
+} from 'chart.js';
 
+ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend, plugins, Title, CategoryScale);
 const FC = dynamic(() => import("./fusion_chart.js"), { ssr: false });
 const defaultHeight = 400;
 
@@ -21,6 +34,11 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [exportData, setExportData] = useState([]);
+
+    const [scatterData, setScatterData] = useState({
+        datasets: [],
+    });
+    const [option, setOption] = useState([]);
     const [chartConfigs, setChartConfigs] = useState({
         type: "scatter",
         width: "99%",
@@ -149,12 +167,16 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
         let xLabels2 = new Map();
         let categoryData = [];      // x Axis Label Array
         let key = 0;
+
+        let labelArr = [];
+        labelArr.push("");
         data.map((item) => {
             if (item["DataSource"] === consts.DATA_SOURCE_FAO || item["DataSource"] === consts.DATA_SOURCE_IPCC) {
                 if (!xLabels2.has(item["DataSource"])) {
                     key++;
                     xLabels2.set(item["DataSource"], key);
                     categoryData.push({ x: (key * 20).toString(), label: item["DataSource"] });
+                    labelArr.push(item["DataSource"]);
                 }
             }
         });
@@ -164,14 +186,22 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                     key++;
                     xLabels2.set(item["MitigationOption"], key);
                     categoryData.push({ x: (key * 20).toString(), label: item["MitigationOption"] });
+                    labelArr.push(item["MitigationOption"]);
                 }
             }
         });
-        let dataArrForMax = [];
-        let dataArrForMin = [];
-        let dataArrForMedian = [];
-        let dataArrForAverage = [];
-        let dataArrForHistorical = [];
+        labelArr.push("");
+        // let dataArrForMax = [];
+        // let dataArrForMin = [];
+        // let dataArrForMedian = [];
+        // let dataArrForAverage = [];
+        // let dataArrForHistorical = [];
+
+        let scatterDataArrForMax = [];
+        let scatterDataArrForMin = [];
+        let scatterDataArrForMedian = [];
+        let scatterDataArrForAverage = [];
+        let scatterDataArrForHistorical = [];
 
         let yMax = 0;
         if (data.length > 0) {
@@ -182,52 +212,149 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                 let xValue = categoryData.find((e) => {
                     return e["label"] == ele["DataSource"];
                 })["x"];
-                dataArrForHistorical.push({ x: xValue, y: ele["Historical"], toolText: ele["AnchorText"] });
+                // dataArrForHistorical.push({ x: xValue, y: ele["Historical"] });
+                scatterDataArrForHistorical.push({ x: ele["DataSource"], y: ele["Historical"] });
             } else {
                 let xValue = categoryData.find((e) => {
                     return e["label"] == ele["MitigationOption"];
                 })["x"];
                 if (ele["Max"]) {
-                    dataArrForMax.push({ x: xValue, y: ele["Max"], color: "#333333" });
+                    // dataArrForMax.push({ x: xValue, y: ele["Max"] });
+                    scatterDataArrForMax.push({ x: ele["MitigationOption"], y: ele["Max"] });
                 }
                 if (ele["Min"]) {
-                    dataArrForMin.push({ x: xValue, y: ele["Min"], color: "#222222" });
+                    // dataArrForMin.push({ x: xValue, y: ele["Min"] });
+                    scatterDataArrForMin.push({ x: ele["MitigationOption"], y: ele["Min"] });
                 }
                 if (ele["Median"]) {
-                    dataArrForMedian.push({ x: xValue, y: ele["Median"], color: "#111111" });
+                    // dataArrForMedian.push({ x: xValue, y: ele["Median"] });
+                    scatterDataArrForMedian.push({ x: ele["MitigationOption"], y: ele["Median"] });
                 }
                 if (ele["Average"]) {
-                    dataArrForAverage.push({ x: xValue, y: ele["Average"], color: "#666666" });
-
+                    // dataArrForAverage.push({ x: xValue, y: ele["Average"] });
+                    scatterDataArrForAverage.push({ x: ele["MitigationOption"], y: ele["Average"] });
                 }
             }
         });
 
-        setChartConfigs({
-            ...chartConfigs, dataSource: {
-                ...chartConfigs.dataSource,
-                chart: {
-                    ...chartConfigs.dataSource.chart,
-                    yAxisMaxValue: yMax,
+        let datasetsArr = [];
+        datasetsArr.push({
+            label: 'Historical',
+            data: scatterDataArrForHistorical,
+            pointRadius: 6,
+            pointStyle: 'rect',
+            backgroundColor: consts.colors[4]
+        });
+        datasetsArr.push({
+            label: 'Max',
+            data: scatterDataArrForMax,
+            pointRadius: 7,
+            pointStyle: 'triangle',
+            backgroundColor: consts.colors[0]
+        });
+        datasetsArr.push({
+            label: 'Min',
+            data: scatterDataArrForMin,
+            pointRadius: 7,
+            pointStyle: 'triangle',
+            rotation: 180,
+            backgroundColor: consts.colors[1]
+        });
+        datasetsArr.push({
+            label: 'Average',
+            data: scatterDataArrForAverage,
+            pointRadius: 6,
+            pointStyle: 'circle',
+            backgroundColor: consts.colors[2]
+        });
+        datasetsArr.push({
+            label: 'Median',
+            data: scatterDataArrForMedian,
+            pointRadius: 7,
+            pointStyle: 'rectRot',
+            backgroundColor: consts.colors[3]
+        });
+
+        setScatterData({ labels: labelArr, datasets: datasetsArr });
+        setOption({
+            plugins: {
+                title: {
+                    display: true,
+                    text: consts.CAPTION_TEXT_EMISSION_REDUCTION_POTENTIAL,
+                    color: "#113458",
+                    font: {
+                        size: 18,
+                        family: 'Arial',
+                    },
                 },
-                categories: [{ category: categoryData }],
-                dataset: dataArrForHistorical.length > 0 ?
-                    [
-                        { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100,
-                        legendIconBorderColor: "#ff0000", legendIconSides: "3"},
-                        { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
-                        { seriesname: "Average", anchorbgcolor: consts.colors[2], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
-                        { seriesname: "Median", anchorbgcolor: consts.colors[3], data: dataArrForMedian, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
-                        { seriesname: "Historical", anchorbgcolor: consts.colors[4], data: dataArrForHistorical, anchorsides: 5, anchorradius: 5, legendIconAlpha: 100 }
-                    ] :
-                    [
-                        { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
-                        { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
-                        { seriesname: "Average", anchorbgcolor: consts.colors[2], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
-                        { seriesname: "Median", anchorbgcolor: consts.colors[3], data: dataArrForMedian, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
-                    ]
+                subtitle: {
+                    text: consts.UNIT_CH4_HA,
+                    display: true,
+                    color: "#113458",
+                    position: "left",
+                    font: {
+                        size: 16,
+                        family: 'Arial',
+                    },
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        usePointStyle: true,
+                    },
+                },
+                datalabels: {
+                    display: false,
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function () {
+                            return "";
+                        },
+                        label: function (context) {
+                            var dataset = context.dataset;
+                            return dataset.label + ': ' + context.raw.y;
+                        },
+                    },
+                    backgroundColor: 'white',
+                    bodyColor: 'black',
+                    boxPadding: 5,
+                }
+            },
+            scales: {
+                x: {
+                    type: 'category',
+                }
             }
         });
+       
+        // setChartConfigs({
+        //     ...chartConfigs, dataSource: {
+        //         ...chartConfigs.dataSource,
+        //         chart: {
+        //             ...chartConfigs.dataSource.chart,
+        //             yAxisMaxValue: yMax,
+        //         },
+        //         categories: [{ category: categoryData }],
+        //         dataset: dataArrForHistorical.length > 0 ?
+        //             [
+        //                 {
+        //                     seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100,
+        //                     legendIconBorderColor: "#ff0000", legendIconSides: "3"
+        //                 },
+        //                 { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
+        //                 { seriesname: "Average", anchorbgcolor: consts.colors[2], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
+        //                 { seriesname: "Median", anchorbgcolor: consts.colors[3], data: dataArrForMedian, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
+        //                 { seriesname: "Historical", anchorbgcolor: consts.colors[4], data: dataArrForHistorical, anchorsides: 5, anchorradius: 5, legendIconAlpha: 100 }
+        //             ] :
+        //             [
+        //                 { seriesname: "Max", anchorbgcolor: consts.colors[0], data: dataArrForMax, anchorstartangle: 270, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
+        //                 { seriesname: "Min", anchorbgcolor: consts.colors[1], data: dataArrForMin, anchorsides: 3, anchorradius: 8, legendIconAlpha: 100 },
+        //                 { seriesname: "Average", anchorbgcolor: consts.colors[2], data: dataArrForAverage, anchorsides: 2, anchorradius: 6, legendIconAlpha: 100 },
+        //                 { seriesname: "Median", anchorbgcolor: consts.colors[3], data: dataArrForMedian, anchorsides: 4, anchorradius: 5, legendIconAlpha: 100 },
+        //             ]
+        //     }
+        // });
     }
 
     useEffect(() => {
@@ -239,19 +366,31 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
     }, [country, AFOLUSector, farmingSystem, unit]);
 
     useEffect(() => {
-        setChartConfigs(prev => {
+        setOption(prev => {
             return {
                 ...prev,
-                dataSource:
-                {
-                    ...prev.dataSource,
-                    chart: {
-                        ...prev.dataSource.chart,
-                        yaxisname: unit
+                plugins: {
+                    ...prev.plugins,
+                    subtitle: {
+                        ...prev.plugins.subtitle,
+                        text: unit
                     }
                 }
-            };
+            }
         })
+        // setChartConfigs(prev => {
+        //     return {
+        //         ...prev,
+        //         dataSource:
+        //         {
+        //             ...prev.dataSource,
+        //             chart: {
+        //                 ...prev.dataSource.chart,
+        //                 yaxisname: unit
+        //             }
+        //         }
+        //     };
+        // })
     }, [unit]);
 
     const openModal = () => {
@@ -403,8 +542,17 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                                 <span><i><b>No Data to Display</b></i></span>
                             </div>}
                     </div>
+                    {(scatterData) ? <div className="col-span-12 xl:col-span-7 xl:ml-3">
+                        <div className="grid" style={{ minHeight: `${400}px` }}>
+                            <Scatter options={option} data={scatterData} />
+                        </div>
+                    </div> :
+                        <div className="col-span-12 xl:col-span-7 grid bg-gradient-to-b from-[#11345822] rounded-md text-center content-center text-[#11345822] xl:ml-3 mb-3" style={{ minHeight: `${200}px` }}>
+                            <i>No Reduction Potential for <b>{country}</b></i>
+                        </div>
+                    }
 
-                    {(exportData && exportData.length) ? <div className="col-span-12 xl:col-span-7 xl:ml-3">
+                    {/* {(exportData && exportData.length) ? <div className="col-span-12 xl:col-span-7 xl:ml-3">
                         <div className="grid" style={{ minHeight: `${400}px` }}>
                             <FC chartConfigs={chartConfigs}></FC>
                         </div>
@@ -412,7 +560,7 @@ const EmissionRedcutionPotentialComponent = ({ country }) => {
                         <div className="col-span-12 xl:col-span-7 grid bg-gradient-to-b from-[#11345822] rounded-md text-center content-center text-[#11345822] xl:ml-3 mb-3" style={{ minHeight: `${200}px` }}>
                             <i>No Reduction Potential for <b>{country}</b></i>
                         </div>
-                    }
+                    } */}
                 </div>
             </section>
             <section id="impacts_synergies"><ImpactsAndSynergiesComponent country={country} AFOLUSector={AFOLUSector} farmingSystem={farmingSystem} /></section>
