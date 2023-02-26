@@ -45,51 +45,51 @@ const HomeComponent = ({ country }) => {
         ],
     });
 
-    const [chartConfigs, setChartConfigs] = useState({
-        type: "doughnut2d",
-        width: "99%",
-        height: "100%",
-        dataFormat: "JSON",
-        containerBackgroundOpacity: "0",
-        dataSource: {
-            chart: {
-                baseFont: "Arial",
-                caption: "",
-                pieRadius: "120",
-                captionFontColor: "#113458",
-                captionFontSize: "18",
-                captionFontBold: "0",
-                subCaptionFontColor: "#113458",
-                subCaptionFontSize: "16",
-                loadMessageColor: "#ff0000",
-                divLineColor: "#113458",
-                chartTopMargin: "30",
-                bgColor: "#000000",
-                bgAlpha: "0",
-                labelFontSize: "12",
-                labelFontColor: "#113458",
-                smartLineColor: "#113458",
-                legendItemFontColor: "#113458",
-                labelDistance: 10,
-                legendCaptionFontColor: "#ff0000",
-                defaultcenterlabel: "",
-                defaultcenterlabelColor: "#113458",
-                tooltipBorderRadius: "10",
-                skipOverlapLabels: "1",
-                label: "",
-                plottooltext: "<b>$value</b> Mt CO2e from the <b>$label</b> sector",
-                link: "#ff0000",
-                showLegend: "0",
-                startingAngle: "30",
-                enableSlicing: "0",
-                decimals: "1",
-                // showLabels: "0",
-                // showValues: "0",
-                theme: "fusion"
-            },
-            data: []
-        }
-    });
+    // const [chartConfigs, setChartConfigs] = useState({
+    //     type: "doughnut2d",
+    //     width: "99%",
+    //     height: "100%",
+    //     dataFormat: "JSON",
+    //     containerBackgroundOpacity: "0",
+    //     dataSource: {
+    //         chart: {
+    //             baseFont: "Arial",
+    //             caption: "",
+    //             pieRadius: "120",
+    //             captionFontColor: "#113458",
+    //             captionFontSize: "18",
+    //             captionFontBold: "0",
+    //             subCaptionFontColor: "#113458",
+    //             subCaptionFontSize: "16",
+    //             loadMessageColor: "#ff0000",
+    //             divLineColor: "#113458",
+    //             chartTopMargin: "30",
+    //             bgColor: "#000000",
+    //             bgAlpha: "0",
+    //             labelFontSize: "12",
+    //             labelFontColor: "#113458",
+    //             smartLineColor: "#113458",
+    //             legendItemFontColor: "#113458",
+    //             labelDistance: 10,
+    //             legendCaptionFontColor: "#ff0000",
+    //             defaultcenterlabel: "",
+    //             defaultcenterlabelColor: "#113458",
+    //             tooltipBorderRadius: "10",
+    //             skipOverlapLabels: "1",
+    //             label: "",
+    //             plottooltext: "<b>$value</b> Mt CO2e from the <b>$label</b> sector",
+    //             link: "#ff0000",
+    //             showLegend: "0",
+    //             startingAngle: "30",
+    //             enableSlicing: "0",
+    //             decimals: "1",
+    //             // showLabels: "0",
+    //             // showValues: "0",
+    //             theme: "fusion"
+    //         },
+    //         data: []
+    //     }
+    // });
 
     useEffect(() => {
         getYearOptionList();
@@ -210,13 +210,13 @@ const HomeComponent = ({ country }) => {
             subTitle = data[0]["TotalEmissionsCapitatCO2e_cap"] + " t CO2e/cap";
         }
 
-        setChartConfigs({
-            ...chartConfigs, dataSource: {
-                ...chartConfigs.dataSource,
-                data: arr,
-                chart: { ...chartConfigs.dataSource.chart, caption: captionStr, subCaption: subCaptionStr }
-            }
-        });
+        // setChartConfigs({
+        //     ...chartConfigs, dataSource: {
+        //         ...chartConfigs.dataSource,
+        //         data: arr,
+        //         chart: { ...chartConfigs.dataSource.chart, caption: captionStr, subCaption: subCaptionStr }
+        //     }
+        // });
 
         /* ****************************** */
         dataItem = {
